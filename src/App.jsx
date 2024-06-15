@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { HeroSection } from './component/HeroSection'
 import './App.css'
 import {Routes,Route} from "react-router-dom"
@@ -8,16 +7,16 @@ import { AcadamicPage } from './Pages/AcadamicPage'
 import { ContactUsPage } from './Pages/ContactUsPage'
 import { Signin } from './Pages/Signin'
 import { Signup } from './Pages/Signup'
+import { Footer } from './component/Footer'
 
 function App() {
 
   return (
     <>
       <div className='flex flex-col justify-center w-screen'>
-        <div className='bg-black flex justify-center'>
+        <div className='bg-black flex justify-center '>
           <Navbar />
         </div>
-        {/* <HeroSection/> */}
         <Routes>
         <Route path="/" element={<HeroSection />} />
         <Route path="/about" element={<AboutPage/>} />
@@ -27,6 +26,7 @@ function App() {
         <Route path="/signin" element={<Signin/>} />
         <Route path="*" element={<div>Not found Page</div>} />
       </Routes>
+      <Footer/>
       </div>
     </>
   )

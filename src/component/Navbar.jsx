@@ -13,9 +13,9 @@ export const Navbar = () => {
                 </div>
                 <div className=' flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/">HOME</NavLink><div className='w-[53px] h-[4px] bg-white'></div>
                 </div>
-                <div className='my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/about">ABOUT US</NavLink></div>
-                <div className='my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/academic">ACADEMIC</NavLink></div>
-                <div className='my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/contact">CONTACT US</NavLink></div>
+                <div className=' flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/about">ABOUT US</NavLink><div className='w-[53px] h-[4px] bg-black'></div></div>
+                <div className=' flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/academic">ACADEMIC</NavLink><div className='w-[53px] h-[4px] bg-black'></div></div>
+                <div className='flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/contact">CONTACT US</NavLink><div className='w-[53px] h-[4px] bg-black'></div></div>
             </div>
             <div className='flex my-[18px] gap-[39px] mr-[38px]'>
                 <div >

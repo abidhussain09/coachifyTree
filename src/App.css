@@ -3,5 +3,14 @@
   font-weight: 400;
   font-style: normal;
 }
-
-
+.bg-cont1{
+  background: url("../src/assets/Contactus1.png");
+}
+.bg-cont2{
+  background: url("./assets/Contactus2.png");
+}
+.active{
+  font-size: large;
+  text-decoration: underline;
+  text-decoration-thickness: 0.3rem;
+}

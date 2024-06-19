@@ -13,9 +13,9 @@ function App() {
 
   return (
     <>
-      <div className='flex flex-col justify-center w-screen'>
-        <div className='bg-black flex justify-center '>
-          <Navbar />
+      <div className='flex flex-col justify-center w-screen relative'>
+        <div className='bg-black flex justify-center sticky top-0'>
+          <Navbar/>
         </div>
         <Routes>
         <Route path="/" element={<HeroSection />} />

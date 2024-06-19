@@ -23,7 +23,7 @@ export const Footer = () => {
                         <p>9031799862</p>
                     </div>
                 </div>
-                <div className='flex'>
+                <div className='flex gap-2 items-center'>
                     <img src={Email} height={67} w={67} />
                     <div>
                         <p>Mail Us</p>

@@ -24,7 +24,7 @@ export const ContactUsPage = () => {
     toast.success('Form submitted successfully!');
   }
   return (
-    <div className='mx-auto flex gap-4 my-[140px]'>
+    <div className='mx-auto flex flex-wrap gap-4 my-[140px]'>
       <div className=' flex flex-col gap-[45px] w-[740px] h-[582px] rounded-[28px] border-2 border-white bg-cont1 p-[36px]'>
         <div className='flex justify-between '>
           <p className='text-[36px]'>Send us a message</p>

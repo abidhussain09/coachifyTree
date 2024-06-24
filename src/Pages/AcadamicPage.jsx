@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-// import academicpic1 from "https://res.cloudinary.com/dh26dmbg3/image/upload/v1719144501/coachifytreeapp/br2gfaiu67aludef2rdy.png"
-// import Neet from "../assets/Neet.png"
-// import Jee from "../assets/IIT-JEE.png"
 
 
 export const AcadamicPage = () => {

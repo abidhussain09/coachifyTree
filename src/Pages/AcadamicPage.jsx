@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 export const AcadamicPage = () => {
   const [data, setData] = useState([]);
   const [qoute,setquote]=useState("");
   const [author,setauthor]=useState("");
+  const navigate = useNavigate(); 
+
   async function randomQuote() {
     try{
       const response = await fetch('https://api.quotable.io/random');
@@ -30,12 +33,15 @@ export const AcadamicPage = () => {
     // const output2= await response2.json();
     
   }
+
   useEffect(() => {
     randomQuote();
   }, []);
-  const Neet="https://res.cloudinary.com/dh26dmbg3/image/upload/v1719144504/coachifytreeapp/impejezsumx32b5nh4d1.png";
-  const academicpic1= "https://res.cloudinary.com/dh26dmbg3/image/upload/v1719144501/coachifytreeapp/br2gfaiu67aludef2rdy.png";
-  const Jee="https://res.cloudinary.com/dh26dmbg3/image/upload/v1719144500/coachifytreeapp/bqg2rsi0534gmyxwjykm.png";
+
+  const Neet = "https://res.cloudinary.com/dh26dmbg3/image/upload/v1719144504/coachifytreeapp/impejezsumx32b5nh4d1.png";
+  const academicpic1 = "https://res.cloudinary.com/dh26dmbg3/image/upload/v1719144501/coachifytreeapp/br2gfaiu67aludef2rdy.png";
+  const Jee = "https://res.cloudinary.com/dh26dmbg3/image/upload/v1719144500/coachifytreeapp/bqg2rsi0534gmyxwjykm.png";
+
   return (
     <div className='mx-auto gap-10 flex flex-col'>
       <div className='mx-auto flex flex-wrap gap-5 mt-5'>
@@ -46,7 +52,7 @@ export const AcadamicPage = () => {
           <div>{data.length > 0 ? <p className='text-[#63a73a] text-[40px] itim p-4 '>-{author}</p> :<p className='text-[#63a73a] text-[40px] itim p-4 '>-noone</p>}</div>
         </div>
         <div className='border-2 border-[#545454] rounded-[30px]'>
-          <img src={academicpic1} h={570} w={631} />
+          <img src={academicpic1} alt="Academic" height={570} width={631} />
         </div>
       </div>
       <div className='itim text-[70px]'>Class wise Content
@@ -54,17 +60,17 @@ export const AcadamicPage = () => {
       <div className='flex flex-wrap gap-5 max-w-[1280px]'>
         <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center'  style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218467/class1to5_s6o6y5.png)`}}>Class 1st to 5th</div>
         <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class6to8_siunjw.png)`}}>Class 6th to 8th</div>
-        <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class9_xvbqgt.png)`}}>Class 9th</div>
-        <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class10_z63347.png)`}}>Class 10th</div>
-        <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218467/class11_q3bvl5.png)`}}>Class 11th</div>
-        <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218467/class12_ks2piz.png)`}}>Class 12th</div>
+        <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class9_xvbqgt.png)`}} onClick={() => navigate('/class9')}>Class 9th</div>
+        <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class10_z63347.png)`}} onClick={() => navigate('/class10')}>Class 10th</div>
+        <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218467/class11_q3bvl5.png)`}}  onClick={() => navigate('/class11')}>Class 11th</div>
+        <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218467/class12_ks2piz.png)`}}  onClick={() => navigate('/class12')}>Class 12th</div>
       </div>
       <div className='itim text-[70px]'>Competitive Content
       </div>
       <div className='flex flex-wrap gap-5 max-w-[1280px]'>
-        <div className="w-[630px] h-[305px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center" style={{backgroundImage:`url(${Neet})`}}>NEET</div>
-        <div className='w-[630px] h-[305px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage:`url(${Jee})`}}><p>I</p>IT-JEE</div>
+        <div className="w-[630px] h-[305px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center" style={{backgroundImage: `url(${Neet})`}}>NEET</div>
+        <div className='w-[630px] h-[305px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center' style={{backgroundImage: `url(${Jee})`}}><p>I</p>IT-JEE</div>
       </div>
     </div>
-  )
+  );
 }

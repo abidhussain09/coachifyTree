@@ -14,7 +14,7 @@ export const ContactUsPage = () => {
     message: ""
   });
   function changeHandler(event) {
-    const { name, value, type } = event.target;
+    const { name, value} = event.target;
     setUserMessage((prev) => ({ ...prev, [name]: value }));
   }
   function SubmitHandler(event) {

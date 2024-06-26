@@ -1,4 +1,4 @@
-import { HeroSection } from './component/HeroSection'
+import { HomePage } from './Pages/HomePage'
 import './App.css'
 import {Routes,Route} from "react-router-dom"
 import { Navbar } from './component/Navbar'
@@ -22,7 +22,7 @@ function App() {
           <Navbar/>
         </div>
         <Routes>
-        <Route path="/" element={<HeroSection />} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="/about" element={<AboutPage/>} />
         <Route path="/academic" element={<AcadamicPage/>} />
         <Route path="/contact" element={<ContactUsPage/>} />

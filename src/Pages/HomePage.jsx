@@ -45,8 +45,8 @@ export const HomePage = () => {
   return (
     <div className='mx-auto flex flex-col'>
       <HeroSection scrollToDiv={scrollToDiv}/>
-      <div className='max-w-[1280px] flex flex-col gap-4 justify-center items-center h-[760px] m-[120px]'  style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719379882/homeabout_s98vph.png)` }}>
-        <h2 className='itim text-[70px] text-[#63a73a] text-center'>"Nudging Towards Excellence"</h2>
+      <div id='targetDiv'className='max-w-[1280px] flex flex-col gap-4 justify-center items-center h-[760px] m-[120px]'  style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719379882/homeabout_s98vph.png)` }}>
+        <h2  className='itim text-[70px] text-[#63a73a] text-center'>"Nudging Towards Excellence"</h2>
         <p className='text-[36px] text-center itim px-[124px]'>We aim to guide students subtly and effectively, helping them make progress in a positive and encouraging manner.</p>
         <p className='text-[36px] text-center itim px-[124px]'>We believe in continuous effort , small actions taken to motivate students, providing them with regular feedback, encouragement, and support to keep them on the path to success.</p>
         <p className='text-[36px] text-center itim px-[124px]'>Our aim is not limited to academic achievements of students but also includes the development of critical thinking, creativity, resilience, and social responsibility</p>
@@ -106,7 +106,10 @@ export const HomePage = () => {
       </div>
       <div className='flex flex-wrap gap-5 my-[120px] mx-auto'>
         <div className='w-[628px] h-[614px] itim flex flex-col gap-10 items-center justify-center' style={{background:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719383522/bookyoursession_ihzzml.png)`}}>
+        <div>
         <h2 className='flex gap-2 text-[55px]'><p className='text-[#ff671f]'>Join,</p><p className='text-[#ffffff]'>Bestow,</p><p className='text-[#63a76a]'>Impact</p></h2>
+        <h4 className='text-[20px] max-w-[480px] mt-0 text-center'>Contribute to greatness, share your expertise, enrich our commonwealth.</h4>
+        </div>
           <form className='flex flex-col gap-9 items-center justify-center' onSubmit={SubmitHandlerContributor}>
             <fieldset>
               <input 
@@ -141,7 +144,7 @@ export const HomePage = () => {
             
             <button type='submit' className='bg-[#63a76a] w-[558px] h-[70px] rounded-[20px] text-[32px] mb-10'>make a start</button>
           </form></div>
-        <div id='targetDiv' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381444/dosomething_mzpelu.png)` }} className='w-[628px] h-[614px]'></div>
+        <div  style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381444/dosomething_mzpelu.png)` }} className='w-[628px] h-[614px]'></div>
       </div>
       <div className='flex flex-wrap gap-5 my-[120px] mx-auto'>
         <div className='w-[628px] h-[334px] itim text-[55px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center cursor-pointer' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381444/academicpencil_bgiutj.png)` }} onClick={()=>{navigate("/academic")}}>Explore our Academic</div>

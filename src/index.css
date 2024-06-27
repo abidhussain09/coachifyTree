@@ -12,7 +12,7 @@ body {
   overflow-x: hidden;
 }
 ::-webkit-scrollbar{
-  width:15px;
+  width:5px;
 }
 ::-webkit-scrollbar-track{
   background: rgb(0, 0, 0);
@@ -20,4 +20,5 @@ body {
 ::-webkit-scrollbar-thumb{
   background:linear-gradient(brown,#63a73a);
   border-radius: 10px;
+  border: 1px solid #63a73a;
 }

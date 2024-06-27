@@ -6,7 +6,7 @@ export const HeroSection = ({scrollToDiv}) => {
         <div className='mx-auto flex flex-wrap gap-5 m-[120px]'>
             <div className='flex flex-col gap-[89px] itim justify-center h-[496px] w-[628px]'>
                 <img height={253} width={630} src={tagLine} />
-                <button className='hover:scale-105 flex w-[308px] h-[71px] rounded-[27px] text-[40px] items-center justify-center bg-[#63a73a]' onCanPlay={scrollToDiv}>
+                <button className='hover:scale-105 flex w-[308px] h-[71px] rounded-[27px] text-[40px] items-center justify-center bg-[#63a73a]' onClick={scrollToDiv}>
                     Get Started!
                 </button>
             </div>

@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom'
 
 export const Navbar = () => {
     return (
-        <div className='bg-black w-[1280px] h-20 flex justify-between'>
+        <div className='bg-black w-[1280px] h-20 flex justify-between z-20'>
             <div className='flex gap-16 '>
                 <div className='my-[18px] ml-[51px]'>
                     <img src={Logo} height={76} width={60} />

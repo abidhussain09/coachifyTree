@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ImCross } from "react-icons/im";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { useNavigate } from 'react-router-dom';
 
 export const Signup = () => {
   const [UserMessage, setUserMessage] = useState({
@@ -14,7 +15,7 @@ export const Signup = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState('');
-
+  const navigate=useNavigate();
   const changeHandler = (event) => {
     const { name, value } = event.target;
     setUserMessage((prev) => ({ ...prev, [name]: value }));
@@ -112,7 +113,7 @@ export const Signup = () => {
         <span className="text-xs text-white mr-2">Already have an account?</span>
         <button
           className="text-[11px] text-white underline"
-          // Add an onClick handler or link to signin page
+          onClick={()=>{navigate("/signin")}}
         >
           Sign In
         </button>
@@ -122,5 +123,3 @@ export const Signup = () => {
   );
 };
 
-// Usage
-// <Signup />

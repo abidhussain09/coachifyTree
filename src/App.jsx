@@ -12,8 +12,10 @@ import {Class11}   from './Pages/Class11Page'
 import {Class12}   from './Pages/Class12Page'
 import { Signup } from './Pages/Signup'
 import { Footer } from './component/Footer'
+import useScrollToTop from './hooks/useScrollToTop'
 
 function App() {
+    useScrollToTop();
 
   return (
     <>

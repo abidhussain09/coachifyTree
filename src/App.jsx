@@ -12,6 +12,8 @@ import {Class11}   from './Pages/Class11Page'
 import {Class12}   from './Pages/Class12Page'
 import { Signup } from './Pages/Signup'
 import { Footer } from './component/Footer'
+import { JeePage } from './Pages/JeePage'
+import { NeetPage } from './Pages/NeetPage'
 import useScrollToTop from './hooks/useScrollToTop'
 
 function App() {
@@ -30,10 +32,12 @@ function App() {
         <Route path="/contact" element={<ContactUsPage/>} />
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<Signin/>} />
-        <Route path="/class9" element={<Class9 />} />
-        <Route path="/class10" element={<Class10 />} />
-        <Route path="/class11" element={<Class11 />} />
-        <Route path="/class12" element={<Class12 />} />
+        <Route path="academic/class9" element={<Class9 />} />
+        <Route path="academic/class10" element={<Class10 />} />
+        <Route path="academic/class11" element={<Class11 />} />
+        <Route path="academic/class12" element={<Class12 />} />
+        <Route path="academic/Jee" element={<JeePage/>} />
+        <Route path="academic/Neet" element={<NeetPage/>} />
 
         <Route path="*" element={<div>Not found Page</div>} />
       </Routes>

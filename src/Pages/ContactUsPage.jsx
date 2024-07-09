@@ -21,6 +21,13 @@ export const ContactUsPage = () => {
     event.preventDefault();
     console.log("Printing the data submitted");
     console.log(UserMessage);
+    setUserMessage({
+      name: "",
+      email: "",
+      phonenumber: "",
+      subject: "",
+      message: ""
+    });
     toast.success('Form submitted successfully!');
   }
   return (

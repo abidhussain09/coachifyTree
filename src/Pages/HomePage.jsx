@@ -34,12 +34,23 @@ export const HomePage = () => {
       event.preventDefault();
       console.log("Printing the data submitted");
       console.log(studentMessage);
+      setstudentMessage({
+        name:"",
+        email:"",
+        phonenum:"",
+        class:""
+      });
       // toast.success('Form submitted successfully!');
     }
     function SubmitHandlerContributor(event) {
       event.preventDefault();
       console.log("Printing the data submitted");
       console.log(contributorMessage);
+      setcontributorMessage({
+        name:"",
+        email:"",
+        phonenum:"",
+      })
       // toast.success('Form submitted successfully!');
     }
   return (

@@ -79,6 +79,7 @@ export const HomePage = () => {
               value={studentMessage.name}
               autoComplete='off'
               onChange={changeHandler}
+              required
               className='bg-black border-white border-2 rounded-md h-[44px] w-[558px] p-2 itim m-2'/>
             </fieldset>
             <fieldset>
@@ -89,6 +90,7 @@ export const HomePage = () => {
               value={studentMessage.phonenum}
               autoComplete='off'
               onChange={changeHandler}
+              required
               className='bg-black border-white border-2 rounded-md h-[44px] w-[558px] p-2 itim m-2'/>
             </fieldset>
             <fieldset>
@@ -99,6 +101,7 @@ export const HomePage = () => {
               value={studentMessage.email}
               autoComplete='off'
               onChange={changeHandler}
+              required
               className='bg-black border-white border-2 rounded-md h-[44px] w-[558px] p-2 itim m-2'/>
             </fieldset>
             <fieldset>
@@ -109,6 +112,7 @@ export const HomePage = () => {
               value={studentMessage.class}
               autoComplete='off'
               onChange={changeHandler}
+              required
               className='bg-black border-white border-2 rounded-md h-[44px] w-[558px] p-2 itim m-2'/>
             </fieldset>
             <button type='submit' className='bg-[#63a76a] w-[558px] h-[70px] rounded-[20px] text-[32px] mb-10'>Continue to Schedule</button>
@@ -130,6 +134,7 @@ export const HomePage = () => {
               value={contributorMessage.name}
               autoComplete='off'
               onChange={changeHandler2}
+              required
               className='bg-black border-white border-2 rounded-md h-[44px] w-[558px] p-2 itim m-2'/>
             </fieldset>
             <fieldset>
@@ -140,6 +145,7 @@ export const HomePage = () => {
               value={contributorMessage.phonenum}
               autoComplete='off'
               onChange={changeHandler2}
+              required
               className='bg-black border-white border-2 rounded-md h-[44px] w-[558px] p-2 itim m-2'/>
             </fieldset>
             <fieldset>
@@ -150,6 +156,7 @@ export const HomePage = () => {
               value={contributorMessage.email}
               autoComplete='off'
               onChange={changeHandler2}
+              required
               className='bg-black border-white border-2 rounded-md h-[44px] w-[558px] p-2 itim m-2'/>
             </fieldset>
             

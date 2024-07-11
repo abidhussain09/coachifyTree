@@ -56,13 +56,14 @@ export const Signup = () => {
       <div className="text-5xl text-white itim mb-8">Sign Up with mobile</div>
       <form onSubmit={handleSubmit} className="flex flex-col w-full max-w-md">
         <input
-          type='text'
-          placeholder='Enter your 10 digit phone number'
+          type='email'
+          placeholder='Enter your E-mail id'
           name='phoneNumber'
           value={UserMessage.phoneNumber}
           autoComplete='off'
           onChange={changeHandler}
           className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded"
+          required
         />
         <div className="relative">
           <input
@@ -73,6 +74,7 @@ export const Signup = () => {
             autoComplete='off'
             onChange={changeHandler}
             className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded pr-10"
+            required
           />
           <IconContext.Provider value={{ className: 'absolute right-4 top-1/2 transform -translate-y-1/2 text-[20px] text-white cursor-pointer' }}>
             {showPassword ? (
@@ -91,6 +93,7 @@ export const Signup = () => {
             autoComplete='off'
             onChange={changeHandler}
             className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded pr-10"
+            required
           />
           <IconContext.Provider value={{ className: 'absolute right-4 top-1/2 transform -translate-y-1/2 text-[20px] text-white cursor-pointer' }}>
             {showPassword ? (

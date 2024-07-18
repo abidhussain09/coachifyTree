@@ -58,8 +58,12 @@ export const AcadamicPage = () => {
       <div className='itim text-[70px]'>Class wise Content
       </div>
       <div className='flex flex-wrap gap-5 max-w-[1280px]'>
+        <Link to="/comingSoon">
         <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer hover:opacity-90 hover:shadow-lg hover:shadow-gray-200'  style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218467/class1to5_s6o6y5.png)`}}>Class 1st to 5th</div>
+        </Link>
+        <Link to="/comingSoon">
         <div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer hover:opacity-90 hover:shadow-lg hover:shadow-gray-200' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class6to8_siunjw.png)`}}>Class 6th to 8th</div>
+        </Link>
         {booleanValue? 
         <Link to="/signin"><div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer hover:opacity-90 hover:shadow-lg hover:shadow-gray-200' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class9_xvbqgt.png)`}} >Class 9th</div></Link>:
         <Link to="/academic/class9"><div className='w-[407px] h-[314px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer hover:opacity-90 hover:shadow-lg hover:shadow-gray-200' style={{backgroundImage:`url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class9_xvbqgt.png)`}} >Class 9th</div></Link>

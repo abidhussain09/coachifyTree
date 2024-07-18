@@ -166,7 +166,7 @@ export const HomePage = () => {
       </div>
       <div className='flex flex-wrap gap-5 my-[120px] mx-auto'>
         <div className='w-[628px] h-[334px] itim text-[55px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center cursor-pointer' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381444/academicpencil_bgiutj.png)` }} onClick={()=>{navigate("/academic")}}>Explore our Academic</div>
-        <div className='w-[628px] h-[334px] itim text-[55px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381445/art_l5sxmq.png)` }}>Explore our Art Gallery</div>
+        <div className='w-[628px] h-[334px] itim text-[55px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381445/art_l5sxmq.png)` }} onClick={()=>{navigate("/comingSoon")}}>Explore our Art Gallery</div>
       </div>
     </div>
   )

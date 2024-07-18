@@ -48,6 +48,9 @@ export const Signup = () => {
       await createUserWithEmailAndPassword(auth,phoneNumber,password);
       console.log("Account Created");
       toast.success('Account Created Sucessfully, Proceed to Signin!');
+      setTimeout(()=>{
+        navigate("/signin");
+      },5000)
     }
     catch(err){
       console.log(err);

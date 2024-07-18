@@ -11,6 +11,7 @@ import {Class10}   from './Pages/Class10Page'
 import {Class11}   from './Pages/Class11Page'
 import {Class12}   from './Pages/Class12Page'
 import { Signup } from './Pages/Signup'
+import {Loader} from './Pages/Loader'
 import { Signout } from './Pages/Signout'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,6 +37,7 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<Signin/>} />
         <Route path="/signout" element={<Signout/>} />
+        <Route path="/comingSoon" element={<Loader/>} />
         <Route path="academic/class9" element={<Class9 />} />
         <Route path="academic/class10" element={<Class10 />} />
         <Route path="academic/class11" element={<Class11 />} />

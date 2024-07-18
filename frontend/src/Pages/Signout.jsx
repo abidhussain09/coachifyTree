@@ -17,7 +17,9 @@ export const Signout = () => {
             pauseOnHover: false,
             draggable: true,
             });
-        goBack();
+        setTimeout(()=>{
+            goBack();
+        },3000)
     }
     const goBack = () => {
         // Use history.goBack() if you're using React Router v5
@@ -30,8 +32,8 @@ export const Signout = () => {
             <div className='w-[628px] h-[300px] flex flex-col gap-8 items-center justify-center'>
                 <h1 className='text-3xl'>Are you sure to Signout?</h1>
                 <div className='flex justify-around gap-4'>
-                <button className='bg-[#5a843f] rounded-[20px] h-[70px] w-[150px] text-2xl' onClick={siningout}>Signout</button>
-                <button className='bg-[#63a73a] rounded-[20px] h-[70px] w-[150px] text-2xl' onClick={goBack}>StaySignin</button>
+                <button className='bg-[#63a73a] rounded-[20px] h-[70px] w-[150px] text-2xl hover:scale-105' onClick={siningout}>Signout</button>
+                <button className='bg-[#63a73a] rounded-[20px] h-[70px] w-[150px] text-2xl hover:scale-105' onClick={goBack}>StaySignin</button>
                 </div>
                 <ToastContainer />
             </div>

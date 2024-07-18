@@ -36,7 +36,9 @@ export const Signin = () => {
       console.log("Login Successfull")
       toast.success('Signed in successfully!');
       dispatch(setValue(false));
-      goBack();
+      setTimeout(()=>{
+        goBack();
+      },4000)
     }
     catch(err){
       console.log(err);

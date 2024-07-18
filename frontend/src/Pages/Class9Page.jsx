@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Class9 = () => {
-  
+
   const Rectangle65 = "https://res.cloudinary.com/dh26dmbg3/image/upload/v1719216902/Rectangle_68_pwhl5m.png";
   const Rectangle69 = "https://res.cloudinary.com/dh26dmbg3/image/upload/v1719216617/Rectangle_69_tfosqc.png";
   const Rectangle71 = "https://res.cloudinary.com/dh26dmbg3/image/upload/v1719216293/Rectangle_71_qncuku.png";
@@ -9,11 +9,11 @@ export const Class9 = () => {
 
   return (
     <div className='flex flex-col mx-auto mt-5'>
-     
+
       <div className='w-full flex items-center mb-5'>
-        <h1 className='text-5xl font-bold mr-auto'>Class 9</h1> 
+        <h1 className='text-5xl font-bold mr-auto'>Class 9</h1>
       </div>
-      
+
       <div className='flex flex-wrap'>
         <div className='w-1/2 p-[106px]'>
           <div className='w-[407px] h-[301px] text-5xl font-itim mb-[107px]'>

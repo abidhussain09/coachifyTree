@@ -4,10 +4,10 @@
   font-style: normal;
 }
 .bg-cont1{
-  background: url("../src/assets/Contactus1.png");
+  background: url("https://res.cloudinary.com/dh26dmbg3/image/upload/v1721299921/Rectangle_48_hhbhby.png");
 }
 .bg-cont2{
-  background: url("./assets/Contactus2.png");
+  background: url("https://res.cloudinary.com/dh26dmbg3/image/upload/v1721299920/Rectangle_39_hyxloy.png");
 }
 .active{
   font-size: large;

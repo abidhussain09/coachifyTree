@@ -1,12 +1,22 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { toggle, setValue } from '../store/booleanSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Signout = () => {
     const booleanValue = useSelector((state) => state.booleanValue);
     const dispatch = useDispatch();
     const siningout=()=>{
         dispatch(setValue(true));
+        toast.success("Signout in successful!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            });
         goBack();
     }
     const goBack = () => {
@@ -23,6 +33,7 @@ export const Signout = () => {
                 <button className='bg-[#5a843f] rounded-[20px] h-[70px] w-[150px] text-2xl' onClick={siningout}>Signout</button>
                 <button className='bg-[#63a73a] rounded-[20px] h-[70px] w-[150px] text-2xl' onClick={goBack}>StaySignin</button>
                 </div>
+                <ToastContainer />
             </div>
         </div>
     )

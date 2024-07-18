@@ -12,6 +12,8 @@ import {Class11}   from './Pages/Class11Page'
 import {Class12}   from './Pages/Class12Page'
 import { Signup } from './Pages/Signup'
 import { Signout } from './Pages/Signout'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Footer } from './component/Footer'
 import { JeePage } from './Pages/JeePage'
 import { NeetPage } from './Pages/NeetPage'
@@ -43,7 +45,9 @@ function App() {
 
         <Route path="*" element={<div>Not found Page</div>} />
       </Routes>
+      <ToastContainer />
       <Footer/>
+      
       </div>
     </>
   )

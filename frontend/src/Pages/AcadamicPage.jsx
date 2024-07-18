@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggle, setValue } from '../store/booleanSlice';
+
 
 
 export const AcadamicPage = () => {
@@ -32,11 +32,6 @@ export const AcadamicPage = () => {
       setauthor(output2.a);
       console.log(author);
     }
-    // const response = await fetch('https://api.quotable.io/random');
-    // const output = await response.json();
-    // const response2 =await fetch("https://zenquotes.io/api/random");
-    // const output2= await response2.json();
-    
   }
 
   useEffect(() => {

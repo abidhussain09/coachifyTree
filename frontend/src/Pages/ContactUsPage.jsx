@@ -1,11 +1,20 @@
 import React, { useState } from 'react'
-import Email from "../assets/Email.svg"
-import Mail from "../assets/Mail.png"
 import { FiSend } from "react-icons/fi";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+
+const Email = 'https://res.cloudinary.com/dh26dmbg3/image/upload/v1721299919/Email_tnkvfn.svg';
+const Mail = 'https://res.cloudinary.com/dh26dmbg3/image/upload/v1721299920/Mail_bnkufn.png';
 export const ContactUsPage = () => {
+
+  const booleanValue = useSelector((state) => state.booleanValue);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const [UserMessage, setUserMessage] = useState({
     name: "",
     email: "",
@@ -14,21 +23,26 @@ export const ContactUsPage = () => {
     message: ""
   });
   function changeHandler(event) {
-    const { name, value} = event.target;
+    const { name, value } = event.target;
     setUserMessage((prev) => ({ ...prev, [name]: value }));
   }
   function SubmitHandler(event) {
     event.preventDefault();
-    console.log("Printing the data submitted");
-    console.log(UserMessage);
-    setUserMessage({
-      name: "",
-      email: "",
-      phonenumber: "",
-      subject: "",
-      message: ""
-    });
-    toast.success('Form submitted successfully!');
+    if (booleanValue) {
+      navigate('/signin');
+    }
+    else {
+      console.log("Printing the data submitted");
+      console.log(UserMessage);
+      setUserMessage({
+        name: "",
+        email: "",
+        phonenumber: "",
+        subject: "",
+        message: ""
+      });
+      toast.success('Form submitted successfully!');
+    }
   }
   return (
     <div className='mx-auto flex flex-wrap gap-4 my-[140px]'>
@@ -46,6 +60,7 @@ export const ContactUsPage = () => {
               value={UserMessage.name}
               autoComplete='off'
               onChange={changeHandler}
+              required
               className='bg-black border-white border-2 rounded-md h-[42px] w-[300px] p-2 itim m-2' />
             <input
               type='email'
@@ -54,6 +69,7 @@ export const ContactUsPage = () => {
               value={UserMessage.email}
               autoComplete='off'
               onChange={changeHandler}
+              required
               className='bg-black border-white border-2 rounded-md h-[42px] w-[300px] p-2 itim m-2' />
           </fieldset>
           <br />
@@ -65,6 +81,7 @@ export const ContactUsPage = () => {
               value={UserMessage.phonenumber}
               autoComplete='off'
               onChange={changeHandler}
+              required
               className='bg-black border-white border-2 rounded-md h-[42px] w-[300px] p-2 itim m-2' />
             <input
               type='text'
@@ -73,6 +90,7 @@ export const ContactUsPage = () => {
               value={UserMessage.subject}
               autoComplete='off'
               onChange={changeHandler}
+              required
               className='bg-black border-white border-2 rounded-md h-[42px] w-[300px] p-2 itim m-2' />
           </fieldset>
           <br />
@@ -83,6 +101,7 @@ export const ContactUsPage = () => {
             value={UserMessage.message}
             autoComplete='off'
             onChange={changeHandler}
+            required
             className='bg-black border-white border-2 rounded-md h-[42px] w-[616px] p-2 itim m-2' />
           <br />
           <br />

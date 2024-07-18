@@ -58,7 +58,8 @@ export const Signin = () => {
     // Use history.goBack() if you're using React Router v5
     // Use navigate(-1) if you're using React Router v6 with a useNavigate hook
     // For simplicity, window.history.back() is used here
-    window.history.back();
+    // window.history.back();
+    navigate('/');
   };
 
   return (

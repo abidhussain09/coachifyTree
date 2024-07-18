@@ -6,8 +6,17 @@ import { ImCross } from "react-icons/im";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { useNavigate } from 'react-router-dom';
+import {auth} from '../../src/firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggle, setValue } from '../store/booleanSlice';
+
 
 export const Signin = () => {
+
+  const booleanValue = useSelector((state) => state.booleanValue);
+  const dispatch = useDispatch();
+
   const [UserMessage, setUserMessage] = useState({
     name: '',
     password: '',
@@ -19,11 +28,26 @@ export const Signin = () => {
     setUserMessage((prev) => ({ ...prev, [name]: value }));
   };
 
-  const SubmitHandler = (event) => {
+  const SubmitHandler = async (event) => {
+    const {name,password}=UserMessage;
     event.preventDefault();
-    console.log("signing In");
-    console.log(UserMessage);
-    toast.success('Signed in successfully!');
+    try{
+      await signInWithEmailAndPassword(auth,name,password);
+      console.log("Login Successfull")
+      toast.success('Signed in successfully!');
+      dispatch(setValue(false));
+      goBack();
+    }
+    catch(err){
+      console.log(err);
+      toast.error("Invalid Credential");
+    }
+    setUserMessage({
+      name: '',
+      password: '',
+    });
+    // console.log("signing In");
+    // console.log(UserMessage);
   };
 
   const togglePasswordVisibility = () => {

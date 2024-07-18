@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiSend } from "react-icons/fi";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -6,12 +6,14 @@ import { ImCross } from "react-icons/im";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { useNavigate } from 'react-router-dom';
+import {auth} from '../../src/firebase'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export const Signup = () => {
   const [UserMessage, setUserMessage] = useState({
-    phoneNumber: '',
-    password: '',
-    confirmPassword: '',
+    phoneNumber:'',
+    password:'',
+    confirmPassword:'',
   });
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState('');
@@ -32,19 +34,60 @@ export const Signup = () => {
     window.history.back();
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (UserMessage.password !== UserMessage.confirmPassword) {
       setPasswordError('Passwords do not match!');
       return;
     }
+    const {phoneNumber,password}=UserMessage;
+    if (!isValidEmail(phoneNumber)) {
+      toast.error("Invalid Email");
+  }
+    try{
+      await createUserWithEmailAndPassword(auth,phoneNumber,password);
+      console.log("Account Created");
+      toast.success('Account Created Sucessfully, Proceed to Signin!');
+    }
+    catch(err){
+      console.log(err);
+    }
     setPasswordError('');
-    console.log("signing Up");
-    console.log(UserMessage);
-    toast.success('Signed up successfully!');
+    // console.log("signing Up");
+    // console.log(UserMessage);
+    setUserMessage({
+      phoneNumber:'',
+    password:'',
+    confirmPassword:'',
+    });
+    
+    // try{
+    //   RequestSignup();
+    // }
+    // catch(error){
+    //   console.log(error);
+    // }
+    // toast.success('Signed up successfully!');
     // Additional signup logic here
   };
+  // const RequestSignup= async()=>{
+  //   const {phoneNumber,password,confirmPassword}=UserMessage;
+  //   axios.post("api/v1/signup",{
+  //     phoneNumber,password,confirmPassword
+  //   })
+  //   .then(function(res){
+  //     console.log(res);
+  //   })
+  //   .catch(function(err){
+  //     console.log(err);
+  //   })
+  // }
 
+  // Email validation function
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center px-4">
       <div className="h-24 w-full  mt-4 rounded"></div>

@@ -1,6 +1,6 @@
 const express=require("express");
 const connectDB=require("./config/database");
-
+require("dotenv").config();
 
 const app=express();
 app.use(express.json());
@@ -8,7 +8,7 @@ app.use(express.json());
 connectDB();
 const auth=require("./routes/auth");
 app.use("/api/v1",auth);
-
-app.listen(3000,()=>{
-    console.log("app started running at port 3000");
-})
+const port=process.env.PORT;
+app.listen(port,()=>{
+    console.log(`app started at ${port}`);
+});

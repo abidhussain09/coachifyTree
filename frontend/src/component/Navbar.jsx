@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from "../assets/LOGO(XL).png"
 import signup from "../assets/signup.png"
 import login from "../assets/Login.png"
 import { NavLink } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { toggle, setValue } from '../store/booleanSlice';
 
 
 
 export const Navbar = () => {
+
+    const booleanValue = useSelector((state) => state.booleanValue);
+    const dispatch = useDispatch();
+
     return (
         <div className='bg-black w-[1280px] h-20 flex justify-between z-20'>
             <div className='flex gap-16 '>
@@ -15,22 +21,28 @@ export const Navbar = () => {
                 </div>
                 <div className=' flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/" activeClassName="active">HOME</NavLink>
                 </div>
-                <div className=' flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/about"  activeClassName="active">ABOUT US</NavLink></div>
+                <div className=' flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/about" activeClassName="active">ABOUT US</NavLink></div>
                 <div className=' flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/academic" activeClassName="active">ACADEMIC</NavLink></div>
                 <div className='flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim'><NavLink to="/contact" activeClassName="active">CONTACT US</NavLink></div>
             </div>
             <div className='flex my-[18px] gap-[39px] mr-[38px]'>
                 <div >
-                    <NavLink className='flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim' to="/signup"  activeClassName="active" >
+                    <NavLink className='flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim' to="/signup" activeClassName="active" >
                         <img src={signup} />
                         sign up
                     </NavLink>
                 </div>
                 <div >
+                    {booleanValue?
                     <NavLink className='flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim' to='/signin' >
-                    <img src={login} />
-                    sign in
+                        <img src={login} />
+                        sign in
                     </NavLink>
+                    :
+                    <NavLink className='flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim' to='/signout' >
+                        <img src={login} />
+                        sign out
+                    </NavLink>}
                 </div>
             </div>
         </div>

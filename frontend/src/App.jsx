@@ -11,6 +11,7 @@ import {Class10}   from './Pages/Class10Page'
 import {Class11}   from './Pages/Class11Page'
 import {Class12}   from './Pages/Class12Page'
 import { Signup } from './Pages/Signup'
+import { Signout } from './Pages/Signout'
 import { Footer } from './component/Footer'
 import { JeePage } from './Pages/JeePage'
 import { NeetPage } from './Pages/NeetPage'
@@ -32,6 +33,7 @@ function App() {
         <Route path="/contact" element={<ContactUsPage/>} />
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<Signin/>} />
+        <Route path="/signout" element={<Signout/>} />
         <Route path="academic/class9" element={<Class9 />} />
         <Route path="academic/class10" element={<Class10 />} />
         <Route path="academic/class11" element={<Class11 />} />

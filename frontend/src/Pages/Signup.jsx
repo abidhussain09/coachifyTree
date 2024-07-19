@@ -28,9 +28,6 @@ export const Signup = () => {
   };
 
   const goBack = () => {
-    // Use history.goBack() if you're using React Router v5
-    // Use navigate(-1) if you're using React Router v6 with a useNavigate hook
-    // For simplicity, window.history.back() is used here
     navigate('/');
   };
 
@@ -56,35 +53,13 @@ export const Signup = () => {
       console.log(err);
     }
     setPasswordError('');
-    // console.log("signing Up");
-    // console.log(UserMessage);
     setUserMessage({
       phoneNumber:'',
     password:'',
     confirmPassword:'',
     });
-    
-    // try{
-    //   RequestSignup();
-    // }
-    // catch(error){
-    //   console.log(error);
-    // }
-    // toast.success('Signed up successfully!');
-    // Additional signup logic here
   };
-  // const RequestSignup= async()=>{
-  //   const {phoneNumber,password,confirmPassword}=UserMessage;
-  //   axios.post("api/v1/signup",{
-  //     phoneNumber,password,confirmPassword
-  //   })
-  //   .then(function(res){
-  //     console.log(res);
-  //   })
-  //   .catch(function(err){
-  //     console.log(err);
-  //   })
-  // }
+
 
   // Email validation function
 function isValidEmail(email) {
@@ -152,7 +127,7 @@ function isValidEmail(email) {
         {passwordError && <div className="text-red-500 text-xs mb-4">{passwordError}</div>}
         <button
           type='submit'
-          className="bg-[rgba(99,167,106,1)] text-[25px] p-4 w-full rounded text-aliceblue itim font-roboto"
+          className="bg-[#63a73a] text-[25px] p-4 w-full rounded text-aliceblue itim font-roboto"
         >
           <h6 className="flex items-center justify-center">Sign Up <FiSend /></h6>
         </button>

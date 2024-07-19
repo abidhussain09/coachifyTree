@@ -1,6 +1,7 @@
 import React from 'react'
 import location from "../assets/Location.svg"
 import Email from "../assets/Email.svg"
+import { Link } from 'react-router-dom'
 import Smartphone from "../assets/Smartphone.svg"
 import logo from "../assets/LOGO(XL).png"
 import loca from "../assets/Group 24.svg"
@@ -45,9 +46,10 @@ export const Footer = () => {
                 </div>
                 <div className='flex flex-col'>
                     <p className='text-[36px]'>Links</p>
-                    <a>HOME</a>
-                    <a>ABOUT US</a>
-                    <a>CONTACT US</a>
+                    <Link to="/">HOME</Link>
+                    <Link to="/about">ABOUT US</Link>
+                    <Link to="/academic">ACADEMIC</Link>
+                    <Link to="/contact">CONTACT US</Link>
                 </div>
                 <div className='flex gap-3 justify-center items-center'>
                     <img height={59} width={63} src={loca}/>

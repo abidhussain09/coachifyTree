@@ -74,10 +74,10 @@ export const HomePage = () => {
     <div className='mx-auto flex flex-col'>
       <HeroSection scrollToDiv={scrollToDiv}/>
       <div id='targetDiv'className='max-w-[1280px] flex flex-col gap-4 justify-center items-center h-[760px] m-[120px]'  style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719379882/homeabout_s98vph.png)` }}>
-        <h2  className='itim text-[70px] text-[#63a73a] text-center'>"Nudging Towards Excellence"</h2>
-        <p className='text-[36px] text-center itim px-[124px]'>We aim to guide students subtly and effectively, helping them make progress in a positive and encouraging manner.</p>
-        <p className='text-[36px] text-center itim px-[124px]'>We believe in continuous effort , small actions taken to motivate students, providing them with regular feedback, encouragement, and support to keep them on the path to success.</p>
-        <p className='text-[36px] text-center itim px-[124px]'>Our aim is not limited to academic achievements of students but also includes the development of critical thinking, creativity, resilience, and social responsibility</p>
+        <h2  className='itim text-[70px] text-[#9ee174] text-center text-wrap'>"Nudging Towards Excellence"</h2>
+        <p className='text-[36px] text-center itim px-[124px] text-wrap'>We aim to guide students subtly and effectively, helping them make progress in a positive and encouraging manner.</p>
+        <p className='text-[36px] text-center itim px-[124px] text-wrap'>We believe in continuous effort , small actions taken to motivate students, providing them with regular feedback, encouragement, and support to keep them on the path to success.</p>
+        <p className='text-[36px] text-center itim px-[124px] text-wrap'>Our aim is not limited to academic achievements of students but also includes the development of critical thinking, creativity, resilience, and social responsibility</p>
       </div>
       <div className='flex flex-wrap gap-5 my-[120px] mx-auto'>
         <div style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381445/connectwithus_oibnzn.png)` }} className='w-[628px] h-[614px] flex flex-col itim p-6'>
@@ -183,7 +183,7 @@ export const HomePage = () => {
       </div>
       <div className='flex flex-wrap gap-5 my-[120px] mx-auto'>
         <div className='w-[628px] h-[334px] itim text-[55px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center cursor-pointer' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381444/academicpencil_bgiutj.png)` }} onClick={()=>{navigate("/academic")}}>Explore our Academic</div>
-        <div className='w-[628px] h-[334px] itim text-[55px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381445/art_l5sxmq.png)` }} onClick={()=>{navigate("/comingSoon")}}>Explore our Art Gallery</div>
+        <div className='w-[628px] h-[334px] itim text-[55px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center cursor-pointer' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381445/art_l5sxmq.png)` }} onClick={()=>{navigate("/comingSoon")}}>Explore our Art Gallery</div>
       </div>
       <ToastContainer/>
     </div>

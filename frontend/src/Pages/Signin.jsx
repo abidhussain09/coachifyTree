@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiSend } from "react-icons/fi";
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ImCross } from "react-icons/im";
@@ -81,7 +82,7 @@ export const Signin = () => {
           value={UserMessage.name}
           autoComplete='off'
           onChange={changeHandler}
-          className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded"
+          className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded "
           required
         />
         <div className="relative">
@@ -105,21 +106,24 @@ export const Signin = () => {
         </div>
         <button
           type='submit'
-          className="bg-[rgba(99,167,106,1)] text-[25px] p-4 w-full rounded text-aliceblue itim font-roboto"
+          className="bg-[#63a73a] text-[25px] p-4 w-full rounded text-aliceblue itim font-roboto"
         >
           <h6 className="flex items-center justify-center">Sign In <FiSend /></h6>
         </button>
       </form>
       <ToastContainer />
-      <div className="flex items-center mt-8">
-        <span className="text-xs text-white mr-2">Don't have an account?</span>
+      <div className="flex items-center my-8">
+        <span className="text-xl text-white mr-2">Don't have an account?</span>
         <button
-          className="text-[11px] text-white underline"
+          className="text-xl text-white underline"
           onClick={()=>{navigate('/signup')}}
         >
           Signup
         </button>
       </div>
+      <p>
+        Forgot password? <Link to="/resetpassword" className='text-blue-500'>Reset it here</Link>
+      </p>
       {/* Add more content or spacing here to increase the length of the page */}
       <div className="h-24 w-full  mt-15 rounded"></div> {/* Example of adding more content */}
     </div>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { HeroSection } from '../component/HeroSection'
 import { useNavigate } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const HomePage = () => {
@@ -30,17 +33,31 @@ export const HomePage = () => {
       const { name, value} = event.target;
       setcontributorMessage((prev) => ({ ...prev, [name]: value }));
     }
-    function SubmitHandlerStudent(event) {
+    async function SubmitHandlerStudent(event) {
       event.preventDefault();
       console.log("Printing the data submitted");
       console.log(studentMessage);
-      setstudentMessage({
-        name:"",
-        email:"",
-        phonenum:"",
-        class:""
-      });
-      // toast.success('Form submitted successfully!');
+      try{
+        const result= await emailjs.send(
+          import.meta.env.VITE_EmailjsServiceId,
+          import.meta.env.VITE_EmailjsTemplateId_booksessionForm,
+          studentMessage,
+          import.meta.env.VITE_EmailjsPublicKey
+        );
+        toast.success('Form submitted successfully!');
+        toast.success('We will contact you!');
+        setstudentMessage({
+          name:"",
+          email:"",
+          phonenum:"",
+          class:""
+        });
+      }
+      catch(err){
+        toast.error("Failed to send Email");
+        toast.error("Please try again");
+        console.log(err);
+      }
     }
     function SubmitHandlerContributor(event) {
       event.preventDefault();
@@ -168,6 +185,7 @@ export const HomePage = () => {
         <div className='w-[628px] h-[334px] itim text-[55px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center cursor-pointer' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381444/academicpencil_bgiutj.png)` }} onClick={()=>{navigate("/academic")}}>Explore our Academic</div>
         <div className='w-[628px] h-[334px] itim text-[55px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381445/art_l5sxmq.png)` }} onClick={()=>{navigate("/comingSoon")}}>Explore our Art Gallery</div>
       </div>
+      <ToastContainer/>
     </div>
   )
 }

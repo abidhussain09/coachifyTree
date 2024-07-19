@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 
 
 const Email = 'https://res.cloudinary.com/dh26dmbg3/image/upload/v1721299919/Email_tnkvfn.svg';
@@ -26,7 +27,7 @@ export const ContactUsPage = () => {
     const { name, value } = event.target;
     setUserMessage((prev) => ({ ...prev, [name]: value }));
   }
-  function SubmitHandler(event) {
+  async function SubmitHandler(event) {
     event.preventDefault();
     if (booleanValue) {
       navigate('/signin');
@@ -34,14 +35,28 @@ export const ContactUsPage = () => {
     else {
       console.log("Printing the data submitted");
       console.log(UserMessage);
-      setUserMessage({
-        name: "",
-        email: "",
-        phonenumber: "",
-        subject: "",
-        message: ""
-      });
-      toast.success('Form submitted successfully!');
+      try{
+        const result=await emailjs.send(
+          import.meta.env.VITE_EmailjsServiceId,
+          import.meta.env.VITE_EmailjsTemplateId_contactForm,
+          UserMessage,
+          import.meta.env.VITE_EmailjsPublicKey
+        );
+        console.log('Email sent successfully:', result.text);
+        toast.success('Form submitted successfully!');
+        setUserMessage({
+          name: "",
+          email: "",
+          phonenumber: "",
+          subject: "",
+          message: ""
+        });
+      }
+      catch(err){
+        toast.error("Failed to send Email");
+        toast.error("Please try again");
+        console.log(err);
+      }
     }
   }
   return (

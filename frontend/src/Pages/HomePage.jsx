@@ -177,7 +177,8 @@ export const HomePage = () => {
               className='bg-black border-white border-2 rounded-md h-[44px] w-[558px] p-2 itim m-2'/>
             </fieldset>
             
-            <button type='submit' className='bg-[#63a76a] w-[558px] h-[70px] rounded-[20px] text-[32px] mb-10'>make a start</button>
+            <bbutton type='submit' className='bg-[#63a76a] w-[558px] h-[70px] rounded-[20px] text-[32px] mb-10'
+                onClick={() => window.open("https://forms.gle/w2wgqYWJ5Bk6w7Q36", "_blank")}>make a start</button>
           </form></div>
         <div  style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381444/dosomething_mzpelu.png)` }} className='w-[628px] h-[614px]'></div>
       </div>

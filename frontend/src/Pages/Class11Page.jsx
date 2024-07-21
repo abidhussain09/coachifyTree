@@ -16,18 +16,18 @@ export const Class11 = () => {
       
       <div className='flex flex-wrap'>
         <div className='w-1/2 p-[106px]'>
-          <div className='w-[407px] h-[301px] text-5xl font-itim mb-[107px]'>
+          <div className='w-[407px] h-[301px] text-5xl font-itim mb-[107px] cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/1niRr6G-Uk3MLfh7yN2ZBl4leeSsRGk20?usp=sharing",'_blank')}}>
             <img src={Rectangle65} alt="maths" />
           </div>
-          <div className='w-[407px] h-[301px] text-5xl font-itim'>
+          <div className='w-[407px] h-[301px] text-5xl font-itim cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/1GaWQDx9LOJVGgY1lqdsO3aQMnjK6XylK?usp=sharing",'_blank')}}>
             <img src={Rectangle69} alt="chemistry" />
           </div>
         </div>
         <div className='w-1/2 p-[106px]'>
-          <div className='w-[407px] h-[301px] text-5xl font-itim mb-[107px]'>
+          <div className='w-[407px] h-[301px] text-5xl font-itim mb-[107px] cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/1SkcK0P-nuO-_8daqYGkAE_GonDf7IoVf?usp=sharing",'_blank')}}>
             <img src={Rectangle50} alt="physics" />
           </div>
-          <div className='w-[407px] h-[301px] text-5xl font-itim'>
+          <div className='w-[407px] h-[301px] text-5xl font-itim cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/1uE3NKE_Cl7RQ8Msqub5UzxpNboFs-Bbc?usp=sharing",'_blank')}}>
             <img src={Rectangle71} alt="biology" />
           </div>
         </div>

@@ -24,15 +24,15 @@ export const NeetPage = () => {
             </div>
             <div className='flex flex-wrap max-w-[1280px] gap-40 mx-auto'>
                 <div className='flex justify-around gap-60'>
-                    <div className='w-[407px] h-[301px] text-5xl font-itim'>
+                    <div className='w-[407px] h-[301px] text-5xl font-itim cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/1BERnC0AqNWvo_WhJ6iCbBTn-mB_j58De?usp=sharing",'_blank')}}>
                         <img src={Rectangle71} alt="biology" />
                     </div>
-                    <div className='w-[407px] h-[301px] text-5xl font-itim'>
+                    <div className='w-[407px] h-[301px] text-5xl font-itim cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/132unzjB-8MpXWOGK48CzaSUDgcfkAgvz?usp=sharing",'_blank')}}>
                         <img src={Rectangle69} alt="chemistry" />
                     </div>
                 </div>
                 <div className='flex justify-around gap-60'>
-                    <div className='w-[407px] h-[301px] text-5xl font-itim '>
+                    <div className='w-[407px] h-[301px] text-5xl font-itim cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/1MbLgIo0YpVLg3aJ84D9cKiR7m5sgNMd1?usp=sharing",'_blank')}}>
                         <img src={Rectangle50} alt="physics" />
                     </div>
                     

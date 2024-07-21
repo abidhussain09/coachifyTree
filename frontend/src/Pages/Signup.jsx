@@ -7,9 +7,10 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { useNavigate } from 'react-router-dom';
 import {auth} from '../../src/firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 
 export const Signup = () => {
+  const [verification,SetVerification]=useState(false);
   const [UserMessage, setUserMessage] = useState({
     phoneNumber:'',
     password:'',
@@ -42,9 +43,14 @@ export const Signup = () => {
       toast.error("Invalid Email");
   }
     try{
-      await createUserWithEmailAndPassword(auth,phoneNumber,password);
-      console.log("Account Created");
-      toast.success('Account Created Sucessfully, Proceed to Signin!');
+      const userCredential =await createUserWithEmailAndPassword(auth,phoneNumber,password);
+      const user=userCredential.user;
+      await sendEmailVerification(user);
+      SetVerification(true);
+      toast.success("A verification email is send");
+      toast.success("Please verify to login");
+      // console.log("Account Created");
+      // toast.success('Account Created Sucessfully, Proceed to Signin!');
       setTimeout(()=>{
         navigate("/signin");
       },5000)
@@ -142,7 +148,10 @@ function isValidEmail(email) {
           Sign In
         </button>
       </div>
-      <div className="h-24 w-full  mt-4 rounded"></div>
+      {
+        verification&&
+      <div className="itim text-xl text-green-500">Verification e-mail send, please verify</div>
+      }
     </div>
   );
 };

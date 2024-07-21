@@ -16,18 +16,18 @@ export const Class9 = () => {
 
       <div className='flex flex-wrap'>
         <div className='w-1/2 p-[106px]'>
-          <div className='w-[407px] h-[301px] text-5xl font-itim mb-[107px]'>
+          <div className='w-[407px] h-[301px] text-5xl font-itim mb-[107px] cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/1Rhukp_ptTWyV9Mqm2URrMbw3DweOQrEi?usp=sharing",'_blank')}}>
             <img src={Rectangle65} alt="maths" />
           </div>
-          <div className='w-[407px] h-[301px] text-5xl font-itim'>
+          <div className='w-[407px] h-[301px] text-5xl font-itim cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/1AYzAgukicluaCNJOL3wckZDAST2nXhwr?usp=sharing",'_blank')}}>
             <img src={Rectangle69} alt="social science" />
           </div>
         </div>
         <div className='w-1/2 p-[106px]'>
-          <div className='w-[407px] h-[301px] text-5xl font-itim mb-[107px]'>
+          <div className='w-[407px] h-[301px] text-5xl font-itim mb-[107px] cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/1Sk0pC8npCAP_4ws_OWxuplmD2Yfx3WSL?usp=sharing",'_blank')}}>
             <img src={Rectangle50} alt="science" />
           </div>
-          <div className='w-[407px] h-[301px] text-5xl font-itim'>
+          <div className='w-[407px] h-[301px] text-5xl font-itim cursor-pointer' onClick={()=>{window.open("https://drive.google.com/drive/folders/1sS-oaSOaJMkZC6GVM94BaKWJD3xCHBN7?usp=sharing",'_blank')}}>
             <img src={Rectangle71} alt="english" />
           </div>
         </div>

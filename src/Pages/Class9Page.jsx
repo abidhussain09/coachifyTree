@@ -8,10 +8,10 @@ export const Class9 = () => {
   const Rectangle50 = "https://res.cloudinary.com/dh26dmbg3/image/upload/v1719221302/Rectangles50_l3fsmi.png";
 
   return (
-    <div className='flex flex-col mx-auto mt-5'>
+    <div className='flex flex-col mx-auto mt-5 items-center justify-center'>
 
-      <div className='w-full flex items-center mb-5'>
-        <h1 className='text-5xl font-bold mr-auto'>Class 9</h1>
+      <div className='flex items-center mb-5'>
+        <h1 className='text-5xl font-bold '>Class 9</h1>
       </div>
 
       <div className='flex flex-wrap'>

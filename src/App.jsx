@@ -30,6 +30,7 @@ function App() {
         <div className='bg-black flex justify-center sticky top-0'>
           <Navbar/>
         </div>
+        <div className='sm:px-0 px-[30px]'>
         <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/about" element={<AboutPage/>} />
@@ -46,12 +47,11 @@ function App() {
         <Route path="academic/class12" element={<Class12 />} />
         <Route path="academic/Jee" element={<JeePage/>} />
         <Route path="academic/Neet" element={<NeetPage/>} />
-
         <Route path="*" element={<div>Not found Page</div>} />
       </Routes>
+      </div>
       <ToastContainer />
       <Footer/>
-      
       </div>
     </>
   )

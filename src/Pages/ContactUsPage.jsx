@@ -60,14 +60,14 @@ export const ContactUsPage = () => {
     }
   }
   return (
-    <div className='mx-auto flex flex-wrap gap-4 my-[140px]'>
-      <div className=' flex flex-col gap-[45px] w-[740px] h-[582px] rounded-[28px] border-2 border-white bg-cont1 p-[36px]'>
+    <div className='mx-auto flex flex-wrap sm:gap-4 gap-10 my-[140px] items-center justify-center'>
+      <div className=' flex flex-col gap-[45px] sm:w-[740px] sm:h-[582px] w-[300px] rounded-[28px] border-2 border-white bg-cont1 p-[36px]'>
         <div className='flex justify-between '>
-          <p className='text-[36px]'>Send us a message</p>
-          <img src={Email} height={50} width={60} />
+          <p className='sm:text-[36px] text-4xl'>Send us a message</p>
+          <img src={Email} height={50} width={60} className='hidden sm:flex'/>
         </div>
-        <form onSubmit={SubmitHandler}>
-          <fieldset>
+        <form onSubmit={SubmitHandler} className='flex items-center sm:items-start justify-center flex-col'>
+          <fieldset className='flex items-center justify-center sm:flex-row flex-col'>
             <input
               type='text'
               placeholder='Enter your name'
@@ -76,7 +76,7 @@ export const ContactUsPage = () => {
               autoComplete='off'
               onChange={changeHandler}
               required
-              className='bg-black border-white border-2 rounded-md h-[42px] w-[300px] p-2 itim m-2' />
+              className='bg-black border-white border-2 rounded-md sm:h-[42px] sm:w-[300px] h-[35px] w-[280px] p-2 itim m-2' />
             <input
               type='email'
               placeholder='Enter your email'
@@ -85,9 +85,9 @@ export const ContactUsPage = () => {
               autoComplete='off'
               onChange={changeHandler}
               required
-              className='bg-black border-white border-2 rounded-md h-[42px] w-[300px] p-2 itim m-2' />
+              className='bg-black border-white border-2 rounded-md sm:h-[42px] sm:w-[300px] h-[35px] w-[280px] p-2 itim m-2' />
           </fieldset>
-          <br />
+          <br className='sm:flex hidden'/>
           <fieldset>
             <input
               type='text'
@@ -97,7 +97,7 @@ export const ContactUsPage = () => {
               autoComplete='off'
               onChange={changeHandler}
               required
-              className='bg-black border-white border-2 rounded-md h-[42px] w-[300px] p-2 itim m-2' />
+              className='bg-black border-white border-2 rounded-md sm:h-[42px] sm:w-[300px] h-[35px] w-[280px] p-2 itim m-2' />
             <input
               type='text'
               placeholder='Enter your subject'
@@ -106,9 +106,9 @@ export const ContactUsPage = () => {
               autoComplete='off'
               onChange={changeHandler}
               required
-              className='bg-black border-white border-2 rounded-md h-[42px] w-[300px] p-2 itim m-2' />
+              className='bg-black border-white border-2 rounded-md sm:h-[42px] sm:w-[300px] h-[35px] w-[280px] p-2 itim m-2' />
           </fieldset>
-          <br />
+          <br className='sm:flex hidden' />
           <input
             type='text'
             placeholder='Enter your message'
@@ -117,18 +117,18 @@ export const ContactUsPage = () => {
             autoComplete='off'
             onChange={changeHandler}
             required
-            className='bg-black border-white border-2 rounded-md h-[42px] w-[616px] p-2 itim m-2' />
-          <br />
-          <br />
-          <button type='submit' className='bg-black border-white flex justify-center items-center gap-2 border-2 rounded-md p-2 itim m-2 h-[70px] w-[150px] text-[20px]'>
+            className='bg-black border-white border-2 rounded-md sm:h-[42px] sm:w-[616px] h-[35px] w-[280px] p-2 itim m-2' />
+          <br className='sm:flex hidden' />
+          <br  className='sm:flex hidden'/>
+          <button type='submit' className='bg-[#63a73a] border-white flex justify-center items-center gap-2 border-2 rounded-md p-2 itim m-2 h-[70px] w-[150px] text-[20px]'>
             <p>Submit</p>
             <FiSend />
           </button>
         </form>
         <ToastContainer />
       </div>
-      <div className='w-[438px] h-[582px] rounded-[28px] border-2 border-white bg-cont2 p-[36px]'>
-        <p className='itim text-[36px]'>Contact Information</p>
+      <div className='sm:w-[438px] sm:h-[582px] w-[300px] h-[500px] rounded-[28px] border-2 border-white bg-cont2 p-[36px]'>
+        <p className='itim sm:text-[36px] text-4xl'>Contact Information</p>
         <div className='items-center justify-center flex flex-col h-[500px] gap-4'>
           <img width={90} height={50} src={Mail} />
           <p className='text-[26px] itim'>coachifytree@gmail.com</p>

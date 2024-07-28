@@ -50,26 +50,45 @@
 
 //     )
 // }
-import React, { useState } from 'react'
-import Logo from "../assets/LOGO(XL).png"
-import signup from "../assets/signup.png"
-import login from "../assets/Login.png"
-import { NavLink } from 'react-router-dom'
+
+
+
+
+import React, { useState, useRef, useEffect } from 'react';
+import Logo from "../assets/LOGO(XL).png";
+import signup from "../assets/signup.png";
+import login from "../assets/Login.png";
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const booleanValue = useSelector((state) => state.booleanValue);
+    const sidebarRef = useRef(null);
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     const NavItem = ({ to, children }) => (
         <NavLink 
             to={to} 
-            activeClassName="active"
-            className="flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim"
+            className={({ isActive }) =>
+                `flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim ${isActive ? 'active' : ''}`
+            }
             onClick={() => setIsOpen(false)}
         >
             {children}
@@ -92,12 +111,22 @@ export const Navbar = () => {
                 </div>
                 <div className='hidden md:flex my-[18px] gap-[39px] mr-[38px]'>
                     {booleanValue && (
-                        <NavLink className='flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim' to="/signup" activeClassName="active">
+                        <NavLink
+                            className={({ isActive }) =>
+                                `flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim ${isActive ? 'active' : ''}`
+                            }
+                            to="/signup"
+                        >
                             <img src={signup} alt="Sign up" />
                             sign up
                         </NavLink>
                     )}
-                    <NavLink className='flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim' to={booleanValue ? '/signin' : '/signout'}>
+                    <NavLink
+                        className={({ isActive }) =>
+                            `flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim ${isActive ? 'active' : ''}`
+                        }
+                        to={booleanValue ? '/signin' : '/signout'}
+                    >
                         <img src={login} alt="Sign in/out" />
                         {booleanValue ? 'sign in' : 'sign out'}
                     </NavLink>
@@ -123,22 +152,30 @@ export const Navbar = () => {
 
             {/* Sidebar for mobile */}
             {isOpen && (
-                <div className="md:hidden">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <div ref={sidebarRef} className="md:hidden bg-black p-4 ">
+                    <div className="px-2 pt-3 pb-3 space-y-1 sm:px-3">
                         <NavItem to="/">HOME</NavItem>
                         <NavItem to="/about">ABOUT US</NavItem>
                         <NavItem to="/academic">ACADEMIC</NavItem>
                         <NavItem to="/contact">CONTACT US</NavItem>
                     </div>
-                    <div className="pt-4 pb-3 border-t border-gray-700">
-                        <div className="flex items-center px-5">
+                    <div className="pt-4 pb-4 border-t border-gray-700">
+                        <div className="flex justify-center items-center px-5">
                             {booleanValue && (
-                                <NavLink to="/signup" className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim mr-2">
+                                <NavLink
+                                    to="/signup"
+                                    onClick={() => setIsOpen(false)}
+                                    className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim mr-2"
+                                >
                                     <img src={signup} alt="Sign up" />
                                     sign up
                                 </NavLink>
                             )}
-                            <NavLink to={booleanValue ? '/signin' : '/signout'} className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim">
+                            <NavLink
+                                to={booleanValue ? '/signin' : '/signout'}
+                                onClick={() => setIsOpen(false)}
+                                className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim"
+                            >
                                 <img src={login} alt="Sign in/out" />
                                 {booleanValue ? 'sign in' : 'sign out'}
                             </NavLink>
@@ -147,5 +184,5 @@ export const Navbar = () => {
                 </div>
             )}
         </nav>
-    )
-}
+    );
+};

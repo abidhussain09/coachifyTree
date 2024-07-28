@@ -1,13 +1,13 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { toggle, setValue } from '../store/booleanSlice';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setValue } from '../store/booleanSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const Signout = () => {
-    const booleanValue = useSelector((state) => state.booleanValue);
     const dispatch = useDispatch();
-    const siningout = () => {
+
+    const signout = () => {
         dispatch(setValue(true));
         toast.success("Signout Successful!", {
             position: "top-right",
@@ -19,24 +19,33 @@ export const Signout = () => {
         });
         setTimeout(() => {
             goBack();
-        }, 3000)
+        }, 3000);
     }
+
     const goBack = () => {
-        // Use history.goBack() if you're using React Router v5
-        // Use navigate(-1) if you're using React Router v6 with a useNavigate hook
-        // For simplicity, window.history.back() is used here
         window.history.back();
     };
+
     return (
-        <div className='flex items-center justify-center my-[100px] mx-[300px] itim rounded-[20px] border-white border-2 p-6'>
-            <div className='sm:w-[628px] sm:h-[300px] w-[300px] h-[400px] flex flex-col gap-8 items-center justify-center'>
-                <h1 className='sm:text-3xl text-2xl'>Are you sure to Signout?</h1>
-                <div className='flex justify-around gap-4'>
-                    <button className='bg-[#63a73a] rounded-[20px] sm:h-[70px] sm:w-[150px] h-[50px] w-[120px] text-2xl hover:scale-105' onClick={siningout}>Signout</button>
-                    <button className='bg-[#63a73a] rounded-[20px] sm:h-[70px] sm:w-[150px] h-[50px] w-[120px] text-2xl hover:scale-105' onClick={goBack}>StaySignin</button>
+        <div className="flex items-center justify-center min-h-screen p-4 sm:p-5 ">
+            <div className="flex flex-col items-center border border-gray-300 rounded-lg shadow-md p-4 sm:p-6 w-full max-w-xs sm:max-w-lg">
+                <h1 className="text-lg sm:text-2xl text-center font-semibold mb-4 sm:mb-6">Are you sure you want to Signout?</h1>
+                <div className="flex gap-2 sm:gap-4 w-full">
+                    <button 
+                        className="flex-1 bg-green-600 text-white rounded-md py-2 sm:py-3 text-sm sm:text-lg font-medium hover:bg-green-700 transition-all shadow-lg"
+                        onClick={signout}
+                    >
+                        Signout
+                    </button>
+                    <button 
+                        className="flex-1 bg-gray-600 text-white rounded-md py-2 sm:py-3 text-sm sm:text-lg font-medium hover:bg-gray-700 transition-all shadow-lg"
+                        onClick={goBack}
+                    >
+                        Stay Signed In
+                    </button>
                 </div>
                 <ToastContainer />
             </div>
         </div>
-    )
+    );
 }

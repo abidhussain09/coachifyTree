@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 export const AcadamicPage = () => {
   const [data, setData] = useState([]);
-  const [qoute, setquote] = useState('');
-  const [author, setauthor] = useState('');
+  const [qoute, setquote] = useState('Success is not final; failure is not fatal; It is the courage to continue that counts.');
+  const [author, setauthor] = useState('Winston Churchill');
 
   const booleanValue = useSelector((state) => state.booleanValue);
   const dispatch = useDispatch();
@@ -27,12 +27,12 @@ export const AcadamicPage = () => {
       const response = await fetch(url, options);
       const result = await response.json();
       console.log(result);
+      console.log(data);
       if(!result){
         defaultQuote();
       }
       // console.log(result.data);
       setData({result});
-      console.log(data)
       setquote(result.quote);
       console.log(qoute);
       setauthor(result.author);
@@ -66,9 +66,9 @@ export const AcadamicPage = () => {
       <div className='mx-auto flex flex-wrap gap-5 mt-5'>
         <div className='border-2 border-[#545454] rounded-[30px] flex flex-col gap-3 max-w-[620px]'>
           <div className='h-[400px] p-4 m-2'>
-            {qoute.length > 0 ? <p className='text-[#d8973c] sm:text-[40px] text-[24px] itim '>{qoute}</p> : <p className='text-[#d8973c] text-[40px] itim'></p>}
+            {data.length > 0 ? <p className='text-[#d8973c] sm:text-[40px] text-[24px] itim '>{qoute}</p> : <p className='text-[#d8973c] text-[40px] itim'>"Success is not final; failure is not fatal: It is the courage to continue that counts."</p>}
           </div>
-          <div>{author.length > 0 ? <p className='text-[#63a73a] sm:text-[40px] text-[24px] itim p-4 '>-{author}</p> : <p className='text-[#63a73a] text-[40px] itim p-4 '></p>}</div>
+          <div>{data.length > 0 ? <p className='text-[#63a73a] sm:text-[40px] text-[24px] itim p-4 '>-{author}</p> : <p className='text-[#63a73a] text-[40px] itim p-4 '>-Winston Churchill</p>}</div>
         </div>
         <div className='border-2 border-[#545454] rounded-[30px] sm:flex hidden'>
           <img src={academicpic1} alt="Academic" height={570} width={631} />

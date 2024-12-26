@@ -39,7 +39,7 @@ export const Signin = () => {
       dispatch(setValue(false));
       setTimeout(()=>{
         goBack();
-      },4000)
+      },2000)
     }
     catch(err){
       console.log(err);

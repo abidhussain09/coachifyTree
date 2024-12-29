@@ -9,6 +9,7 @@ const UserSchema= new mongoose.Schema({
     },
     email:{
         type:String,
+        unique:true,
         required:true,
         trim:true
     },
@@ -16,6 +17,16 @@ const UserSchema= new mongoose.Schema({
         type:String,
         required:true,
         trim:true
+    },
+    isEmailVerified:{
+        type:Boolean,
+        default:false,
+    },
+    otp:{
+        type:String,
+    },
+    otpExpiresAt:{
+        type:Date,
     },
     role:{
         type:String,

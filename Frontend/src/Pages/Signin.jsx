@@ -1,56 +1,51 @@
 import React, { useState } from 'react';
 import { FiSend } from "react-icons/fi";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ImCross } from "react-icons/im";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import { useNavigate } from 'react-router-dom';
-import {auth} from '../../src/firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useSelector, useDispatch } from 'react-redux';
-import { toggle, setValue } from '../store/booleanSlice';
+import axios from 'axios';
 
+axios.defaults.baseURL = 'http://localhost:3000/api/v1'; // Backend URL
 
 export const Signin = () => {
-
-  const booleanValue = useSelector((state) => state.booleanValue);
-  const dispatch = useDispatch();
-
   const [UserMessage, setUserMessage] = useState({
-    name: '',
+    email: '',
     password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+
   const changeHandler = (event) => {
     const { name, value } = event.target;
     setUserMessage((prev) => ({ ...prev, [name]: value }));
   };
 
   const SubmitHandler = async (event) => {
-    const {name,password}=UserMessage;
     event.preventDefault();
-    try{
-      await signInWithEmailAndPassword(auth,name,password);
-      console.log("Login Successfull")
+    const { email, password } = UserMessage;
+
+    try {
+      const response = await axios.post('/signin', { email, password });
+
+      console.log("Login Successful", response.data);
       toast.success('Signed in successfully!');
-      dispatch(setValue(false));
-      setTimeout(()=>{
-        goBack();
-      },2000)
+      
+      // Redirect to the home page or dashboard after successful login
+      setTimeout(() => {
+        navigate('/'); // Update route as per your app structure
+      }, 2000);
+    } catch (error) {
+      console.error(error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || 'Invalid Credentials');
     }
-    catch(err){
-      console.log(err);
-      toast.error("Invalid Credential");
-    }
+
     setUserMessage({
-      name: '',
+      email: '',
       password: '',
     });
-    // console.log("signing In");
-    // console.log(UserMessage);
   };
 
   const togglePasswordVisibility = () => {
@@ -58,42 +53,44 @@ export const Signin = () => {
   };
 
   const goBack = () => {
-    // Use history.goBack() if you're using React Router v5
-    // Use navigate(-1) if you're using React Router v6 with a useNavigate hook
-    // For simplicity, window.history.back() is used here
-    // window.history.back();
     navigate('/');
   };
 
   return (
-    <div className="relative w-full h-full  flex flex-col items-center justify-center px-4">
-      <div className="h-24 w-full  mt-4 rounded"></div> 
+    <div className="relative w-full h-full flex flex-col items-center justify-center px-4">
+      {/* Back button */}
       <div className="absolute top-4 left-4">
         <button onClick={goBack} className="flex items-center justify-center text-white p-2">
           <ImCross className="text-2xl text-white" />
         </button>
       </div>
-      <div className="text-5xl text-white itim mb-8">Login with mobile</div>
+      
+      {/* Title */}
+      <div className="text-5xl text-white itim mb-8 text-center">Login</div>
+
       <form onSubmit={SubmitHandler} className="flex flex-col w-full max-w-md">
+        {/* Email Input */}
         <input
-          type='email'
-          placeholder='Enter your E-mail id'
-          name='name'
-          value={UserMessage.name}
-          autoComplete='off'
+          type="email"
+          placeholder="Enter your E-mail ID"
+          name="email"
+          value={UserMessage.email}
+          autoComplete="off"
           onChange={changeHandler}
-          className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded "
+          className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
           required
         />
+
+        {/* Password Input */}
         <div className="relative">
           <input
             type={showPassword ? 'text' : 'password'}
-            placeholder='Enter your password'
-            name='password'
+            placeholder="Enter your password"
+            name="password"
             value={UserMessage.password}
-            autoComplete='off'
+            autoComplete="off"
             onChange={changeHandler}
-            className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded pr-10"
+            className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           />
           <IconContext.Provider value={{ className: 'absolute right-4 top-1/2 transform -translate-y-1/2 text-[20px] text-white cursor-pointer' }}>
@@ -104,28 +101,33 @@ export const Signin = () => {
             )}
           </IconContext.Provider>
         </div>
+
+        {/* Submit Button */}
         <button
-          type='submit'
-          className="bg-[#63a73a] text-[25px] p-4 w-full rounded text-aliceblue itim font-roboto"
+          type="submit"
+          className="bg-[#63a73a] text-[25px] p-4 w-full rounded text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300"
         >
           <h6 className="flex items-center justify-center">Sign In <FiSend /></h6>
         </button>
       </form>
+
       <ToastContainer />
+
+      {/* Signup Link */}
       <div className="flex items-center my-8">
         <span className="text-xl text-white mr-2">Don't have an account?</span>
         <button
-          className="text-xl text-white underline"
-          onClick={()=>{navigate('/signup')}}
+          className="text-xl text-white underline hover:text-green-300 transition duration-300"
+          onClick={() => navigate('/signup')}
         >
           Signup
         </button>
       </div>
-      <p>
-        Forgot password? <Link to="/resetpassword" className='text-blue-500'>Reset it here</Link>
+
+      {/* Forgot Password Link */}
+      <p className="text-sm text-white">
+        Forgot password? <Link to="/resetpassword" className="text-blue-500">Reset it here</Link>
       </p>
-      {/* Add more content or spacing here to increase the length of the page */}
-      <div className="h-24 w-full  mt-15 rounded"></div> {/* Example of adding more content */}
     </div>
   );
 };

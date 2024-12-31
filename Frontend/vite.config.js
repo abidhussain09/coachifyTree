@@ -10,7 +10,7 @@ export default defineConfig({
       //   changeOrigin: true,
       //   rewrite: (path) => path.replace(/^\/api/, '')
       // },
-      '/api':'http://localhost:3000',
+      // '/api':'http://localhost:3000/api/v1',
     }
   },
   plugins: [react()],

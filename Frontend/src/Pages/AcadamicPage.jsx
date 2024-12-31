@@ -24,29 +24,22 @@ export const AcadamicPage = () => {
       }
     };
     try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      console.log(result);
-      console.log(data);
-      if(!result){
-        defaultQuote();
-      }
+      // const response = await fetch(url, options);
+      // const result = await response.json();
+      // console.log(result);
+      // console.log(data);
+      // if(!result){
+      // }
+      defaultQuote();
       // console.log(result.data);
-      setData({result});
-      setquote(result.quote);
-      console.log(qoute);
-      setauthor(result.author);
-      console.log(author);
+      // setData({result});
+      // setquote(result.quote);
+      // console.log(qoute);
+      // setauthor(result.author);
+      // console.log(author);
     }
     catch (error) {
-      console.log("first api falied trying second api");
-      const response2 = await fetch("https://zenquotes.io/api/random");
-      const output2 = await response2.json();
-      setData(output2);
-      setquote(output2.q);
-      console.log(qoute);
-      setauthor(output2.a);
-      console.log(author);
+      console.log(error);
     }
   }
   function defaultQuote(){

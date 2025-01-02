@@ -8,7 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000/api/v1'; // Backend URL
+axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 
 export const Signin = () => {
   const [UserMessage, setUserMessage] = useState({
@@ -29,6 +29,12 @@ export const Signin = () => {
 
     try {
       const response = await axios.post('/signin', { email, password });
+
+      // Extract JWT token from the response
+      const token = response.data.token;
+
+      // Store token in localStorage (or cookies, depending on your preference)
+      localStorage.setItem('authToken', token);
 
       console.log("Login Successful", response.data);
       toast.success('Signed in successfully!');

@@ -20,6 +20,7 @@ import { Footer } from './component/Footer'
 import { JeePage } from './Pages/JeePage'
 import { NeetPage } from './Pages/NeetPage'
 import useScrollToTop from './hooks/useScrollToTop'
+import { Dashboard } from './Pages/Dashboard'
 
 function App() {
     useScrollToTop();
@@ -47,6 +48,7 @@ function App() {
         <Route path="academic/class12" element={<Class12 />} />
         <Route path="academic/Jee" element={<JeePage/>} />
         <Route path="academic/Neet" element={<NeetPage/>} />
+        <Route path="dashboard" element={<Dashboard/>} />
         <Route path="*" element={<div>Not found Page</div>} />
       </Routes>
       </div>

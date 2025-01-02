@@ -8,7 +8,7 @@ import { IconContext } from "react-icons";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000/api/v1'; // Backend URL
+axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 
 export const Signup = () => {
   const [verification, SetVerification] = useState(false);

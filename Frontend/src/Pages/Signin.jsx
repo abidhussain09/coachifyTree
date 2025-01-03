@@ -40,7 +40,6 @@ export const Signin = () => {
       // Store token in localStorage (or cookies, depending on your preference)
       localStorage.setItem('Token', token);
 
-      console.log("Login Successful", response.data);
       toast.success('Signed in successfully!');
       
       // Redirect to the home page or dashboard after successful login

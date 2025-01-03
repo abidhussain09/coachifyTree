@@ -6,7 +6,7 @@ import { AboutPage } from './Pages/AboutPage'
 import { AcadamicPage } from './Pages/AcadamicPage'
 import { ContactUsPage } from './Pages/ContactUsPage'
 import { Signin } from './Pages/Signin'
-import { ForgetPassword } from './Pages/ForgetPassword'
+// import { ForgetPassword } from './Pages/ForgetPassword'
 import {Class9}   from './Pages/Class9Page'
 import {Class10}   from './Pages/Class10Page'
 import {Class11}   from './Pages/Class11Page'
@@ -41,7 +41,7 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<Signin/>} />
         <Route path="/signout" element={<Signout/>} />
-        <Route path="/resetPassword" element={<ForgetPassword/>} />
+        {/* <Route path="/resetPassword" element={} /> */}
         <Route path="/comingSoon" element={<Loader/>} />
         <Route path="academic/class9" element={<ProtectedRoute children={<Class9/>}/>} />
         <Route path="academic/class10" element={<ProtectedRoute children={<Class10/>}/>} />

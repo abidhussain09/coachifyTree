@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const bcrpt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 const sendEmail=require("../utils/emailService")
 
@@ -11,11 +11,11 @@ const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString()
 
 exports.signup = async (req, res) => {
     try {
-        const { id, email, password, role } = req.body;
-        if (!id || !email || !password || !role) {
+        const { id, email, password, role, name } = req.body; // Include name in request body
+        if (!id || !email || !password || !role || (role === 'Student' && !name)) {
             return res.status(400).json({
                 success: false,
-                message: "Fill all the creadential",
+                message: "Fill all the credentials",
             });
         }
 
@@ -36,40 +36,36 @@ exports.signup = async (req, res) => {
             return res.status(400).json({
                 success: false,
                 message: "User already existed",
-            })
+            });
         }
 
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-        const hashedPassword = await bcrpt.hash(password, 10);
-
-
-        // const otp = generateOTP();
-        // const otpExpiresAt = Date.now() + 15 * 60 * 1000; // 15 minutes
-
-        const newUser = new User({
+        const newUserData = {
             id,
             email,
             password: hashedPassword,
             role,
-            // otp,
-            // otpExpiresAt
-        });
+        };
+
+        // Include name in the newUserData if the role is Student
+        if (role === 'Student') {
+            newUserData.name = name;
+        }
+
+        const newUser = new User(newUserData);
 
         await newUser.save();
 
-        // const emailContent = `<p>Your OTP for email verification is: <strong>${otp}</strong></p>`;
-        // await sendEmail(email, 'Verify Your Email', emailContent)
-
         res.status(201).json({
-            message: "User created successfully, OTP send to your Email",
-            user: { id: newUser.id, email: newUser.email, role: newUser.role },
+            message: "User created successfully",
+            user: { id: newUser.id, email: newUser.email, role: newUser.role, name: newUser.name || null },
         });
-    }
-    catch (error) {
+    } catch (error) {
         console.error("Error during signup:", error);
         res.status(500).json({ message: "Internal server error" });
     }
-}
+};
 
 
 

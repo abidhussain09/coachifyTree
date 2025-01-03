@@ -17,6 +17,7 @@ export const Signup = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    name: '', // Field for name, only used for Students
   });
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState('');
@@ -42,17 +43,14 @@ export const Signup = () => {
       setPasswordError('Passwords do not match!');
       return;
     }
-    const { role, email, password } = UserMessage;
+    const { role, email, password, name } = UserMessage;
 
     try {
-      const response = await axios.post('/signup', {
-        id: Date.now(), // Generate unique ID dynamically
-        email,
-        password,
-        role,
-      });
+      const requestBody = role === 'Student' ? { id: Date.now(), email, password, role, name } : { id: Date.now(), email, password, role };
 
-      console.log(response.data);
+      const response = await axios.post('/signup', requestBody);
+
+      // console.log(response.data);
       toast.success(response.data.message);
       setTimeout(() => {
         navigate("/signin");
@@ -69,6 +67,7 @@ export const Signup = () => {
       email: '',
       password: '',
       confirmPassword: '',
+      name: '',
     });
   };
 
@@ -97,6 +96,20 @@ export const Signup = () => {
           <option value="Teacher">Teacher</option>
           <option value="Admin">Admin</option>
         </select>
+
+        {/* Name Input for Students */}
+        {UserMessage.role === 'Student' && (
+          <input
+            type='text'
+            placeholder='Enter your name'
+            name='name'
+            value={UserMessage.name}
+            autoComplete='off'
+            onChange={changeHandler}
+            className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+            required
+          />
+        )}
 
         {/* Email Input */}
         <input

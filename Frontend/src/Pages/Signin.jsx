@@ -7,10 +7,14 @@ import { ImCross } from "react-icons/im";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setValue } from '../store/booleanSlice';
 
 axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 
 export const Signin = () => {
+
+  const dispatch=useDispatch();
   const [UserMessage, setUserMessage] = useState({
     email: '',
     password: '',
@@ -34,14 +38,15 @@ export const Signin = () => {
       const token = response.data.token;
 
       // Store token in localStorage (or cookies, depending on your preference)
-      localStorage.setItem('authToken', token);
+      localStorage.setItem('Token', token);
 
       console.log("Login Successful", response.data);
       toast.success('Signed in successfully!');
       
       // Redirect to the home page or dashboard after successful login
+      dispatch(setValue(false));
       setTimeout(() => {
-        navigate('/'); // Update route as per your app structure
+        navigate('/dashboard'); // Update route as per your app structure
       }, 2000);
     } catch (error) {
       console.error(error.response?.data?.message || error.message);

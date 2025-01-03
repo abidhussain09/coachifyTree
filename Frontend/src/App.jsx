@@ -21,6 +21,7 @@ import { JeePage } from './Pages/JeePage'
 import { NeetPage } from './Pages/NeetPage'
 import useScrollToTop from './hooks/useScrollToTop'
 import { Dashboard } from './Pages/Dashboard'
+import { ProtectedRoute } from './component/ProtectedRoute'
 
 function App() {
     useScrollToTop();
@@ -42,13 +43,13 @@ function App() {
         <Route path="/signout" element={<Signout/>} />
         <Route path="/resetPassword" element={<ForgetPassword/>} />
         <Route path="/comingSoon" element={<Loader/>} />
-        <Route path="academic/class9" element={<Class9 />} />
-        <Route path="academic/class10" element={<Class10 />} />
-        <Route path="academic/class11" element={<Class11 />} />
-        <Route path="academic/class12" element={<Class12 />} />
-        <Route path="academic/Jee" element={<JeePage/>} />
-        <Route path="academic/Neet" element={<NeetPage/>} />
-        <Route path="dashboard" element={<Dashboard/>} />
+        <Route path="academic/class9" element={<ProtectedRoute children={<Class9/>}/>} />
+        <Route path="academic/class10" element={<ProtectedRoute children={<Class10/>}/>} />
+        <Route path="academic/class11" element={<ProtectedRoute children={<Class11/>}/>} />
+        <Route path="academic/class12" element={<ProtectedRoute children={<Class12/>}/>} />
+        <Route path="academic/Jee" element={<ProtectedRoute children={<JeePage/>}/>} />
+        <Route path="academic/Neet" element={<ProtectedRoute children={<NeetPage/>}/>} />
+        <Route path="/dashboard" element={<ProtectedRoute children={<Dashboard/>}/>} />
         <Route path="*" element={<div>Not found Page</div>} />
       </Routes>
       </div>

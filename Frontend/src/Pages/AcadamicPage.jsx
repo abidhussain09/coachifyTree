@@ -76,43 +76,25 @@ export const AcadamicPage = () => {
         <Link to="/comingSoon">
           <div className='sm:w-[407px] sm:h-[314px] h-[150px] w-[300px] itim sm:text-[48px] text-3xl rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer ' style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class6to8_siunjw.png)` }}>Class 6th to 8th</div>
         </Link>
-        {booleanValue ?
-          <Link to="/signin"><div className='sm:w-[407px] sm:h-[314px] h-[150px] w-[300px] itim sm:text-[48px] text-3xl rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer' style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class9_xvbqgt.png)` }} >Class 9th</div></Link> :
+
           <Link to="/academic/class9"><div className='sm:w-[407px] sm:h-[314px] h-[150px] w-[300px] itim sm:text-[48px] text-3xl rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer' style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class9_xvbqgt.png)` }} >Class 9th</div></Link>
-        }
-        {
-          booleanValue ?
-            <Link to="/signin"><div className='sm:w-[407px] sm:h-[314px] h-[150px] w-[300px] itim sm:text-[48px] text-3xl rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer ' style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class10_z63347.png)` }}>Class 10th</div></Link> :
+        
             <Link to="/academic/class10"><div className='sm:w-[407px] sm:h-[314px] h-[150px] w-[300px] itim sm:text-[48px] text-3xl rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer  ' style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218468/class10_z63347.png)` }}>Class 10th</div></Link>
-        }
-        {
-          booleanValue ?
-            <Link to="/signin"><div className='sm:w-[407px] sm:h-[314px] h-[150px] w-[300px] itim sm:text-[48px] text-3xl rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer ' style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218467/class11_q3bvl5.png)` }}>Class 11th</div></Link>
-            :
+        
+        
             <Link to="/academic/class11"><div className='sm:w-[407px] sm:h-[314px] h-[150px] w-[300px] itim sm:text-[48px] text-3xl rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer ' style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218467/class11_q3bvl5.png)` }}>Class 11th</div></Link>
-        }
-        {
-          booleanValue ?
-            <Link to="/signin"><div className='sm:w-[407px] sm:h-[314px] h-[150px] w-[300px] itim sm:text-[48px] text-3xl rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer' style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218467/class12_ks2piz.png)` }}>Class 12th</div></Link>
-            :
+
+        
             <Link to="/academic/class12"><div className='sm:w-[407px] sm:h-[314px] h-[150px] w-[300px] itim sm:text-[48px] text-3xl rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer' style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719218467/class12_ks2piz.png)` }}>Class 12th</div></Link>
-        }
       </div>
       <div className='itim sm:text-[70px] text-4xl'>Competitive Content
       </div>
       <div className='flex flex-wrap gap-5 max-w-[1280px]'>
-        {
-          booleanValue ?
-            <Link to="/signin"><div className="sm:w-[630px] w-[300px] sm:h-[305px] h-[150px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer " style={{ backgroundImage: `url(${Neet})` }}>NEET</div></Link>
-            :
+        
             <Link to="/academic/Neet"><div className="sm:w-[630px] w-[300px] sm:h-[305px] h-[150px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer " style={{ backgroundImage: `url(${Neet})` }}>NEET</div></Link>
-        }
-        {
-          booleanValue ?
-            <Link to="/signin" ><div className='sm:w-[630px] w-[300px] sm:h-[305px] h-[150px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer' style={{ backgroundImage: `url(${Jee})` }}><p>I</p>IT-JEE</div></Link>
-            :
+
             <Link to="/academic/Jee" ><div className='sm:w-[630px] w-[300px] sm:h-[305px] h-[150px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer' style={{ backgroundImage: `url(${Jee})` }}><p>I</p>IT-JEE</div></Link>
-        }
+        
       </div>
     </div>
   );

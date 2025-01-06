@@ -44,7 +44,7 @@ export const PerformanceAnalysis = () => {
 
     const spreadsheetId = "1T5on00YsX135CdVAhIJxzIp6gGa9GfeqAeFJ2ikmiYw"; // Replace with your ID
     const sheetName = "10"; // Replace with your sheet/tab name
-    const apiKey = "AIzaSyDHAp5T2l9GOyQmlHlhD_6fgbIOmY2IaYs"; // Replace with your Google API key
+    const apiKey = import.meta.env.VITE_Google_api_key; // Replace with your Google API key
 
     useEffect(() => {
         const fetchData = async () => {

@@ -14,9 +14,9 @@ exports.signin = async (req, res) => {
         }
 
         // Check if the email is verified
-        // if (!user.isEmailVerified) {
-        //     return res.status(403).json({ message: 'Email not verified. Please verify your email.' });
-        // }
+        if (!user.isEmailVerified) {
+            return res.status(403).json({ message: 'Email not verified. Please verify your email.' });
+        }
 
         // Check the password (compare hashed password)
         const isPasswordValid = await bcrypt.compare(password, user.password);

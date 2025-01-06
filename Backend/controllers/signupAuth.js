@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require('bcrypt');
 
-const sendEmail=require("../utils/emailService")
+const sendEmail = require("../utils/emailService")
 
 
 
@@ -41,11 +41,17 @@ exports.signup = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        // Generate OTP and its expiration time
+        const otp = generateOTP();
+        const otpExpiresAt = Date.now() + 15 * 60 * 1000; // OTP valid for 15 minute
+
         const newUserData = {
             id,
             email,
             password: hashedPassword,
             role,
+            otp,
+            otpExpiresAt,
         };
 
         // Include name in the newUserData if the role is Student
@@ -56,6 +62,13 @@ exports.signup = async (req, res) => {
         const newUser = new User(newUserData);
 
         await newUser.save();
+
+        // Send OTP via email
+        const emailContent = `
+        <p>Welcome to CoachifyTree!</p>
+        <p>Your OTP for email verification is: <strong>${otp}</strong></p>
+        <p>This OTP is valid for 15 minutes.</p>`;
+        await sendEmail(email, 'Verify Your Email', emailContent);
 
         res.status(201).json({
             message: "User created successfully",
@@ -74,13 +87,21 @@ exports.verifyOTP = async (req, res) => {
     try {
         const { email, otp } = req.body;
 
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({ message: 'User not found' });
+        if (!email || !otp) {
+            return res.status(400).json({ message: "Email and OTP are required" });
         }
 
-        if (user.otp !== otp || user.otpExpiresAt < Date.now()) {
-            return res.status(400).json({ message: 'Invalid or expired OTP' });
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: "User not found" });
+        }
+
+        if (user.otp !== otp) {
+            return res.status(400).json({ message: "Invalid OTP" });
+        }
+
+        if (user.otpExpiresAt < Date.now()) {
+            return res.status(400).json({ message: "OTP has expired" });
         }
 
         // Mark email as verified
@@ -89,32 +110,60 @@ exports.verifyOTP = async (req, res) => {
         user.otpExpiresAt = undefined;
         await user.save();
 
-        res.status(200).json({ message: 'Email verified successfully' });
+        res.status(200).json({ message: "Email verified successfully" });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error("Error during OTP verification:", error);
+        res.status(500).json({ message: "Internal server error" });
     }
 };
+
 
 // Resend OTP
 exports.resendOTP = async (req, res) => {
     try {
         const { email } = req.body;
 
+        if (!email) {
+            return res.status(400).json({ message: "Email is required" });
+        }
+
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ message: 'User not found' });
+            return res.status(400).json({ message: "User not found" });
+        }
+
+        if (user.isEmailVerified) {
+            return res.status(400).json({ message: "Email is already verified" });
         }
 
         const otp = generateOTP();
         user.otp = otp;
-        user.otpExpiresAt = Date.now() + 15 * 60 * 1000; // 15 minutes
+        user.otpExpiresAt = Date.now() + 15 * 60 * 1000; // 15 minutes validity
         await user.save();
 
         const emailContent = `<p>Your new OTP for email verification is: <strong>${otp}</strong></p>`;
         await sendEmail(email, 'Verify Your Email - New OTP', emailContent);
 
-        res.status(200).json({ message: 'New OTP sent to your email' });
+        res.status(200).json({ message: "New OTP sent to your email" });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error("Error during OTP resend:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+
+exports.verificationCheck = async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json({ isVerified: user.isEmailVerified });
+    } catch (error) {
+        console.error('Error checking verification:', error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 };

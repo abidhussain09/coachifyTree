@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 const sendEmail = async (to, subject, html) => {
     try {
         const mailOptions = {
-            from: `"Your App" <${process.env.EMAIL_USER}>`, // Sender's address
+            from: `"CoachifyTree" <${process.env.EMAIL_USER}>`, // Sender's address
             to, // Recipient's email
             subject, // Subject of the email
             html, // HTML content of the email

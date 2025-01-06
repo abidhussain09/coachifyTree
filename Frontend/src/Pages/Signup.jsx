@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ImCross } from "react-icons/im";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { setEmail } from '../store/userSlice';
+import { useDispatch } from 'react-redux';
 import { IconContext } from "react-icons";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -22,6 +24,7 @@ export const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
+  const dispatch=useDispatch();
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -52,8 +55,11 @@ export const Signup = () => {
 
       // console.log(response.data);
       toast.success(response.data.message);
+
+      // dispatch(setEmail(UserMessage.email))
+      localStorage.setItem("pendingEmail",UserMessage.email);
       setTimeout(() => {
-        navigate("/signin");
+        navigate('/verify-otp');
       }, 3000);
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'An error occurred!';

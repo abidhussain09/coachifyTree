@@ -1,7 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const getDashboard=require('../utils/dashboardService');
-const {signup,verifyOTP,resendOTP}= require('../controllers/signupAuth');
+const {signup,verifyOTP,resendOTP, verificationCheck}= require('../controllers/signupAuth');
 const {signin}=require("../controllers/signinAuth")
 const {authenticateToken,authorizeRoles}=require('../middlewares/authMiddleware');
 
@@ -9,6 +9,7 @@ router.post('/signup',signup);
 router.post('/verify-otp',verifyOTP);
 router.post('/resend-otp',resendOTP);
 router.post('/signin',signin);
+router.post('/check-verification',verificationCheck);
 
 
 // Routes for Admin

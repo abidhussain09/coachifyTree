@@ -22,6 +22,7 @@ import { NeetPage } from './Pages/NeetPage'
 import useScrollToTop from './hooks/useScrollToTop'
 import { Dashboard } from './Pages/Dashboard'
 import { ProtectedRoute } from './component/ProtectedRoute'
+import { OTPVerification } from './Pages/OtpVerification'
 
 function App() {
     useScrollToTop();
@@ -50,6 +51,7 @@ function App() {
         <Route path="academic/Jee" element={<ProtectedRoute children={<JeePage/>}/>} />
         <Route path="academic/Neet" element={<ProtectedRoute children={<NeetPage/>}/>} />
         <Route path="/dashboard" element={<ProtectedRoute children={<Dashboard/>}/>} />
+        <Route path="/verify-otp" element={<OTPVerification/>} />
         <Route path="*" element={<div>Not found Page</div>} />
       </Routes>
       </div>

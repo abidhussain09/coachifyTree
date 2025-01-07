@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid'); // To generate secure tokens
 const User = require('../models/User');
 const PasswordResetToken = require('../models/PasswordResetToken');
-const { sendEmail } = require('../utils/sendEmail'); // Utility for sending emails
+const sendEmail  = require('../utils/emailService'); // Utility for sending emails
 
 exports.forgotPassword = async (req, res) => {
     try {
@@ -30,7 +30,7 @@ exports.forgotPassword = async (req, res) => {
         const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
         const emailContent = `
             <h1>Password Reset Request</h1>
-            <p>Click <a href="${resetUrl}">here</a> to reset your password. This link is valid for 1 hour.</p>
+            <p>Click <a href="${resetUrl}" target='_blank'>here</a> to reset your password. This link is valid for 1 hour.</p>
         `;
         await sendEmail(email, 'Password Reset Request', emailContent);
 

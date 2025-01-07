@@ -136,7 +136,7 @@ export const Signin = () => {
 
       {/* Forgot Password Link */}
       <p className="text-sm text-white">
-        Forgot password? <Link to="/resetpassword" className="text-blue-500">Reset it here</Link>
+        Forgot password? <Link to="/forgetpassword" className="text-blue-500">Reset it here</Link>
       </p>
     </div>
   );

@@ -4,12 +4,16 @@ const getDashboard=require('../utils/dashboardService');
 const {signup,verifyOTP,resendOTP, verificationCheck}= require('../controllers/signupAuth');
 const {signin}=require("../controllers/signinAuth")
 const {authenticateToken,authorizeRoles}=require('../middlewares/authMiddleware');
+const { forgotPassword } = require('../controllers/ForgetPasswordController');
+const { resetPassword } = require('../controllers/ResetPasswordController');
 
 router.post('/signup',signup);
 router.post('/verify-otp',verifyOTP);
 router.post('/resend-otp',resendOTP);
 router.post('/signin',signin);
 router.post('/check-verification',verificationCheck);
+router.post('/forgot-password',forgotPassword);
+router.post('/reset-password',resetPassword);
 
 
 // Routes for Admin

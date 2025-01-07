@@ -23,6 +23,9 @@ import useScrollToTop from './hooks/useScrollToTop'
 import { Dashboard } from './Pages/Dashboard'
 import { ProtectedRoute } from './component/ProtectedRoute'
 import { OTPVerification } from './Pages/OtpVerification'
+import ResetPassword from './Pages/ResetPassword'
+import ForgetPassword from './Pages/ForgetPassword'
+import PasswordResetRedirect from './component/PasswordResetRedirect'
 
 function App() {
     useScrollToTop();
@@ -42,7 +45,9 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<Signin/>} />
         <Route path="/signout" element={<Signout/>} />
-        {/* <Route path="/resetPassword" element={} /> */}
+        <Route path="/forgetPassword" element={<ForgetPassword/>} />
+        <Route path="/reset-password/:token" element={<ResetPassword/>} />
+        <Route path="/reset-link/:token" element={<PasswordResetRedirect/>} />
         <Route path="/comingSoon" element={<Loader/>} />
         <Route path="academic/class9" element={<ProtectedRoute children={<Class9/>}/>} />
         <Route path="academic/class10" element={<ProtectedRoute children={<Class10/>}/>} />

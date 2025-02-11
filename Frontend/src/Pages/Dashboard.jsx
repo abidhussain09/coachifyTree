@@ -11,6 +11,7 @@ axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 
 export const Dashboard = () => {
     const [Data,setData]=useState({});
+    const [name,setName]=useState("");
 
     const [selectedOption,setSelectedOption]=useState("Performance Analysis");
 
@@ -32,6 +33,7 @@ export const Dashboard = () => {
     });
     console.log('dashboard data', response.data.data);
     setData(response.data.data);
+    setName(response.data.data.name);
     }
     useEffect(()=>{
         fetchDashboardData();
@@ -41,7 +43,7 @@ export const Dashboard = () => {
             <div className='itim h-[250px] w-[1280px] p-5 bg-[#d9d9d9] bg-opacity-10 border-[1px] border-[#ffffff84]	 rounded-[20px] gap-7 flex items-start'>
                 <div className='h-[200px] w-[200px] rounded-full bg-slate-600 bg-opacity-50'><img src="https://res.cloudinary.com/dh26dmbg3/image/upload/v1735969470/panda_hf9tep.png"/></div>
                 <div className='flex flex-col justify-center items-start py-12'>
-                    <div className='text-5xl itim text-white'>Welcome back, {Data.name} 👋 </div>
+                    <div className='text-5xl itim text-white'>Welcome back, {name} 👋 </div>
                     <div className='text-2xl'>Keep it up and  improve  your progress</div>
                 </div>
             </div>

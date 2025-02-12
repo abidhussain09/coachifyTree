@@ -46,14 +46,14 @@ export const Dashboard = () => {
                 </div>
             </div>
             <div className='flex gap-3 w-[1280px]'>
-                <div className='flex flex-col gap-8 itim bg-[#d9d9d9] bg-opacity-10 h-[1136px] w-1/4 rounded-[20px] border-[1px] border-[#ffffff84]'>
+                <div className='flex flex-col gap-8 itim bg-[#d9d9d9] bg-opacity-10 h-[800px] w-1/4 rounded-[20px] border-[1px] border-[#ffffff84]'>
                     <div className='flex items-center flex-col pt-10'>
                         <p className='text-4xl'>DASHBOARD</p>
                         <div className='bg-white h-[2px] w-[200px]'></div>
                     </div>
                         <SideBar options={options} onSelect={setSelectedOption} selected={selectedOption}/>
                 </div>
-                <div className='itim text-4xl bg-[#d9d9d9] bg-opacity-10 h-[1136px] w-3/4 rounded-[20px] border-[1px] border-[#ffffff84]'>
+                <div className='itim text-4xl bg-[#d9d9d9] bg-opacity-10 h-[800px] w-3/4 rounded-[20px] border-[1px] border-[#ffffff84]'>
                     {selectedOption ==="Performance Analysis" && <PerformanceAnalysis/>}
                     {selectedOption ==="Subject-wise Analysis" && <SubjectWiseAnalysis/>}
                     {selectedOption ==="Upcoming Tests" && <UpcomingTest/>}

@@ -6,7 +6,7 @@ import { AboutPage } from './Pages/AboutPage'
 import { AcadamicPage } from './Pages/AcadamicPage'
 import { ContactUsPage } from './Pages/ContactUsPage'
 import { Signin } from './Pages/Signin'
-// import { ForgetPassword } from './Pages/ForgetPassword'
+import  ForgetPassword  from './Pages/ForgetPassword'
 import {Class9}   from './Pages/Class9Page'
 import {Class10}   from './Pages/Class10Page'
 import {Class11}   from './Pages/Class11Page'
@@ -22,6 +22,7 @@ import { NeetPage } from './Pages/NeetPage'
 import useScrollToTop from './hooks/useScrollToTop'
 import { Dashboard } from './Pages/Dashboard'
 import { ProtectedRoute } from './component/ProtectedRoute'
+import ResetPassword from './Pages/ResetPassword'
 
 function App() {
     useScrollToTop();
@@ -41,7 +42,7 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signin" element={<Signin/>} />
         <Route path="/signout" element={<Signout/>} />
-        {/* <Route path="/resetPassword" element={} /> */}
+        <Route path="/resetPassword" element={<ResetPassword/>}/> 
         <Route path="/comingSoon" element={<Loader/>} />
         <Route path="academic/class9" element={<ProtectedRoute children={<Class9/>}/>} />
         <Route path="academic/class10" element={<ProtectedRoute children={<Class10/>}/>} />

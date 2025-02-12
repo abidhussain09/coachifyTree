@@ -14,8 +14,14 @@ require('./config/database').connect();
 
 //import routes and mount
 
+//routes
 const userRoute=require('./routes/userRoute');
+const testRoutes = require('./routes/testRoutes');
+
+//mount
 app.use('/api/v1',userRoute);
+app.use('/api/v1/tests', testRoutes); 
+
 
 app.listen(port,()=>{
     console.log(`Listening at port ${port}`);

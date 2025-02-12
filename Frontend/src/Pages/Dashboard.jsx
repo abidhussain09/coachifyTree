@@ -5,7 +5,7 @@ import { SideBar } from '../component/SideBar';
 import {PerformanceAnalysis} from '../component/PerformanceAnalysis'
 import {Notice} from '../component/Notice'
 import {SubjectWiseAnalysis} from "../component/SubjectWiseAnalysis"
-import {UpcomingTest} from "../component/UpcomingTest"
+import { UpcomingTest } from '../component/UpcomingTest'; 
 
 axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 

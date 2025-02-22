@@ -24,7 +24,7 @@ import { Dashboard } from './Pages/Dashboard'
 import { ProtectedRoute } from './component/ProtectedRoute'
 import { OTPVerification } from './Pages/OtpVerification'
 import ResetPassword from './Pages/ResetPassword'
-import ForgetPassword from './Pages/ForgetPassword'
+//import ForgetPassword from './Pages/ForgetPassword'
 import PasswordResetRedirect from './component/PasswordResetRedirect'
 
 function App() {

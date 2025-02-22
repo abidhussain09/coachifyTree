@@ -4,7 +4,12 @@ const { addTest, getTests, deleteOldTests } = require('../controllers/testContro
 const { authenticateToken, authorizeRoles } = require('../middlewares/authMiddleware');
 
 // Only teachers and admins can add tests
-router.post('/teacher/dashboard/add', authenticateToken, authorizeRoles('teacher', 'admin'), addTest);
+router.post(
+    "/teacher/dashboard/add",
+    authenticateToken,
+    authorizeRoles("Teacher", "Admin"),
+    addTest
+);
 
 // All users (including students) can view tests
 router.get('/', getTests);

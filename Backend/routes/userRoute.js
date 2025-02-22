@@ -6,6 +6,7 @@ const {signin}=require("../controllers/signinAuth")
 const {authenticateToken,authorizeRoles}=require('../middlewares/authMiddleware');
 const { forgotPassword } = require('../controllers/ForgetPasswordController');
 const { resetPassword } = require('../controllers/ResetPasswordController');
+const { registerSheetDetails, updateSheetDetails, deleteSheetDetails, getSheetDetails } = require('../controllers/SheetController');
 
 router.post('/signup',signup);
 router.post('/verify-otp',verifyOTP);
@@ -77,6 +78,10 @@ router.get('/guest/dashboard', authenticateToken, authorizeRoles('Guest'), (req,
     res.json({ message: 'Welcome to the Guest dashboard' });
 });
 
-
+//sheet details routes
+router.post("/addSheetDetails",registerSheetDetails);
+router.post("/updateSheetDetails",updateSheetDetails);
+router.post("/deleteSheetDetails",deleteSheetDetails);
+router.get("/getSheetDetails",getSheetDetails);
 
 module.exports=router;

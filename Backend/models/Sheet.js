@@ -10,10 +10,13 @@ const SheetSchema= new mongoose.Schema({
         type:String,
         required:true,
     },
-    id:{
+    className:{
+        type:String,
+        required:true,
+    },
+    testNumber:{
         type:String,
     }
-    
 });
 
-module.exports=mongoose.model('sheetSchema',SheetSchema);
+module.exports=mongoose.model('SheetSchema',SheetSchema);

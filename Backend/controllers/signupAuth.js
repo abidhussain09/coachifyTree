@@ -12,7 +12,7 @@ const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString()
 exports.signup = async (req, res) => {
     try {
         const { id, email, password, role, name } = req.body; // Include name in request body
-        if (!id || !email || !password || !role || (role === 'Student' && !name)) {
+        if (!id || !email || !password || !role || !name) {
             return res.status(400).json({
                 success: false,
                 message: "Fill all the credentials",
@@ -52,15 +52,11 @@ exports.signup = async (req, res) => {
             role,
             otp,
             otpExpiresAt,
+            name,
         };
 
-        // Include name in the newUserData if the role is Student
-        if (role === 'Student') {
-            newUserData.name = name;
-        }
-
         const newUser = new User(newUserData);
-
+        
         await newUser.save();
 
         // Send OTP via email

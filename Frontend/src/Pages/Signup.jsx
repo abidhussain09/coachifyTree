@@ -49,7 +49,7 @@ export const Signup = () => {
     const { role, email, password, name } = UserMessage;
 
     try {
-      const requestBody = role === 'Student' ? { id: Date.now(), email, password, role, name } : { id: Date.now(), email, password, role };
+      const requestBody =  {id: Date.now(), email, password, role, name};
 
       const response = await axios.post('/signup', requestBody);
 
@@ -104,7 +104,6 @@ export const Signup = () => {
         </select>
 
         {/* Name Input for Students */}
-        {UserMessage.role === 'Student' && (
           <input
             type='text'
             placeholder='Enter your name'
@@ -115,7 +114,7 @@ export const Signup = () => {
             className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           />
-        )}
+
 
         {/* Email Input */}
         <input

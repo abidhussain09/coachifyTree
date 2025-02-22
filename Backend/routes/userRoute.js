@@ -7,6 +7,10 @@ const {authenticateToken,authorizeRoles}=require('../middlewares/authMiddleware'
 const { forgotPassword } = require('../controllers/ForgetPasswordController');
 const { resetPassword } = require('../controllers/ResetPasswordController');
 const { registerSheetDetails, updateSheetDetails, deleteSheetDetails, getSheetDetails } = require('../controllers/SheetController');
+const {createVerificationRequest, getVerificationRequest, updateVerificationRequest} =require("../controllers/CoachifyVerificationController")
+
+
+
 
 router.post('/signup',signup);
 router.post('/verify-otp',verifyOTP);
@@ -79,9 +83,14 @@ router.get('/guest/dashboard', authenticateToken, authorizeRoles('Guest'), (req,
 });
 
 //sheet details routes
-router.post("/addSheetDetails",registerSheetDetails);
-router.post("/updateSheetDetails",updateSheetDetails);
-router.post("/deleteSheetDetails",deleteSheetDetails);
+router.post("/addSheetDetails",authenticateToken, authorizeRoles('Admin'),registerSheetDetails);
+router.post("/updateSheetDetails", authenticateToken, authorizeRoles('Admin'),updateSheetDetails);
+router.post("/deleteSheetDetails", authenticateToken, authorizeRoles('Admin'), deleteSheetDetails);
 router.get("/getSheetDetails",getSheetDetails);
+
+
+router.post("/requestCoachifyVerification",createVerificationRequest);
+router.post("/updateVerficationrequest",updateVerificationRequest);
+router.get("/getVerificationRequest",getVerificationRequest);
 
 module.exports=router;

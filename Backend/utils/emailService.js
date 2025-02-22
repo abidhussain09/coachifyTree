@@ -10,6 +10,7 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = async (to, subject, html) => {
     try {
+        // console.log("here inside sendEmail");
         const mailOptions = {
             from: `"CoachifyTree" <${process.env.EMAIL_USER}>`, // Sender's address
             to, // Recipient's email

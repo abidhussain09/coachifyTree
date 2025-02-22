@@ -5,7 +5,7 @@ const User = require("../models/User");
 exports.authenticateToken = async (req, res, next) => {
     // Extract token from Authorization header
     const authHeader = req.header('Authorization');
-    const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
+    const token = authHeader?.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
 
     if (!token) {
         return res.status(401).json({ message: 'Access denied. No token provided.' });

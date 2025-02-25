@@ -1,81 +1,60 @@
 const User = require("../models/User");
-const bcrypt = require('bcrypt');
-
-const sendEmail = require("../utils/emailService")
-
-
-
-// Generate OTP
-const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
-
+const bcrypt = require("bcrypt");
+const  sendEmail = require("../utils/emailService");
+const crypto = require("crypto");
 
 exports.signup = async (req, res) => {
     try {
-        const { id, email, password, role, name } = req.body; // Include name in request body
-        if (!id || !email || !password || !role || !name) {
-            return res.status(400).json({
-                success: false,
-                message: "Fill all the credentials",
-            });
-        }
+        const { name, email, password, role } = req.body;
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return res.status(400).json({ message: "Invalid email format" });
-        }
-
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        if (!passwordRegex.test(password)) {
-            return res.status(400).json({
-                message: "Password must be at least 8 characters long and include uppercase, lowercase, digit, and special character"
-            });
-        }
-
+        // Check if the email already exists
         const existingUser = await User.findOne({ email });
+
+        if (existingUser && existingUser.isEmailVerified) {
+            return res.status(400).json({ message: "Email already registered and verified." });
+        }
+
+        // Generate OTP
+        const otp = crypto.randomInt(100000, 999999).toString(); // 6-digit OTP
+        const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000); // Expires in 1 min
+
         if (existingUser) {
-            return res.status(400).json({
-                success: false,
-                message: "User already existed",
+            // If user exists but not verified, update OTP
+            existingUser.otp = otp;
+            existingUser.otpExpiresAt = otpExpiresAt;
+            await existingUser.save();
+        } else {
+            // Hash password before saving
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            // Create a new user but keep it unverified
+            await User.create({
+                id: crypto.randomUUID(),
+                name,
+                email,
+                password: hashedPassword,
+                role,
+                isEmailVerified: false,
+                otp,
+                otpExpiresAt
             });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Generate OTP and its expiration time
-        const otp = generateOTP();
-        const otpExpiresAt = Date.now() + 15 * 60 * 1000; // OTP valid for 15 minute
-
-        const newUserData = {
-            id,
-            email,
-            password: hashedPassword,
-            role,
-            otp,
-            otpExpiresAt,
-            name,
-        };
-
-        const newUser = new User(newUserData);
-        
-        await newUser.save();
 
         // Send OTP via email
-        const emailContent = `
-        <p>Welcome to CoachifyTree!</p>
-        <p>Your OTP for email verification is: <strong>${otp}</strong></p>
-        <p>This OTP is valid for 15 minutes.</p>`;
-        await sendEmail(email, 'Verify Your Email', emailContent);
+         const emailContent = `
+         <p>Welcome to CoachifyTree!</p>
+         <p>Your OTP for email verification is: <strong>${otp}</strong></p>
+         <p>This OTP is valid for 15 minutes.</p>`;
+         await sendEmail(email, 'Verify Your Email', emailContent);
 
-        res.status(201).json({
-            message: "User created successfully",
-            user: { id: newUser.id, email: newUser.email, role: newUser.role, name: newUser.name || null },
-        });
+        res.status(200).json({ message: "OTP sent. Please verify your email to activate your account." });
+
     } catch (error) {
-        console.error("Error during signup:", error);
-        res.status(500).json({ message: "Internal server error" });
+        console.error(error);
+        res.status(500).json({ message: "Error signing up", error });
     }
 };
-
 
 
 // Verify OTP
@@ -83,35 +62,32 @@ exports.verifyOTP = async (req, res) => {
     try {
         const { email, otp } = req.body;
 
-        if (!email || !otp) {
-            return res.status(400).json({ message: "Email and OTP are required" });
-        }
-
+        // Find the user
         const user = await User.findOne({ email });
+
         if (!user) {
-            return res.status(400).json({ message: "User not found" });
+            return res.status(400).json({ message: "User not found." });
         }
 
-        if (user.otp !== otp) {
-            return res.status(400).json({ message: "Invalid OTP" });
-        }
-
-        if (user.otpExpiresAt < Date.now()) {
-            return res.status(400).json({ message: "OTP has expired" });
+        // Check if the OTP matches and is not expired
+        if (user.otp !== otp || new Date() > user.otpExpiresAt) {
+            return res.status(400).json({ message: "Invalid or expired OTP." });
         }
 
         // Mark email as verified
         user.isEmailVerified = true;
-        user.otp = undefined;
-        user.otpExpiresAt = undefined;
+        user.otp = null; // Remove OTP after verification
+        user.otpExpiresAt = null;
         await user.save();
 
-        res.status(200).json({ message: "Email verified successfully" });
+        res.status(200).json({ message: "OTP verified successfully. Your account is now activated." });
+
     } catch (error) {
-        console.error("Error during OTP verification:", error);
-        res.status(500).json({ message: "Internal server error" });
+        console.error(error);
+        res.status(500).json({ message: "Error verifying OTP", error });
     }
 };
+
 
 
 // Resend OTP

@@ -34,10 +34,13 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ["Admin", "Student", "Teacher", "Guest"]
-
+        enum: ["Admin", "Student", "Teacher", "Guest"],
+        require:true
     }
 });
+
+// Auto-delete users who don't verify OTP in time
+UserSchema.index({ otpExpiresAt: 1 }, { expireAfterSeconds: 0, partialFilterExpression: { isEmailVerified: false } });
 
 
 module.exports = mongoose.model('user', UserSchema);

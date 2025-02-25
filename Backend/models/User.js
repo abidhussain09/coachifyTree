@@ -34,25 +34,13 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ["Admin", "Student", "Teacher", "Guest"]
-
+        enum: ["Admin", "Student", "Teacher", "Guest"],
+        require:true
     }
 });
 
-// Hash password before saving
-UserSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next();
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-});
+// Auto-delete users who don't verify OTP in time
+UserSchema.index({ otpExpiresAt: 1 }, { expireAfterSeconds: 0, partialFilterExpression: { isEmailVerified: false } });
 
-// Prevent saving user if email is not verified
-UserSchema.pre('save', function (next) {
-    if (!this.isEmailVerified) {
-        return next(new Error('Email is not verified. Verify OTP before saving user.'));
-    }
-    next();
-});
 
 module.exports = mongoose.model('user', UserSchema);

@@ -67,19 +67,25 @@ export const Signin = () => {
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center px-4">
-      {/* Back button */}
-      <div className="absolute top-4 left-4">
-        <button onClick={goBack} className="flex items-center justify-center text-white p-2">
-          <ImCross className="text-2xl text-white" />
-        </button>
-      </div>
-      
-      {/* Title */}
-      <div className="text-5xl text-white itim mb-8 text-center">Login</div>
-
-      <form onSubmit={SubmitHandler} className="flex flex-col w-full max-w-md">
+        <div className="flex items-center justify-center min-h-screen w-full ">
+        <div className="relative w-[550px] h-[927px] flex flex-col bg-black items-center justify-center ">
+          {/* Back button */}
+          <div className="absolute text-xl top-4 left-2">
+            <button onClick={goBack} className="flex items-center justify-center text-white p-1">
+              <ImCross className=" text-white" />
+            </button>
+          </div>
+          <div className="absolute top-[50px] left-9">
+          <div className="text-4xl text-white itim mb-8 ">Welcome to Coachify</div>
+          </div>
+          <div className="absolute top-[90px] left-12">
+          <div className=" text-white itim mb-8 ">nudging towards excellence...</div>
+          </div>
+          <div className="absolute w-full top-[150px] left-12 items-center justify-center">
+          <form onSubmit={SubmitHandler} className="flex flex-col w-full max-w-md">
         {/* Email Input */}
+        <div className='p-2'>
+        <div className='text-white itim '>Email Address</div>
         <input
           type="email"
           placeholder="Enter your E-mail ID"
@@ -87,12 +93,14 @@ export const Signin = () => {
           value={UserMessage.email}
           autoComplete="off"
           onChange={changeHandler}
-          className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="bg-neutral-800 text-[20px] p-4 mb-4 w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
           required
         />
+        </div>
 
         {/* Password Input */}
-        <div className="relative">
+        <div className=" p-2 relative">
+        <div className='text-white itim '>Password</div>
           <input
             type={showPassword ? 'text' : 'password'}
             placeholder="Enter your password"
@@ -100,7 +108,7 @@ export const Signin = () => {
             value={UserMessage.password}
             autoComplete="off"
             onChange={changeHandler}
-            className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="bg-neutral-800 text-[20px] p-4 mb-4 w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           />
           <IconContext.Provider value={{ className: 'absolute right-4 top-1/2 transform -translate-y-1/2 text-[20px] text-white cursor-pointer' }}>
@@ -120,24 +128,16 @@ export const Signin = () => {
           <h6 className="flex items-center justify-center">Sign In <FiSend /></h6>
         </button>
       </form>
+        </div>
 
       <ToastContainer />
-
-      {/* Signup Link */}
-      <div className="flex items-center my-8">
-        <span className="text-xl text-white mr-2">Don't have an account?</span>
-        <button
-          className="text-xl text-white underline hover:text-green-300 transition duration-300"
-          onClick={() => navigate('/signup')}
-        >
-          Signup
-        </button>
-      </div>
-
-      {/* Forgot Password Link */}
-      <p className="text-sm text-white">
+            {/* Forgot Password Link */}
+            <p className="text-sm  text-white">
         Forgot password? <Link to="/forgetpassword" className="text-blue-500">Reset it here</Link>
       </p>
+      
+      </div>
+      
     </div>
   );
 };

@@ -4,6 +4,7 @@ require('dotenv').config();
 exports.connect=()=>{
     mongoose.connect(process.env.MONGODB_URL,{
         useNewUrlParser:true,
+        tls:true
     })
     .then(()=>{
         console.log("DB connected sucessfully");

@@ -78,23 +78,29 @@ export const Signup = () => {
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center px-4">
+
+    <div className="flex items-center justify-center min-h-screen w-full ">
+    <div className="relative w-[550px] h-[927px] flex flex-col bg-black items-center justify-center ">
       {/* Back button */}
-      <div className="absolute top-4 left-4">
-        <button onClick={goBack} className="flex items-center justify-center text-white p-2">
-          <ImCross className="text-2xl text-white" />
+      <div className="absolute top-4 left-2">
+        <button onClick={goBack} className="flex items-center justify-center text-white p-1">
+          <ImCross className=" text-white" />
         </button>
       </div>
-      {/* Title */}
-      <div className="text-5xl text-white itim mb-8 text-center">Sign Up</div>
-
-      <form onSubmit={handleSubmit} className="flex flex-col w-full max-w-md bg-transparent">
+      <div className="absolute top-[45px] left-9">
+      <div className="text-4xl text-white itim mb-8 ">Welcome to Coachify</div>
+      </div>
+      <div className="absolute top-[88px] left-12">
+      <div className=" text-white itim mb-8 ">nudging towards excellence...</div>
+      </div>
+      <div className="absolute w-full top-[150px] left-12 items-center justify-center">
+      <form onSubmit={handleSubmit} className="flex flex-col w-[470px] bg-transparent ">
         {/* Role Dropdown */}
         <select
           name="role"
           value={UserMessage.role}
           onChange={changeHandler}
-          className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded text-white"
+          className="bg-neutral-800 text-[18px] p-2 mb-4 w-[82px] h-[53px] text-white rounded-lg"
           required
         >
           <option value="Guest">Guest</option>
@@ -104,19 +110,41 @@ export const Signup = () => {
         </select>
 
         {/* Name Input for Students */}
+        <div className='flex'>
+
+          <div className='p-2'>
+          <div className='text-white itim '> First name</div>
           <input
             type='text'
-            placeholder='Enter your name'
+            placeholder='Enter your first name'
             name='name'
             value={UserMessage.name}
             autoComplete='off'
             onChange={changeHandler}
-            className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="bg-neutral-800 text-[20px] p-4 mb-4 w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           />
+          </div>
+          <div className='p-2'>
+          <div className='text-white itim '> Last name</div>
+          <input
+            type='text'
+            placeholder='Enter your first name'
+            name='name'
+            value={UserMessage.name}
+            autoComplete='off'
+            onChange={changeHandler}
+            className="bg-neutral-800 text-[20px] p-4 mb-4 w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+            required
+            />
+          </div>
+        </div>
 
 
         {/* Email Input */}
+        <div className='p-2'>
+          
+        <div className='text-white itim '>Email Address</div>
         <input
           type='email'
           placeholder='Enter your E-mail id'
@@ -124,12 +152,14 @@ export const Signup = () => {
           value={UserMessage.email}
           autoComplete='off'
           onChange={changeHandler}
-          className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="bg-neutral-800 text-[20px] p-4 mb-4 w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
           required
         />
+        </div>
 
         {/* Password Input */}
-        <div className="relative">
+        <div className="relative p-2">
+        <div className='text-white itim '> Password</div>
           <input
             type={showPassword ? 'text' : 'password'}
             placeholder='Create your password'
@@ -137,7 +167,7 @@ export const Signup = () => {
             value={UserMessage.password}
             autoComplete='off'
             onChange={changeHandler}
-            className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="bg-neutral-800 text-[20px] p-4 mb-4 w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           />
           <IconContext.Provider value={{ className: 'absolute right-4 top-1/2 transform -translate-y-1/2 text-[20px] text-white cursor-pointer' }}>
@@ -146,7 +176,8 @@ export const Signup = () => {
         </div>
 
         {/* Confirm Password Input */}
-        <div className="relative">
+        <div className="relative p-2">
+        <div className='text-white itim '>Confirm Password</div>
           <input
             type={showPassword ? 'text' : 'password'}
             placeholder='Confirm your password'
@@ -154,7 +185,7 @@ export const Signup = () => {
             value={UserMessage.confirmPassword}
             autoComplete='off'
             onChange={changeHandler}
-            className="bg-[rgba(80,116,128,1)] text-[20px] p-4 mb-4 w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="bg-neutral-800 text-[20px] p-4 mb-4 w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           />
           <IconContext.Provider value={{ className: 'absolute right-4 top-1/2 transform -translate-y-1/2 text-[20px] text-white cursor-pointer' }}>
@@ -168,31 +199,23 @@ export const Signup = () => {
         {/* Submit Button */}
         <button
           type='submit'
-          className="bg-[#63a73a] text-[25px] p-4 w-full rounded text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300"
+          className="bg-[#63a73a] text-[25px] p-4 w-full rounded-lg text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300"
         >
-          <h6 className="flex items-center justify-center">Sign Up <FiSend /></h6>
+          <h6 className="flex items-center justify-center ">Sign Up <FiSend /></h6>
         </button>
       </form>
+      </div>
 
       {/* Toast Notifications */}
       <ToastContainer />
 
-      {/* Sign In Link */}
-      <div className="flex items-center mt-8">
-        <span className="text-xs text-white mr-2">Already have an account?</span>
-        <button
-          className="text-[11px] text-white underline hover:text-green-300 transition duration-300"
-          onClick={() => { navigate("/signin") }}
-        >
-          Sign In
-        </button>
-      </div>
 
       {/* Verification Message */}
       {
         verification &&
         <div className="itim text-xl text-green-500 text-center mt-4">Verification e-mail sent, please verify</div>
       }
+    </div>
     </div>
   );
 };

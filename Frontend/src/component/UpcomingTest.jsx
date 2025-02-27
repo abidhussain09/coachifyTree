@@ -43,6 +43,16 @@ export const UpcomingTest = () => {
       syllabus:"Organic Chemistry"
     },
     
+    {
+      date:Date.now(),
+      subject:"Maths",
+      syllabus:"Linear Algebra"
+    },
+    {
+      date:Date.now(),
+      subject:"Chemistry",
+      syllabus:"Organic Chemistry"
+    },
   ]
   return (
     <div className='flex flex-col items-center justify-center h-[800px] w-[960px] gap-4 p-4'>

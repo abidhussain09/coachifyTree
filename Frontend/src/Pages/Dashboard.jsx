@@ -6,6 +6,8 @@ import {PerformanceAnalysis} from '../component/PerformanceAnalysis'
 import {Notice} from '../component/Notice'
 import {SubjectWiseAnalysis} from "../component/SubjectWiseAnalysis"
 import { UpcomingTest } from '../component/UpcomingTest'; 
+import { ScheduleTest } from '../component/ScheduleTest';
+import { UploadNotice } from '../component/UploadNotice';
 
 axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 
@@ -13,9 +15,11 @@ export const Dashboard = () => {
     const [Data,setData]=useState({});
     const [name,setName]=useState("");
 
-    const [selectedOption,setSelectedOption]=useState("Performance Analysis");
+    const [selectedOption,setSelectedOption]=useState("");
 
-    const options=["Performance Analysis","Subject-wise Analysis","Upcoming Tests","Notice"];
+    const StudentOptions=["Performance Analysis","Subject-wise Analysis","Upcoming Tests","Notice"];
+    const Teacheroptions=["Schedule Test","Upload Notice","Upcoming Tests","Notice"];
+    const [userRole,setUserRole]=useState('');
 
     const fetchDashboardData= async()=>{
     const token=localStorage.getItem('Token');
@@ -24,6 +28,8 @@ export const Dashboard = () => {
     }
     const dec=jwtDecode(token);
     const {role,id}=dec;
+    console.log(role);
+    setUserRole(role);
     
     const response=await axios.get(`/${role}/dashboard`,{
         params:{id},
@@ -37,6 +43,12 @@ export const Dashboard = () => {
     }
     useEffect(()=>{
         fetchDashboardData();
+        // if(userRole==="Student"){
+        //     setSelectedOption("Performance Analysis");
+        // }
+        // if(userRole==="Teacher"){
+        //     setSelectedOption("Schedule Test")
+        // }
     },[]);
     return (
         <div className='flex flex-col items-center justify-center p-5 gap-5'>
@@ -53,13 +65,21 @@ export const Dashboard = () => {
                         <p className='text-4xl'>DASHBOARD</p>
                         <div className='bg-white h-[2px] w-[200px]'></div>
                     </div>
-                        <SideBar options={options} onSelect={setSelectedOption} selected={selectedOption}/>
+                    {  userRole==="Student" &&
+                        <SideBar options={StudentOptions} onSelect={setSelectedOption} selected={selectedOption}/>
+                    }
+                    {
+                        userRole==="Teacher" &&
+                        <SideBar options={Teacheroptions} onSelect={setSelectedOption} selected={selectedOption}/>
+                    }
                 </div>
                 <div className='itim text-4xl bg-[#d9d9d9] bg-opacity-10 h-[800px] w-3/4 rounded-[20px] border-[1px] border-[#ffffff84]'>
                     {selectedOption ==="Performance Analysis" && <PerformanceAnalysis/>}
                     {selectedOption ==="Subject-wise Analysis" && <SubjectWiseAnalysis/>}
                     {selectedOption ==="Upcoming Tests" && <UpcomingTest/>}
                     {selectedOption ==="Notice" && <Notice/> }
+                    {selectedOption==="Schedule Test" && <ScheduleTest/>}
+                    {selectedOption==="Upload Notice" && <UploadNotice/>}
                 </div>
             </div>
         </div>

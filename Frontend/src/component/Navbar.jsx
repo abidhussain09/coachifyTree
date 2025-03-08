@@ -41,7 +41,7 @@ export const Navbar = () => {
     );
 
     return (
-        <nav className='bg-black w-full md:w-[1280px] h-20'>
+        <nav className='bg-black w-full md:w-[1280px] h-20 '>
             <div className='flex justify-between'>
                 <div className='flex gap-16'>
                     <div className='my-[18px] ml-[51px]'>

@@ -100,9 +100,9 @@ export const Signup = () => {
           </select>
 
           {/* Name Input for Students */}
-          <div className='flex gap-4'>
+          <div className='flex gap-4 w-full'>
 
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-2 w-full'>
               <div className='text-white itim '> First name</div>
               <input
                 type='text'
@@ -115,7 +115,7 @@ export const Signup = () => {
                 required
               />
             </div>
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-2 w-full'>
               <div className='text-white itim '> Last name</div>
               <input
                 type='text'
@@ -148,7 +148,7 @@ export const Signup = () => {
           </div>
 
           {/* Password Input */}
-          <div className="flex-col flex gap-2 relative">
+          <div className="flex-col flex gap-2">
             <div className='text-white itim '> Password</div>
             <div className='flex w-full gap-2'>
               <input
@@ -171,7 +171,7 @@ export const Signup = () => {
           </div>
 
           {/* Confirm Password Input */}
-          <div className="flex-col flex gap-2 relative">
+          <div className="flex-col flex gap-2 ">
             <div className='text-white itim '>Confirm Password</div>
             <div className='flex w-full gap-2'>
 

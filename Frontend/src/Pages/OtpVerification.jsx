@@ -44,9 +44,9 @@ export const OTPVerification = () => {
             localStorage.removeItem('pendingEmail');
 
             // Redirect to dashboard or login page
-            setTimeout(()=>{
+            setTimeout(() => {
                 navigate('/dashboard', { replace: true });
-            },3000);
+            }, 3000);
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'OTP verification failed!';
             toast.error(errorMessage);
@@ -66,37 +66,38 @@ export const OTPVerification = () => {
     };
 
     return (
-        <div className="relative w-full h-full flex flex-col items-center justify-center px-4 py-20">
-            <h2 className="text-3xl font-bold mb-6 text-center">Verify OTP</h2>
+        <div className="w-screen h-full flex flex-col items-center justify-center p-4">
+            <div className='bg-black border-2 border-dashed border-neutral-700 w-1/3 flex flex-col items-center justify-center px-4 pt-8 gap-4'>
+                <h2 className="text-3xl font-bold text-center">Enter OTP for Verification</h2>
+                <form onSubmit={handleOTPSubmit} className="flex flex-col w-full  gap-4">
+                    <input
+                        type="text"
+                        name="otp"
+                        placeholder="Enter OTP"
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        className="bg-neutral-800 text-[20px] p-4  w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className={`bg-[#63a73a] text-[25px] p-4 w-full text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300 text-white py-2 rounded ${loading ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
+                    >
+                        {loading ? 'Verifying...' : 'Verify OTP'}
+                    </button>
+                </form>
 
-            <form onSubmit={handleOTPSubmit} className="flex flex-col w-full max-w-md">
-                <input
-                    type="text"
-                    name="otp"
-                    placeholder="Enter OTP"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    className="p-3 mb-4 border rounded bg-[rgba(80,116,128,1)] text-white"
-                    required
-                />
                 <button
-                    type="submit"
-                    disabled={loading}
-                    className={`bg-green-500 text-white py-2 rounded ${loading ? 'opacity-50 cursor-not-allowed' : ''
-                        }`}
+                    onClick={handleResendOTP}
+                    className=" text-blue-500 underline itim"
                 >
-                    {loading ? 'Verifying...' : 'Verify OTP'}
+                    Resend OTP
                 </button>
-            </form>
 
-            <button
-                onClick={handleResendOTP}
-                className="mt-4 text-blue-500 underline"
-            >
-                Resend OTP
-            </button>
-
-            <ToastContainer />
+                <ToastContainer />
+            </div>
         </div>
     );
 };

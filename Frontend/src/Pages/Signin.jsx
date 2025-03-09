@@ -66,7 +66,7 @@ export const Signin = () => {
             />
           </div>
 
-          <div className="flex-col flex gap-2 relative">
+          <div className="flex-col flex gap-2">
             <div className='text-white itim'>Password</div>
             <div className="flex w-full gap-2 ">
               <input

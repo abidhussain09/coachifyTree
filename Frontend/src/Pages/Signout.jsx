@@ -28,18 +28,18 @@ export const Signout = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen p-4 sm:p-5 ">
-            <div className="flex flex-col items-center border border-gray-300 rounded-lg shadow-md p-4 sm:p-6 w-full max-w-xs sm:max-w-lg">
-                <h1 className="text-lg sm:text-2xl text-center font-semibold mb-4 sm:mb-6">Are you sure you want to Signout?</h1>
-                <div className="flex gap-2 sm:gap-4 w-full">
+        <div className="flex items-center justify-center h-[80vh] p-4 sm:p-5 ">
+            <div className="flex flex-col bg-black items-center border-2 border-dashed border-neutral-700 rounded-lg shadow-md w-1/3 py-8 px-4">
+                <h1 className="text-lg sm:text-3xl itim text-center font-semibold mb-4 sm:mb-6">Are you sure you want to Signout?</h1>
+                <div className="flex flex-col gap-2 sm:gap-4 w-full">
                     <button 
-                        className="flex-1 bg-green-600 text-white rounded-md py-2 sm:py-3 text-sm sm:text-lg font-medium hover:bg-green-700 transition-all shadow-lg"
+                        className="flex-1 itim bg-green-600 text-white rounded-md py-2 sm:py-3 text-sm sm:text-2xl font-medium hover:bg-green-700 transition-all shadow-lg"
                         onClick={signout}
                     >
                         Signout
                     </button>
                     <button 
-                        className="flex-1 bg-gray-600 text-white rounded-md py-2 sm:py-3 text-sm sm:text-lg font-medium hover:bg-gray-700 transition-all shadow-lg"
+                        className="flex-1 itim bg-gray-600 text-white rounded-md py-2 sm:py-3 text-sm sm:text-2xl font-medium hover:bg-gray-700 transition-all shadow-lg"
                         onClick={goBack}
                     >
                         Stay Signed In

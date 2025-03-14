@@ -8,6 +8,8 @@ import {SubjectWiseAnalysis} from "../component/SubjectWiseAnalysis"
 import { UpcomingTest } from '../component/UpcomingTest'; 
 import { ScheduleTest } from '../component/ScheduleTest';
 import { UploadNotice } from '../component/UploadNotice';
+import { VerifyUser } from '../component/VerifyUser';
+import { UploadSheetData } from '../component/UploadSheetData';
 
 axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 
@@ -19,6 +21,7 @@ export const Dashboard = () => {
 
     const StudentOptions=["Performance Analysis","Subject-wise Analysis","Upcoming Tests","Notice"];
     const Teacheroptions=["Schedule Test","Upload Notice","Upcoming Tests","Notice"];
+    const AdminOptions=["Verify User","Upload sheet Data","Upcoming Tests","Notice"];
     const [userRole,setUserRole]=useState('');
 
     const fetchDashboardData= async()=>{
@@ -72,6 +75,10 @@ export const Dashboard = () => {
                         userRole==="Teacher" &&
                         <SideBar options={Teacheroptions} onSelect={setSelectedOption} selected={selectedOption}/>
                     }
+                    {
+                        userRole==="Admin" &&
+                        <SideBar options={AdminOptions} onSelect={setSelectedOption} selected={selectedOption}/>
+                    }
                 </div>
                 <div className='itim text-4xl bg-[#d9d9d9] bg-opacity-10 h-[800px] w-3/4 rounded-[20px] border-[1px] border-[#ffffff84]'>
                     {selectedOption ==="Performance Analysis" && <PerformanceAnalysis/>}
@@ -80,6 +87,8 @@ export const Dashboard = () => {
                     {selectedOption ==="Notice" && <Notice/> }
                     {selectedOption==="Schedule Test" && <ScheduleTest/>}
                     {selectedOption==="Upload Notice" && <UploadNotice/>}
+                    {selectedOption==="Verify User" && <VerifyUser/>}
+                    {selectedOption==="Upload sheet Data" && <UploadSheetData/>}
                 </div>
             </div>
         </div>

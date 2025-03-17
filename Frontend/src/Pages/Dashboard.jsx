@@ -10,12 +10,14 @@ import { ScheduleTest } from '../component/ScheduleTest';
 import { UploadNotice } from '../component/UploadNotice';
 import { VerifyUser } from '../component/VerifyUser';
 import { UploadSheetData } from '../component/UploadSheetData';
+import { VerificationRequest } from '../component/verificationRequest';
 
 axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 
 export const Dashboard = () => {
     const [Data,setData]=useState({});
     const [name,setName]=useState("");
+    //const [isVerified, setIsVerified] = useState(null);
 
     const [selectedOption,setSelectedOption]=useState("");
 
@@ -30,18 +32,26 @@ export const Dashboard = () => {
         throw new Error('User not authenticated');
     }
     const dec=jwtDecode(token);
-    const {role,id}=dec;
+    const {role,id,email}=dec;
     console.log(role);
     setUserRole(role);
     
-    const response=await axios.get(`/${role}/dashboard`,{
-        params:{id},
-        headers:{
-            Authorization: `Bearer ${token}`,
-        },
-    });
-    console.log('dashboard data', response.data.data);
-    setData(response.data.data);
+    // const verificationResponse = await axios.get(`/user/verification-status`, {
+    //     params: { email },
+    //     headers: { Authorization: `Bearer ${token}` },
+    // });
+
+    //setIsVerified(verificationResponse.data.isVerified); 
+
+    // if (verificationResponse.data.isVerified) {
+                const response = await axios.get(`/${role}/dashboard`, {
+                    params: { id },
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+
+                console.log("dashboard data", response.data.data);
+                setData(response.data.data);
+            //}
     setName(response.data.data.name);
     }
     useEffect(()=>{
@@ -53,6 +63,10 @@ export const Dashboard = () => {
         //     setSelectedOption("Schedule Test")
         // }
     },[]);
+
+    // if (isVerified === false) {
+    //     return <VerificationRequest />;
+    // }
     return (
         <div className='flex flex-col items-center justify-center p-5 gap-5'>
             <div className='itim h-[250px] w-[1280px] p-5 bg-[#d9d9d9] bg-opacity-10 border-[1px] border-[#ffffff84]	 rounded-[20px] gap-7 flex items-start'>
@@ -89,6 +103,7 @@ export const Dashboard = () => {
                     {selectedOption==="Upload Notice" && <UploadNotice/>}
                     {selectedOption==="Verify User" && <VerifyUser/>}
                     {selectedOption==="Upload sheet Data" && <UploadSheetData/>}
+                    {/* {selectedOption===" " && <VerificationRequest/>} */}
                 </div>
             </div>
         </div>

@@ -1,57 +1,57 @@
 import React from 'react'
 
 export const UpcomingTest = () => {
-  const testData=[
+  const testData = [
     {
-      date:Date.now(),
-      subject:"Maths",
-      syllabus:"Linear Algebra"
+      date: Date.now(),
+      subject: "Maths",
+      syllabus: "Linear Algebra"
     },
     {
-      date:Date.now(),
-      subject:"Chemistry",
-      syllabus:"Organic Chemistry"
+      date: Date.now(),
+      subject: "Chemistry",
+      syllabus: "Organic Chemistry"
     },
     {
-      date:Date.now(),
-      subject:"Physics",
-      syllabus:"Maxwell's equations and wave propagation"
+      date: Date.now(),
+      subject: "Physics",
+      syllabus: "Maxwell's equations and wave propagation"
     },
     {
-      date:Date.now(),
-      subject:"Maths",
-      syllabus:"Linear Algebra"
+      date: Date.now(),
+      subject: "Maths",
+      syllabus: "Linear Algebra"
     },
     {
-      date:Date.now(),
-      subject:"Chemistry",
-      syllabus:"Organic Chemistry"
+      date: Date.now(),
+      subject: "Chemistry",
+      syllabus: "Organic Chemistry"
     },
     {
-      date:Date.now(),
-      subject:"Physics",
-      syllabus:"Maxwell's equations and wave propagation Maxwell's equations and wave propagation Maxwell's equations and wave propagation"
+      date: Date.now(),
+      subject: "Physics",
+      syllabus: "Maxwell's equations and wave propagation Maxwell's equations and wave propagation Maxwell's equations and wave propagation"
     },
     {
-      date:Date.now(),
-      subject:"Maths",
-      syllabus:"Linear Algebra"
+      date: Date.now(),
+      subject: "Maths",
+      syllabus: "Linear Algebra"
     },
     {
-      date:Date.now(),
-      subject:"Chemistry",
-      syllabus:"Organic Chemistry"
+      date: Date.now(),
+      subject: "Chemistry",
+      syllabus: "Organic Chemistry"
     },
-    
+
     {
-      date:Date.now(),
-      subject:"Maths",
-      syllabus:"Linear Algebra"
+      date: Date.now(),
+      subject: "Maths",
+      syllabus: "Linear Algebra"
     },
     {
-      date:Date.now(),
-      subject:"Chemistry",
-      syllabus:"Organic Chemistry"
+      date: Date.now(),
+      subject: "Chemistry",
+      syllabus: "Organic Chemistry"
     },
   ]
   return (
@@ -63,27 +63,27 @@ export const UpcomingTest = () => {
       </div>
       <div className='flex basis-11/12  w-full gap-2 flex-col '>
         {
-          testData.map((test)=>{
-            return <div className='flex text-lg itim text-start gap-2'>
+          testData.map((test) => {
+            return <div className='flex text-lg itim text-start gap-2 overflow-auto'>
               <div className='rounded-[20px] bg-neutral-800 basis-2/12 p-4'>
-              {
-                test.date
-              }
-          </div>
-          <div className='rounded-[20px] bg-neutral-800 basis-2/12 p-4'>
-            {
-              test.subject
-            }
-          </div>
-          <div className='rounded-[20px] bg-neutral-800 basis-8/12 p-4'>
-            {
-              test.syllabus
-            }
-          </div>
+                {
+                  test.date
+                }
+              </div>
+              <div className='rounded-[20px] bg-neutral-800 basis-2/12 p-4'>
+                {
+                  test.subject
+                }
+              </div>
+              <div className='rounded-[20px] bg-neutral-800 basis-8/12 p-4'>
+                {
+                  test.syllabus
+                }
+              </div>
             </div>
           })
         }
-        
+
       </div>
     </div>
   )

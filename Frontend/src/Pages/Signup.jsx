@@ -96,7 +96,6 @@ export const Signup = () => {
             <option value="Guest">Guest</option>
             <option value="Student">Student</option>
             <option value="Teacher">Teacher</option>
-            <option value="Admin">Admin</option>
           </select>
 
           {/* Name Input for Students */}

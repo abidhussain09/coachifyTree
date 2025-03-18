@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import axios from 'axios';
 
+axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 export const ScheduleTest = () => {
     const [testData,setTestData]=useState({
         class:"",
@@ -13,13 +15,29 @@ export const ScheduleTest = () => {
     }
     async function SubmitHandler(event) {
         event.preventDefault();
-        console.log(testData);
-        setTestData({
-            class:"",
-            subject:"",
-            syllabus:"",
-            testDate:"",
-        })
+        try{
+            console.log(testData);
+            const token=localStorage.getItem('Token');
+            if(!token){
+                console.error("No token found, authentication required!");
+                return;
+            }
+            const response=await axios.post('/tests/add',testData,{
+                headers:{
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log("Test added successfully:", response.data);
+            setTestData({
+                class:"",
+                subject:"",
+                syllabus:"",
+                testDate:"",
+            });
+        }
+        catch(error){
+            console.error("Error adding notice:", error.response?.data || error.message);
+        }
     }
     return (
         <div className='flex flex-col items-center justify-center h-[800px] w-[960px] gap-4 p-4'>

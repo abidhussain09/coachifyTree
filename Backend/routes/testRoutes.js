@@ -5,7 +5,7 @@ const { authenticateToken, authorizeRoles } = require('../middlewares/authMiddle
 
 // Only teachers and admins can add tests
 router.post(
-    "/teacher/dashboard/add",
+    "/add",
     authenticateToken,
     authorizeRoles("Teacher", "Admin"),
     addTest

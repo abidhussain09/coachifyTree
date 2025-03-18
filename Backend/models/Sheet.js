@@ -12,6 +12,7 @@ const SheetSchema= new mongoose.Schema({
     },
     className:{
         type:String,
+        enum:["10","09","08","07","06"],
         required:true,
     },
     testNumber:{

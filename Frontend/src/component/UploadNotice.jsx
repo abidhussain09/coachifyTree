@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import axios from 'axios';
 
+axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 export const UploadNotice = () => {
     const [noticeData,setNoticeData]=useState({
         title:"",
@@ -11,11 +13,27 @@ export const UploadNotice = () => {
     }
     async function SubmitHandler(event) {
         event.preventDefault();
-        console.log(noticeData);
-        setNoticeData({
-            title:"",
-            content:""
-        })
+        try{
+            console.log(noticeData);
+            const token=localStorage.getItem('Token');
+            if(!token){
+                console.error("No token found, authentication required!");
+                return;
+            }
+            const response=await axios.post('/notices/add',noticeData,{
+                headers:{
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            console.log("Notice added successfully:", response.data);
+            setNoticeData({
+                title:"",
+                content:""
+            });
+        }
+        catch(error){
+            console.error("Error adding notice:", error.response?.data || error.message);
+        }
     }
     return (
         <div className='flex flex-col items-center justify-center h-[800px] w-[960px] gap-4 p-4'>

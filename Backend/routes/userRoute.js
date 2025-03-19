@@ -90,7 +90,7 @@ router.get("/getSheetDetails",getSheetDetails);
 
 
 router.post("/requestCoachifyVerification",createVerificationRequest);
-router.post("/updateVerficationrequest",updateVerificationRequest);
+router.post("/updateVerficationrequest",authenticateToken,authorizeRoles('Admin'),updateVerificationRequest);
 router.get("/getVerificationRequest",getVerificationRequest);
 
 module.exports=router;

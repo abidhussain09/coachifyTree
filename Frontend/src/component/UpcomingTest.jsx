@@ -5,59 +5,6 @@ axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 
 export const UpcomingTest = () => {
   const [testData,setTestData]=useState([]);
-  const TestData = [
-    {
-      date: Date.now(),
-      subject: "Maths",
-      syllabus: "Linear Algebra"
-    },
-    {
-      date: Date.now(),
-      subject: "Chemistry",
-      syllabus: "Organic Chemistry"
-    },
-    {
-      date: Date.now(),
-      subject: "Physics",
-      syllabus: "Maxwell's equations and wave propagation"
-    },
-    {
-      date: Date.now(),
-      subject: "Maths",
-      syllabus: "Linear Algebra"
-    },
-    {
-      date: Date.now(),
-      subject: "Chemistry",
-      syllabus: "Organic Chemistry"
-    },
-    {
-      date: Date.now(),
-      subject: "Physics",
-      syllabus: "Maxwell's equations and wave propagation Maxwell's equations and wave propagation Maxwell's equations and wave propagation"
-    },
-    {
-      date: Date.now(),
-      subject: "Maths",
-      syllabus: "Linear Algebra"
-    },
-    {
-      date: Date.now(),
-      subject: "Chemistry",
-      syllabus: "Organic Chemistry"
-    },
-
-    {
-      date: Date.now(),
-      subject: "Maths",
-      syllabus: "Linear Algebra"
-    },
-    {
-      date: Date.now(),
-      subject: "Chemistry",
-      syllabus: "Organic Chemistry"
-    },
-  ];
   async function getScheduledTests() {
     try{
       const data=await axios.get('/tests/');
@@ -65,7 +12,7 @@ export const UpcomingTest = () => {
       console.log(testData);
     }
     catch(error){
-
+      console.log("Error is fetching the upcoming test data");
     }
   }
   useEffect(()=>{

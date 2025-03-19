@@ -119,7 +119,7 @@ export const Dashboard = () => {
 
                     {/* If unverified and selecting a restricted section, show Verification Request */}
                     {!isVerified && userRole !== "Admin" && selectedOption !== "Upcoming Tests" && selectedOption !== "Notice" && (
-                        <VerificationRequest />
+                        <VerificationRequest email={Data.email} name={name}/>
                     )}
                     
                 </div>

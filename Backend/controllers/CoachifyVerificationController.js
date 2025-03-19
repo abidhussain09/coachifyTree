@@ -40,7 +40,7 @@ exports.createVerificationRequest= async (req,res)=>{
 
 exports.getVerificationRequest= async (req,res)=>{
     try{
-        const verificationPending=await CoachifyVerificationSchema.find({});
+        const verificationPending=await CoachifyVerificationSchema.find({verified:false}).sort({ createdAt: -1 });
         return res.status(200).json({
             success:true,
             verificationPending,

@@ -7,7 +7,7 @@ const {authenticateToken,authorizeRoles}=require('../middlewares/authMiddleware'
 const { forgotPassword } = require('../controllers/ForgetPasswordController');
 const { resetPassword } = require('../controllers/ResetPasswordController');
 const { registerSheetDetails, updateSheetDetails, deleteSheetDetails, getSheetDetails } = require('../controllers/SheetController');
-const {createVerificationRequest, getVerificationRequest, updateVerificationRequest} =require("../controllers/CoachifyVerificationController")
+const {createVerificationRequest, getVerificationRequest, updateVerificationRequest,getUserEmailUsingCoachifyId} =require("../controllers/CoachifyVerificationController")
 
 
 
@@ -92,5 +92,6 @@ router.get("/getSheetDetails",getSheetDetails);
 router.post("/requestCoachifyVerification",createVerificationRequest);
 router.post("/updateVerficationrequest",authenticateToken,authorizeRoles('Admin'),updateVerificationRequest);
 router.get("/getVerificationRequest",getVerificationRequest);
+router.get("/getCoachifyId",getUserEmailUsingCoachifyId);
 
 module.exports=router;

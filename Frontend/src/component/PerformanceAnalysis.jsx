@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Line, Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import axios from "axios";
 import {
     Chart as ChartJS,
@@ -13,14 +13,20 @@ import {
     Legend,
 } from "chart.js";
 
+axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
+
 // Register required components for Chart.js
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 
 const fetchGoogleSheetData = async (spreadsheetId, sheetName, apiKey) => {
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
     try {
-        const response = await axios.get(url);
-        const rows = response.data.values;
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Network error: ${response.statusText}`);
+        }
+        const data = await response.json();
+        const rows = data.values;
 
         if (!rows || rows.length === 0) throw new Error("No data found in the sheet.");
 
@@ -37,16 +43,36 @@ const fetchGoogleSheetData = async (spreadsheetId, sheetName, apiKey) => {
     }
 };
 
-export const PerformanceAnalysis = () => {
+export const PerformanceAnalysis = ({email}) => {
 
     const [chartData, setChartData] = useState(null);
     const [error, setError] = useState(null);
+    const [className,setClassName]=useState("");
 
-    const spreadsheetId = "1T5on00YsX135CdVAhIJxzIp6gGa9GfeqAeFJ2ikmiYw"; // Replace with your ID
-    const sheetName = "10"; // Replace with your sheet/tab name
+    const [spreadsheetId,setSpreadSheetId]=useState('1T5on00YsX135CdVAhIJxzIp6gGa9GfeqAeFJ2ikmiYw');
+    const [sheetName,setSheetName]=useState('10')
+
+    // const spreadsheetId = "1T5on00YsX135CdVAhIJxzIp6gGa9GfeqAeFJ2ikmiYw"; // Replace with your ID
+    // const sheetName = "10"; // Replace with your sheet/tab name
     const apiKey = import.meta.env.VITE_Google_api_key; // Replace with your Google API key
 
     useEffect(() => {
+        const fetchCoachifyId= async ()=>{
+            try{
+                const response = await axios.get('/getCoachifyId', {
+                    params: { email }  // Sends email as a query parameter
+                });
+                console.log(response);
+                console.log(response.data.coachifyId);
+                const tempclassname=response.data.coachifyId.slice(1,3);
+                console.log(tempclassname);
+                setClassName(tempclassname);
+            }
+            catch(error){
+                console.log(error);
+                console.log("Error in fetching coachifyId");
+            }
+        }
         const fetchData = async () => {
             try {
                 const { labels, dataPoints1, dataPoints2, dataPoints3 } = await fetchGoogleSheetData(spreadsheetId, sheetName, apiKey);
@@ -91,7 +117,7 @@ export const PerformanceAnalysis = () => {
                 setError(err.message);
             }
         };
-
+        fetchCoachifyId();
         fetchData();
     }, [spreadsheetId, sheetName, apiKey]);
 

@@ -81,3 +81,35 @@ exports.updateVerificationRequest= async (req,res)=>{
         });
     }
 };
+
+exports.getUserEmailUsingCoachifyId= async (req,res)=>{
+    try{
+        const { email } = req.query; 
+        if(!email){
+            return res.status(401).json({
+                success:false,
+                message:"All fields are required",
+            })
+        }
+        const userDetail=await CoachifyVerificationSchema.findOne({email:email});
+        if(!userDetail){
+            return res.status(403).json({
+                success:false,
+                message:"No user with this email found",
+            })
+        }
+        const coachifyId=userDetail.coachifyId;
+        return res.status(200).json({
+            success:true,
+            message:"Fetching Sucessfull",
+            coachifyId,
+        })
+    }
+    catch(error){
+        return res.status(500).json({
+            success:false,
+            message:"Can't able to get the coachifyId using email",
+            error:error
+        });
+    }
+}

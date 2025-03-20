@@ -19,7 +19,7 @@ export const UpcomingTest = () => {
     getScheduledTests();
   },[]);
   return (
-    <div className='flex flex-col items-center justify-center h-[800px] w-[960px] gap-4 p-4'>
+    <div className='flex flex-col items-center justify-center h-[800px] w-[930px] gap-4 p-4'>
       <div className='flex basis-1/12 w-full gap-2'>
         <div className='rounded-[20px] bg-[#63a73a] basis-2/12 text-2xl flex justify-center items-center'><div>Test Date</div></div>
         <div className='rounded-[20px] bg-[#63a73a] basis-2/12 text-2xl flex justify-center items-center'><div>Subject</div></div>

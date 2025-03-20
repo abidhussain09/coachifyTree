@@ -110,7 +110,7 @@ export const Dashboard = () => {
                     {/* Verified Students & Teachers can access their sections */}
                     {isVerified && userRole !== "Admin" && (
                         <>
-                            {selectedOption === "Performance Analysis" && <PerformanceAnalysis />}
+                            {selectedOption === "Performance Analysis" && <PerformanceAnalysis email={Data.email}/>}
                             {selectedOption === "Subject-wise Analysis" && <SubjectWiseAnalysis />}
                             {selectedOption === "Schedule Test" && <ScheduleTest />}
                             {selectedOption === "Upload Notice" && <UploadNotice />}

@@ -111,7 +111,7 @@ export const Dashboard = () => {
                     {isVerified && userRole !== "Admin" && (
                         <>
                             {selectedOption === "Performance Analysis" && <PerformanceAnalysis email={Data.email}/>}
-                            {selectedOption === "Subject-wise Analysis" && <SubjectWiseAnalysis />}
+                            {selectedOption === "Subject-wise Analysis" && <SubjectWiseAnalysis email={Data.email} />}
                             {selectedOption === "Schedule Test" && <ScheduleTest />}
                             {selectedOption === "Upload Notice" && <UploadNotice />}
                         </>

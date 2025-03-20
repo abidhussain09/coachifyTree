@@ -19,8 +19,12 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarEleme
 const fetchGoogleSheetData = async (spreadsheetId, sheetName, apiKey) => {
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
     try {
-        const response = await axios.get(url);
-        const rows = response.data.values;
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Network error: ${response.statusText}`);
+        }
+        const data = await response.json();
+        const rows = data.values;
 
         if (!rows || rows.length === 0) throw new Error("No data found in the sheet.");
 
@@ -38,7 +42,7 @@ const fetchGoogleSheetData = async (spreadsheetId, sheetName, apiKey) => {
     }
 };
 
-export const SubjectWiseAnalysis = () => {
+export const SubjectWiseAnalysis = ({email}) => {
 
     const [chartData1, setChartData1] = useState(null);
     const [chartData2, setChartData2] = useState(null);
@@ -49,12 +53,54 @@ export const SubjectWiseAnalysis = () => {
     // const [error3, setError3] = useState(null);
     // const [error4, setError4] = useState(null);
 
-    const spreadsheetId = "1T5on00YsX135CdVAhIJxzIp6gGa9GfeqAeFJ2ikmiYw"; // Replace with your ID
-    const sheetName = "10"; // Replace with your sheet/tab name
+    const [className,setClassName]=useState("");
+
+    const [spreadsheetId,setSpreadSheetId]=useState(null);
+    const [sheetName,setSheetName]=useState(null);
+    // const spreadsheetId = "1T5on00YsX135CdVAhIJxzIp6gGa9GfeqAeFJ2ikmiYw"; // Replace with your ID
+    // const sheetName = "10"; // Replace with your sheet/tab name
     const apiKey = import.meta.env.VITE_Google_api_key; // Replace with your Google API key
+
+    const fetchCoachifyId= async ()=>{
+        try{
+            const response = await axios.get('/getCoachifyId', {
+                params: { email }  // Sends email as a query parameter
+            });
+            console.log(response);
+            console.log(response.data.coachifyId);
+            const tempclassname=response.data.coachifyId.slice(1,3);
+            console.log(tempclassname);
+            setClassName(tempclassname);
+            fetchSheetDetails(tempclassname);
+        }
+        catch(error){
+            console.log(error);
+            console.log("Error in fetching coachifyId");
+        }
+    }
+
+    const fetchSheetDetails=async (className)=>{
+        try{
+            const response=await axios.get('/getSheetDetails',{
+                params:{className}
+            });
+            // console.log("sheet reponse ",response);
+            console.log(response.data.sheetDetails);
+            console.log(response.data.sheetDetails.sheetId);
+            console.log(response.data.sheetDetails.sheetName);
+            setSpreadSheetId(response.data.sheetDetails.sheetId);
+            setSheetName(response.data.sheetDetails.sheetName);
+        }
+        catch(error){
+            console.log(error);
+            console.log("Error in fetching fetching sheet details");
+        }
+    }
 
 
     useEffect(() => {
+
+        if (!spreadsheetId || !sheetName) return;
         const fetchData = async () => {
             try {
                 const { labels, dataPoints1, dataPoints2, dataPoints3, dataPoints4 } = await fetchGoogleSheetData(spreadsheetId, sheetName, apiKey);
@@ -124,6 +170,10 @@ export const SubjectWiseAnalysis = () => {
 
         fetchData();
     }, [spreadsheetId, sheetName, apiKey]);
+
+    useEffect(()=>{
+            fetchCoachifyId();
+        },[]);
 
     const options = {
         responsive: true,

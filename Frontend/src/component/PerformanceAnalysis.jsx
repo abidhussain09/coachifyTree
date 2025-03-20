@@ -49,30 +49,51 @@ export const PerformanceAnalysis = ({email}) => {
     const [error, setError] = useState(null);
     const [className,setClassName]=useState("");
 
-    const [spreadsheetId,setSpreadSheetId]=useState('1T5on00YsX135CdVAhIJxzIp6gGa9GfeqAeFJ2ikmiYw');
-    const [sheetName,setSheetName]=useState('10')
+    const [spreadsheetId,setSpreadSheetId]=useState(null);
+    const [sheetName,setSheetName]=useState(null);
 
     // const spreadsheetId = "1T5on00YsX135CdVAhIJxzIp6gGa9GfeqAeFJ2ikmiYw"; // Replace with your ID
     // const sheetName = "10"; // Replace with your sheet/tab name
     const apiKey = import.meta.env.VITE_Google_api_key; // Replace with your Google API key
+    const fetchCoachifyId= async ()=>{
+        try{
+            const response = await axios.get('/getCoachifyId', {
+                params: { email }  // Sends email as a query parameter
+            });
+            console.log(response);
+            console.log(response.data.coachifyId);
+            const tempclassname=response.data.coachifyId.slice(1,3);
+            console.log(tempclassname);
+            setClassName(tempclassname);
+            fetchSheetDetails(tempclassname);
+        }
+        catch(error){
+            console.log(error);
+            console.log("Error in fetching coachifyId");
+        }
+    }
+
+    const fetchSheetDetails=async (className)=>{
+        try{
+            const response=await axios.get('/getSheetDetails',{
+                params:{className}
+            });
+            // console.log("sheet reponse ",response);
+            console.log(response.data.sheetDetails);
+            console.log(response.data.sheetDetails.sheetId);
+            console.log(response.data.sheetDetails.sheetName);
+            setSpreadSheetId(response.data.sheetDetails.sheetId);
+            setSheetName(response.data.sheetDetails.sheetName);
+        }
+        catch(error){
+            console.log(error);
+            console.log("Error in fetching fetching sheet details");
+        }
+    }
 
     useEffect(() => {
-        const fetchCoachifyId= async ()=>{
-            try{
-                const response = await axios.get('/getCoachifyId', {
-                    params: { email }  // Sends email as a query parameter
-                });
-                console.log(response);
-                console.log(response.data.coachifyId);
-                const tempclassname=response.data.coachifyId.slice(1,3);
-                console.log(tempclassname);
-                setClassName(tempclassname);
-            }
-            catch(error){
-                console.log(error);
-                console.log("Error in fetching coachifyId");
-            }
-        }
+        
+        if (!spreadsheetId || !sheetName) return;
         const fetchData = async () => {
             try {
                 const { labels, dataPoints1, dataPoints2, dataPoints3 } = await fetchGoogleSheetData(spreadsheetId, sheetName, apiKey);
@@ -117,10 +138,14 @@ export const PerformanceAnalysis = ({email}) => {
                 setError(err.message);
             }
         };
-        fetchCoachifyId();
         fetchData();
     }, [spreadsheetId, sheetName, apiKey]);
 
+
+
+    useEffect(()=>{
+        fetchCoachifyId();
+    },[]);
     // Chart configuration options
     const options = {
         responsive: true,

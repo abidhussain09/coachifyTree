@@ -124,14 +124,14 @@ exports.deleteSheetDetails=async(req,res)=>{
 
 exports.getSheetDetails=async (req,res)=>{
     try{
-        const {className}=req.body;
+        const {className}=req.query;
         if(!className){
             return res.status(403).json({
                 success:false,
                 message:"All fields are required",
             });
         }
-        const sheetDetails=await SheetSchema.find({className:className});
+        const sheetDetails=await SheetSchema.findOne({className:className});
         return res.status(200).json({
             success:true,
             sheetDetails,

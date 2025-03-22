@@ -36,14 +36,16 @@ export const UploadNotice = () => {
         }
     }
     return (
-        <div className='flex flex-col items-center justify-center h-[800px] w-[960px] gap-4 p-4'>
-            UploadNotice
+        <div className='flex flex-col items-center h-[800px] w-[960px] gap-4 p-4'>
+            <div className='text-5xl font-bold'>
+                UploadNotice
+            </div>
             <form className='flex flex-col gap-2 w-full items-center justify-center' onSubmit={SubmitHandler}>
                 <fieldset className='flex flex-col w-2/3 p-2'>
                 <label htmlFor='TitleField' className='itim text-lg'>Notice Title</label>
                 <input
                     type='title'
-                    className='bg-[#d9d9d950] itim text-lg rounded-[10px] h-[40px] p-4'
+                    className='bg-neutral-800 border-2 px-3 border-white border-solid focus:border-0 text-[20px] w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500'
                     name='title'
                     id='TitleField'
                     required
@@ -53,17 +55,18 @@ export const UploadNotice = () => {
                 </fieldset>
                 <fieldset className='flex flex-col w-2/3 p-2'>
                 <label htmlFor='contentField' className='itim text-lg'>Notice Content</label>
-                <input
+                <textarea
                     type='text'
-                    className='bg-[#d9d9d950] itim text-lg rounded-[10px] h-[40px] p-4'
+                    className='bg-neutral-800 border-2 border-white border-solid focus:border-0 p-3 text-[20px] w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500'
                     name='content'
                     id='contentField'
                     value={noticeData.content}
                     required
                     onChange={changeHandler}
+                    rows={6}
                     />
                 </fieldset>
-                <button type='submit' className='itim bg-[#63a73a] px-4 py-2 text-xl rounded-[20px] w-1/3'>Upload Notice</button>
+                <button type='submit' className='itim bg-[#63a73a] px-4 py-2 text-xl rounded-[10px] w-1/4'>Upload Notice</button>
             </form>
         </div>
     )

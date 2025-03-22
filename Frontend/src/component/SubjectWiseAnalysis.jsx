@@ -204,7 +204,7 @@ export const SubjectWiseAnalysis = ({email}) => {
     };
 
     return (
-        <div className='flex flex-col items-center justify-center h-[800px] w-[960px] gap-2'>
+        <div className='flex flex-col items-center justify-center h-[760px] w-[900px] gap-2'>
             <div className='flex h-1/2 w-full gap-2'>
                 <div className='bg-slate-100 h-full w-1/2 rounded-[20px] flex justify-center items-center'>
                     {error1 && <p style={{ color: "red" }}>Error: {error1}</p>}

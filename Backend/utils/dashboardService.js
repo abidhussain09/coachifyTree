@@ -11,6 +11,7 @@ const getDashboard=async (id)=>{
         email:user.email,
         name:user.name || null,
         isVerified,
+        verificationRecord
     }
 };
 

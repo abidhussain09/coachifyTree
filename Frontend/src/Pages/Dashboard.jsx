@@ -21,9 +21,9 @@ export const Dashboard = () => {
 
     const [selectedOption, setSelectedOption] = useState("Notice");
 
-    const StudentOptions = ["Performance Analysis", "Subject-wise Analysis", "Upcoming Tests", "Notice"];
-    const TeacherOptions = ["Schedule Test", "Upload Notice", "Upcoming Tests", "Notice"];
-    const AdminOptions = ["Verify User", "Upload sheet Data", "Upcoming Tests", "Notice"];
+    const StudentOptions = [ "Notice","Upcoming Tests","Performance Analysis", "Subject-wise Analysis"];
+    const TeacherOptions = [ "Notice","Upcoming Tests","Schedule Test", "Upload Notice"];
+    const AdminOptions = [ "Notice","Upcoming Tests","Verify User", "Upload sheet Data"];
     const [userRole, setUserRole] = useState('');
 
     const fetchDashboardData = async () => {

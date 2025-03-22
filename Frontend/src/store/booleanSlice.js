@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { isTokenValid } from '../utils/auth';
 
 const booleanSlice = createSlice({
     name: 'booleanValue',
-    initialState: true,
+    initialState: isTokenValid(),
     reducers: {
         toggle: (state) => !state,
         setValue: (state, action) => action.payload,

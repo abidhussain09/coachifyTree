@@ -36,8 +36,14 @@ function App() {
     const dispatch=useDispatch();
 
     useEffect(()=>{
-      const isValid=isTokenValid();
-      dispatch(setValue(isValid));
+      const token=localStorage.getItem('token');
+      if(!token){
+        dispatch(setValue(false));
+      }
+      else{
+        const isValid=isTokenValid();
+        dispatch(setValue(isValid));
+      }
     },[dispatch]);
   return (
     <>

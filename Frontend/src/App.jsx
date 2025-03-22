@@ -29,19 +29,15 @@ import ResetPassword from './Pages/ResetPassword'
 //import ForgetPassword from './Pages/ForgetPassword'
 import PasswordResetRedirect from './component/PasswordResetRedirect'
 import { useEffect } from 'react'
+import { isTokenValid } from './utils/auth'
 
 function App() {
     useScrollToTop();
     const dispatch=useDispatch();
 
     useEffect(()=>{
-      const token=localStorage.getItem('token');
-      if(!token){
-        dispatch(setValue(false));
-      }
-      else{
-        dispatch(setValue(true));
-      }
+      const isValid=isTokenValid();
+      dispatch(setValue(isValid));
     },[dispatch]);
   return (
     <>

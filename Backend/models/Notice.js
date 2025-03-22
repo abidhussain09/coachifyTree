@@ -16,8 +16,8 @@ const noticeSchema = new mongoose.Schema(
     }, // Links to User model
     createdAt: { 
         type: Date, 
-        expires: "60d" 
-    }, // Auto-delete after 2 months
+        expires: "30d" 
+    }, // Auto-delete after 1 months
   },{ timestamps: true }
 );
 

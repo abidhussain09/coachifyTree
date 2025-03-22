@@ -22,14 +22,17 @@ export const Notice = () => {
 
   return (
     <div className='flex items-center justify-center h-full flex-wrap gap-4 p-2 overflow-y-auto'>
-      {
-        notices.map((notice)=>{
-          return <div className='flex gap-4 px-2 py-4 w-[280px] h-[350px] flex-col items-center  rounded-[20px] bg-neutral-800'>
-            <h3 className='text-2xl'>{notice.title}</h3>
-            <p className='text-lg text-wrap'>{notice.content}</p>
-          </div>
-        })
-      }
+      {notices.map((notice, index) => (
+    <div
+      key={index}
+      className="flex gap-4 px-4 py-6 w-[280px] h-[350px] flex-col items-center rounded-[20px] 
+                bg-neutral-800 text-white  border-2 border-transparent 
+                  hover:border-[#63a73a] hover:bg-neutral-900"
+    >
+      <h3 className="text-2xl border-b-2 border-white text-wrap">{notice.title}</h3>
+      <p className="text-lg text-wrap ">{notice.content}</p>
+    </div>
+  ))}
     </div>
   )
 }

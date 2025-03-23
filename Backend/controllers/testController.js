@@ -27,20 +27,24 @@ exports.addTest = async (req, res) => {
 
 exports.getTests = async (req, res) => {
   try {
+    const currentDate = new Date();
+    
+    // Delete expired tests before returning the list
+    await TestSchedule.deleteMany({ testDate: { $lt: currentDate } });
+
     const tests = await TestSchedule.find().sort({ testDate: -1 });
     res.json(tests);
-  } catch (error) {
+} catch (error) {
     res.status(500).json({ error: error.message });
-  }
+}
 };
 
 exports.deleteOldTests = async (req, res) => {
-  const twoMonthsAgo = new Date();
-  twoMonthsAgo.setMonth(twoMonthsAgo.getMonth() - 2);
   try {
-    await TestSchedule.deleteMany({ testDate: { $lt: twoMonthsAgo } });
-    res.json({ message: 'Old tests deleted' });
-  } catch (error) {
+    const currentDate = new Date();
+    await TestSchedule.deleteMany({ testDate: { $lt: currentDate } });
+    res.json({ message: 'Expired tests deleted' });
+} catch (error) {
     res.status(500).json({ error: error.message });
-  }
+}
 };

@@ -11,6 +11,7 @@ axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 
 export const Signup = () => {
   const [verification, SetVerification] = useState(false);
+  const [lastName,setLastName]=useState("");
   const [UserMessage, setUserMessage] = useState({
     role: 'Guest', // Default role is set to Guest
     email: '',
@@ -120,9 +121,9 @@ export const Signup = () => {
                 type='text'
                 placeholder='Enter your last name'
                 name='name'
-                value={UserMessage.name}
+                value={lastName}
                 autoComplete='off'
-                onChange={changeHandler}
+                onChange={(event)=>{setLastName(event.target.value)}}
                 className="bg-neutral-800 text-[16px] p-4  w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
                 required
               />

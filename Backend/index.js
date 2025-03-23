@@ -7,7 +7,10 @@ const port=process.env.PORT||3000;
 
 app.use(express.json());
 app.use(cors({
-    origin: process.env.FRONTEND_URL, // Replace with your frontend's URL
+    origin: process.env.FRONTEND_URL,
+    credentials:true,
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    allowedHeaders: ["Content-Type", "Authorization"]  // Replace with your frontend's URL
 }));
 
 require('./config/database').connect();

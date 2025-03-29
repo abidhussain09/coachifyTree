@@ -15,7 +15,10 @@ app.use(cors({
 
 require('./config/database').connect();
 
-//import routes and mount
+app.get('/health',(req,res)=>{
+    res.status(200).json({status:"ok"});
+});
+//import routes and mount\
 
 //routes
 const userRoute=require('./routes/userRoute');

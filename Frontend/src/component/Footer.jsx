@@ -9,7 +9,9 @@ import loca from "../assets/Group 24.svg"
 
 export const Footer = () => {
     return (
-        <div className='flex bg-gradient-to-tr from-black via-[#244b0de4] to-black mx-auto flex-col w-full itim mt-8 h-96 pt-2'>
+        <div className='flex mx-auto flex-col w-full itim mt-8 h-96 pt-2 border-neutral-800 border-solid border-t-4' style={{backgroundImage:"url('https://res.cloudinary.com/dh26dmbg3/image/upload/v1743681540/joshua-michaels-WKF7Z1QoSww-unsplash_breucj.jpg')",
+                                                                                                                                        backgroundSize: "cover",
+                                                                                                                                        backgroundPosition: "top",}}>
             <div className='flex basis-11/12 w-full'>
                 <div className='flex flex-col basis-1/3 items-center justify-center'>
                     <img src={logo} alt="logo" height={130} width={160}/>

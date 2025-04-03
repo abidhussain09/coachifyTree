@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import axios from "axios";
 import {
     Chart as ChartJS,
@@ -179,7 +180,7 @@ export const PerformanceAnalysis = ({email}) => {
     return (
         <div className='flex items-center justify-center h-full bg-white rounded-[20px]'>
             {error && <p style={{ color: "red" }}>Error: {error}</p>}
-            {chartData ? <Line data={chartData} options={options} /> : <p>Loading...</p>}
+            {chartData ? <Bar data={chartData} options={options} /> : <p>Loading...</p>}
         </div>
     )
 }

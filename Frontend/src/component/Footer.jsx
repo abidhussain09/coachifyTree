@@ -31,7 +31,7 @@ export const Footer = () => {
                         <div className='h-[60px] w-[60px] rounded-full border-2 border-white items-center justify-center flex'><img src={phone} alt="" height={50} width={50}/></div>
                         <div className='flex flex-col'>
                             <p className='itim text-lg'>Call us</p>
-                            <p className='itim text-lg'>9031733562</p>
+                            <p className='itim text-lg'>9031799862</p>
                         </div>
                     </div>
                     <div className='flex w-[300px] items-center justify-start gap-2'>

@@ -46,12 +46,11 @@ function App() {
       }
     },[dispatch]);
   return (
-    <>
-      <div className='flex flex-col justify-center w-screen relative'>
-        <div className='bg-black flex justify-center sticky top-0'>
+      <div className='flex flex-col justify-center w-screen relative items-center bg-cover bg-center bg-no-repeat overflow-hidden'>
+        <div className='bg-black flex justify-center sticky top-0 w-screen'>
           <Navbar/>
         </div>
-        <div className='sm:px-0 px-[30px]'>
+        <div className=''>
         <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/about" element={<AboutPage/>} />
@@ -78,7 +77,6 @@ function App() {
       <ToastContainer />
       <Footer/>
       </div>
-    </>
   )
 }
 

@@ -3,8 +3,9 @@
 @tailwind utilities;
 body {
   margin: 0;
+  padding: 0;
+  width: 100vw;
   display: flex;
-  min-width: 320px;
   min-height: 100vh;
   background-image: url("./assets/backgroung.png");
   background-color: rgb(0, 0, 0);

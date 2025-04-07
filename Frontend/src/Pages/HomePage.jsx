@@ -187,9 +187,8 @@ export const HomePage = () => {
         <div style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381444/dosomething_mzpelu.png)` }} className='w-[628px] h-[614px] sm:flex hidden'></div>
       </div>
       <div className='flex flex-wrap gap-5 sm:my-[120px] my-[50px] mx-auto'>
-        <div className='w-[300px] h-[100px] itim text-[24px] rounded-[20px] border-2 border-[#545454] sm:hidden flex items-center justify-center cursor-pointer' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1722140020/Rectangle_85_jnvdca.png)` }} onClick={()=>{navigate("/academic")}}>Explore our Academic</div>
-        <div className='w-[628px] h-[334px] itim text-[55px] rounded-[20px] border-2 border-[#545454] sm:flex hidden items-center justify-center cursor-pointer' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381444/academicpencil_bgiutj.png)` }} onClick={()=>{navigate("/academic")}}>Explore our Academic</div>
-        <div className='sm:w-[628px] sm:h-[334px] h-[100px] w-[300px] itim sm:text-[55px] text-[24px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center cursor-pointer' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381445/art_l5sxmq.png)` }} onClick={()=>{navigate("/comingSoon")}}>Explore our Art Gallery</div>
+        <div className='mx-auto sm:w-[628px] sm:h-[334px] h-[100px] w-[300px] itim sm:text-[55px] text-[24px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center cursor-pointer' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381444/academicpencil_bgiutj.png)`,backgroundRepeat: 'no-repeat',backgroundSize:"cover" }} onClick={()=>{navigate("/academic")}}>Explore our Academic</div>
+        <div className='mx-auto sm:w-[628px] sm:h-[334px] h-[100px] w-[300px] itim sm:text-[55px] text-[24px] rounded-[20px] border-2 border-[#545454] flex items-center justify-center cursor-pointer' style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381445/art_l5sxmq.png)` }} onClick={()=>{navigate("/comingSoon")}}>Explore our Art Gallery</div>
       </div>
       <ToastContainer/>
     </div>

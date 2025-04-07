@@ -80,10 +80,10 @@ export const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-full w-full">
-      <div className="w-2/5 h-full flex flex-col bg-black border-2 border-dashed border-neutral-700 items-center justify-center gap-2 p-4 py-8">
-        <div className="text-5xl text-white itim text-left w-full px-6">Welcome to Coachify</div>
-        <div className=" text-white itim mb-4 text-start w-full px-7 text-xl ">nudging towards excellence...</div>
+    <div className="flex items-center justify-center h-full w-screen">
+      <div className="w-full sm:w-2/5 h-full flex flex-col bg-black border-2 border-dashed border-neutral-700 items-center justify-center gap-2 p-4 py-8 mx-2 sm:mx-0 ">
+        <div className="text-3xl sm:text-5xl text-white itim text-left w-full px-6">Welcome to Coachify</div>
+        <div className=" text-white itim mb-4 text-start w-full px-7 text-md sm:text-xl ">nudging towards excellence...</div>
 
         <form onSubmit={handleSubmit} className="flex flex-col  w-11/12 gap-4">
           {/* Role Dropdown */}
@@ -100,7 +100,7 @@ export const Signup = () => {
           </select>
 
           {/* Name Input for Students */}
-          <div className='flex gap-4 w-full'>
+          <div className='flex gap-4 w-full sm:flex-row flex-col'>
 
             <div className='flex flex-col gap-2 w-full'>
               <div className='text-white itim '> First name</div>
@@ -134,7 +134,7 @@ export const Signup = () => {
           {/* Email Input */}
           <div className='flex flex-col gap-2'>
 
-            <div className='text-white itim '>Email Address</div>
+            <div className='text-white itim'>Email Address</div>
             <input
               type='email'
               placeholder='Enter your E-mail id'
@@ -142,7 +142,7 @@ export const Signup = () => {
               value={UserMessage.email}
               autoComplete='off'
               onChange={changeHandler}
-              className="bg-neutral-800 text-[20px] p-4  w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="bg-neutral-800 text-[16px] p-4  w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
           </div>
@@ -158,7 +158,7 @@ export const Signup = () => {
                 value={UserMessage.password}
                 autoComplete='off'
                 onChange={changeHandler}
-                className="bg-neutral-800 text-[20px] p-4  w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="bg-neutral-800 text-[16px] p-4  w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
                 required
               />
               <div
@@ -182,7 +182,7 @@ export const Signup = () => {
                 value={UserMessage.confirmPassword}
                 autoComplete='off'
                 onChange={changeHandler}
-                className="bg-neutral-800 text-[20px] p-4  w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="bg-neutral-800 text-[16px] p-4  w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
                 required
               />
               <div

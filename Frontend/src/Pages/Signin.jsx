@@ -45,8 +45,8 @@ export const Signin = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen w-full">
-      <div className="w-1/3 h-[80vh] flex flex-col bg-black border-2 border-dashed border-neutral-700 items-center justify-center gap-2">
+    <div className="flex items-center justify-center h-screen w-screen">
+      <div className="mx-2 sm:mx-0 w-full sm:w-1/3 h-[80vh] flex flex-col bg-black border-2 border-dashed border-neutral-700 items-center justify-center px-4 py-8 gap-2">
         <div className="text-5xl text-white itim text-left w-full px-6">Welcome back</div>
         <div className="text-white itim mb-4 text-start w-full px-7 text-xl">Please sign in to continue</div>
         <form onSubmit={SubmitHandler} className="flex flex-col w-full max-w-md">

@@ -52,11 +52,11 @@ const ResetPassword = () => {
     };
 
     return (
-        <div className="flex items-center justify-center h-full w-full">
-            <div className=" w-1/3 h-full border-2 border-dashed border-neutral-700 flex flex-col bg-black items-center justify-center gap-4 py-8 px-4">
-                <div className="text-4xl text-white itim ">Welcome to Coachify</div>
-                <div className=" text-white itim">nudging towards excellence...</div>
-                <div className="text-3xl text-white itim ">Reset Password</div>
+        <div className="flex items-center justify-center h-full w-screen">
+            <div className="w-full mx-2 sm:mx-0 sm:w-1/3 h-full border-2 border-dashed border-neutral-700 flex flex-col bg-black items-center justify-center gap-4 py-8 px-4">
+                <div className="text-2xl sm:text-4xl text-white itim ">Welcome to Coachify</div>
+                <div className=" text-white text-sm itim">nudging towards excellence...</div>
+                <div className="text-xl sm:text-3xl text-white itim ">Reset Password</div>
                 {/* Form */}
 
                 <form onSubmit={handleSubmit} className="flex flex-col w-full max-w-md gap-4">
@@ -68,7 +68,7 @@ const ResetPassword = () => {
                             <input
                                 type={showPassword ? 'text' : 'password'}
                                 placeholder="Enter new password"
-                                className="bg-neutral-800 text-[20px] p-4  w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                className="bg-neutral-800 text-[16px] sm:text-[20px] p-4  w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 required
@@ -89,7 +89,7 @@ const ResetPassword = () => {
                             <input
                                 type={showConfirmPassword ? 'text' : 'password'}
                                 placeholder="Confirm new password"
-                                className="bg-neutral-800 text-[20px] p-4  w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                className="bg-neutral-800 text-[16px] sm:text-[20px] p-4  w-full rounded pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
@@ -98,7 +98,7 @@ const ResetPassword = () => {
                                 className="bg-neutral-800 h-[62px] p-4 text-white cursor-pointer rounded"
                                 onClick={toggleConfirmPasswordVisibility}
                             >
-                                {showConfirmPassword ? <FaEyeSlash className='text-3xl' /> : <FaEye className='text-3xl' />}
+                                {showConfirmPassword ? <FaEyeSlash className='text-xl sm:text-3xl' /> : <FaEye className='text-xl sm:text-3xl' />}
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ const ResetPassword = () => {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="bg-[#63a73a] text-[25px] p-4 w-full rounded text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300"
+                        className="bg-[#63a73a] text-[20px] sm:text-[25px] p-4 w-full rounded text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300"
                         disabled={loading}
                     >
                         <h6 className="flex items-center justify-center">

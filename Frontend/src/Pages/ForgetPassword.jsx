@@ -31,8 +31,8 @@ const ForgetPassword = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen w-full">
-            <div className="w-1/3 h-full flex flex-col bg-black border-2 border-dashed border-neutral-700 items-center justify-center p-8 gap-4">
+        <div className="flex items-center justify-center min-h-screen w-screen">
+            <div className="w-full mx-2 sm:mx-0 sm:w-1/3 h-full flex flex-col bg-black border-2 border-dashed border-neutral-700 items-center justify-center p-8 gap-4">
                 <div className="text-4xl text-white itim w-full text-center">Welcome to Coachify</div>
                 <div className="text-white itim text-center w-full">nudging towards excellence...</div>
                 <div className="text-5xl text-white w-full">
@@ -47,7 +47,7 @@ const ForgetPassword = () => {
                         <input
                             type="email"
                             placeholder="Enter your email"
-                            className="bg-neutral-800 text-[20px] p-4  w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="bg-neutral-800 text-[16px] sm:text-[20px] p-4  w-full rounded text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -57,7 +57,7 @@ const ForgetPassword = () => {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="bg-[#63a73a] text-[25px] p-5 w-full rounded text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300"
+                        className="bg-[#63a73a] text-[20px] sm:text-[25px] p-5 w-full rounded text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300"
                         disabled={loading}
                     >
                         <h6 className="flex items-center justify-center">

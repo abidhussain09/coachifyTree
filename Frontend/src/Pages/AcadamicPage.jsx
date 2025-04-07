@@ -89,7 +89,7 @@ export const AcadamicPage = () => {
       </div>
       <div className='itim sm:text-[70px] text-4xl'>Competitive Content
       </div>
-      <div className='flex flex-wrap gap-5 max-w-[1280px]'>
+      <div className='flex flex-wrap gap-5 max-w-[1280px] items-center justify-center'>
         
             <Link to="/academic/Neet"><div className="sm:w-[630px] w-[300px] sm:h-[305px] h-[150px] itim text-[48px] rounded-[20px] border-2 border-[#545454] flex justify-center items-center cursor-pointer " style={{ backgroundImage: `url(${Neet})` }}>NEET</div></Link>
 

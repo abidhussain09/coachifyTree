@@ -36,7 +36,7 @@ export const UploadNotice = () => {
         }
     }
     return (
-        <div className='flex flex-col items-center h-[800px] w-[960px] gap-4 p-4'>
+        <div className='flex flex-col items-center h-auto w-[1020px] gap-4 p-4'>
             <div className='text-5xl font-bold'>
                 UploadNotice
             </div>

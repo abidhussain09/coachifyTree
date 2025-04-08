@@ -25,12 +25,12 @@ export const Notice = () => {
         <div
           key={index}
           className="flex flex-col items-center gap-4 
-                     px-4 py-6 
-                     w-full max-w-[280px] 
-                     h-auto min-h-[280px] 
-                     rounded-[20px] bg-neutral-800 text-white 
-                     border-2 border-transparent 
-                     hover:border-[#63a73a] hover:bg-neutral-900"
+                    px-4 py-6 
+                    w-full max-w-[280px] 
+                    h-auto min-h-[350px] 
+                    rounded-[20px] bg-neutral-800 text-white 
+                    border-2 border-transparent 
+                    hover:border-[#63a73a] hover:bg-neutral-900"
         >
           <h3 className="text-xl sm:text-2xl border-b-2 border-white break-words text-center">
             {notice.title}

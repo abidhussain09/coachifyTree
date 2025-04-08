@@ -58,7 +58,7 @@ export const Dashboard = () => {
     };
 
     return (
-        <div className='w-full mt-5 flex flex-col items-center gap-5 px-3 sm:px-5'>
+        <div className='w-screen mt-5 flex flex-col items-center gap-5 px-3 sm:px-5'>
 
             {/* Top Card - Welcome Message Always visible in dashboard*/}
             <div className='itim flex flex-col sm:flex-col lg:flex-row items-center lg:items-start w-full max-w-[1280px] h-[220px] p-5 bg-[#d9d9d9] bg-opacity-10 border border-[#ffffff84] rounded-[20px] gap-5'>
@@ -104,7 +104,7 @@ export const Dashboard = () => {
                 </div>
 
                 {/* right side dashboard  */}
-                <div className='itim text-4xl h-auto w-full sm:w-3/4 bg-[#d9d9d9] bg-opacity-10 rounded-[20px] border border-[#ffffff84] p-5 overflow-y-auto'>
+                <div className='itim text-4xl h-auto w-full sm:w-3/4 bg-[#d9d9d9] bg-opacity-10 rounded-[20px] border border-[#ffffff84] p-5 overflow-y-auto overflow-x-auto'>
 
                     {selectedOption === "Upcoming Tests" && <UpcomingTest />}
                     {selectedOption === "Notice" && <Notice />}

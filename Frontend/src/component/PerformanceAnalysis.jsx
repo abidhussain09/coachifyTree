@@ -178,7 +178,7 @@ export const PerformanceAnalysis = ({email}) => {
 
 
     return (
-        <div className='flex items-center justify-center w-[1020px] h-full bg-white rounded-[20px]'>
+        <div className='flex items-center justify-center h-screen w-[900px] sm:w-auto bg-white rounded-[20px]'>
             {error && <p style={{ color: "red" }}>Error: {error}</p>}
             {chartData ? <Bar data={chartData} options={options} /> : <p>Loading...</p>}
         </div>

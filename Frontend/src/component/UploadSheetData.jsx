@@ -120,16 +120,6 @@ export const UploadSheetData = () => {
       <button type="submit" className="bg-green-600 text-white text-xl md:text-3xl py-2 px-4 rounded-lg">Update Sheet</button>
     </div>
   </form>
-  
-
-
-
-
-
-
-
-
-  
 </div>
 
     );

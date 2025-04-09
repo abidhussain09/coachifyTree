@@ -61,18 +61,18 @@ export const Dashboard = () => {
         <div className='w-screen mt-5 flex flex-col items-center gap-5 px-3 sm:px-5'>
 
             {/* Top Card - Welcome Message Always visible in dashboard*/}
-            <div className='itim flex flex-col sm:flex-col lg:flex-row items-center lg:items-start w-full max-w-[1280px] h-[220px] p-5 bg-[#d9d9d9] bg-opacity-10 border border-[#ffffff84] rounded-[20px] gap-5'>
+            <div className='itim flex sm:flex-col lg:flex-row items-center lg:items-start w-full max-w-[1280px] h-[220px] p-2 md:p-5 bg-[#d9d9d9] bg-opacity-10 border border-[#ffffff84] rounded-[20px] gap-5'>
                 {/* Profile Image */}
-                <div className='h-[100px] w-[100px] ml-3 mt-5 sm:h-[80px] sm:w-[80px] lg:h-[120px] lg:w-[120px] rounded-full bg-slate-600 bg-opacity-50 overflow-hidden'>
+                <div className='md:h-[100px] md:w-[100px] ml-3 md:mt-5 h-[70px] w-[70px]  rounded-full bg-slate-600 bg-opacity-50 overflow-hidden'>
                     <img className='w-full h-full object-cover' src="https://res.cloudinary.com/dh26dmbg3/image/upload/v1735969470/panda_hf9tep.png" alt="profile" />
                 </div>
 
                 {/* Text Section */}
-                <div className='flex ml-5  mt-5 flex-col p-4 justify-center items-center sm:items-center lg:items-start text-center sm:text-center lg:text-left'>
-                    <div className='  sm:text-2xl lg:text-5xl itim text-white'>
+                <div className='flex md:ml-5 md:mt-5 flex-col p-4 justify-center items-center sm:items-center lg:items-start text-center sm:text-center lg:text-left'>
+                    <div className='md:text-5xl text-[23px] itim text-white'>
                         Welcome back, {name} 👋
                     </div>
-                    <div className='text-xs mt-1 ml-2 sm:text-base lg:text-2xl'>
+                    <div className='text-xs mt-1 md:ml-2 sm:text-base lg:text-2xl'>
                         Keep it up and improve your progress
                     </div>
                 </div>

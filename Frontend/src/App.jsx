@@ -46,7 +46,7 @@ function App() {
       }
     },[dispatch]);
   return (
-      <div className='flex flex-col justify-center w-screen relative items-center bg-cover bg-center bg-no-repeat overflow-hidden'>
+      <div className='w-screen min-h-screen bg-cover bg-center bg-no-repeat'>
         <div className='bg-black flex justify-center sticky top-0 w-screen'>
           <Navbar/>
         </div>

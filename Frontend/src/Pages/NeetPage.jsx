@@ -29,15 +29,14 @@ export const NeetPage = () => {
           <div className='flex flex-col items-center mb-8 cursor-pointer' onClick={() => { window.open("https://drive.google.com/drive/folders/1BERnC0AqNWvo_WhJ6iCbBTn-mB_j58De?usp=sharing", '_blank') }}>
             <img src={Rectangle71} alt="biology" className='w-full h-auto max-w-xs sm:max-w-none' />
           </div>
-          <div className='flex flex-col items-center cursor-pointer' onClick={() => { window.open("https://drive.google.com/drive/folders/132unzjB-8MpXWOGK48CzaSUDgcfkAgvz?usp=sharing", '_blank') }}>
+          <div className='flex flex-col items-center mb-8 cursor-pointer' onClick={() => { window.open("https://drive.google.com/drive/folders/132unzjB-8MpXWOGK48CzaSUDgcfkAgvz?usp=sharing", '_blank') }}>
             <img src={Rectangle69} alt="chemistry" className='w-full h-auto max-w-xs sm:max-w-none' />
           </div>
-        </div>
-        <div className='flex flex-col items-center p-4 sm:p-8 w-full sm:w-1/2'>
           <div className='flex flex-col items-center mb-8 cursor-pointer' onClick={() => { window.open("https://drive.google.com/drive/folders/1MbLgIo0YpVLg3aJ84D9cKiR7m5sgNMd1?usp=sharing", '_blank') }}>
             <img src={Rectangle50} alt="physics" className='w-full h-auto max-w-xs sm:max-w-none' />
           </div>
         </div>
+        
       </div>
     </div>
   );

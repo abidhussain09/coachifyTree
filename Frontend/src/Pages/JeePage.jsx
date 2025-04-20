@@ -27,16 +27,14 @@ export const JeePage = () => {
           <div className='flex flex-col items-center mb-8 cursor-pointer' onClick={() => { window.open("https://drive.google.com/drive/folders/1UPVzUSRDk-D4qeWOLnJm9qfM2rAkD5bV?usp=sharing", '_blank') }}>
             <img src={Rectangle65} alt="maths" className='w-full h-auto max-w-xs sm:max-w-none' />
           </div>
-          <div className='flex flex-col items-center cursor-pointer' onClick={() => { window.open("https://drive.google.com/drive/folders/1S9KF4295JccZtr5PgUmhC3MKgy9XF0Yg?usp=sharing", '_blank') }}>
+          <div className='flex flex-col items-center mb-8 cursor-pointer' onClick={() => { window.open("https://drive.google.com/drive/folders/1S9KF4295JccZtr5PgUmhC3MKgy9XF0Yg?usp=sharing", '_blank') }}>
             <img src={Rectangle69} alt="chemistry" className='w-full h-auto max-w-xs sm:max-w-none' />
           </div>
-        </div>
-        <div className='flex flex-col items-center p-4 sm:p-8 w-full sm:w-1/2'>
           <div className='flex flex-col items-center mb-8 cursor-pointer' onClick={() => { window.open("https://drive.google.com/drive/folders/174I-ikOenBZmEF9Vp9vvltXuR9yKExE0?usp=sharing", '_blank') }}>
             <img src={Rectangle50} alt="physics" className='w-full h-auto max-w-xs sm:max-w-none' />
           </div>
-          
         </div>
+        
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ function App() {
     const dispatch=useDispatch();
 
     useEffect(()=>{
-      const token=localStorage.getItem('token');
+      const token=localStorage.getItem('Token');
       if(!token){
         dispatch(setValue(false));
       }

@@ -2,7 +2,6 @@ const express=require('express');
 const app=express();
 const cors=require("cors");
 require('dotenv').config()
-
 const port=process.env.PORT||3000;
 
 app.use(express.json());
@@ -12,6 +11,8 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"], 
     allowedHeaders: ["Content-Type", "Authorization"]  // Replace with your frontend's URL
 }));
+
+require("./cronJobs/cleanup");
 
 require('./config/database').connect();
 

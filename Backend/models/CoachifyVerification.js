@@ -23,8 +23,5 @@ const CoachifyVerification=new mongoose.Schema({
     }
 });
 
-// Create a TTL index on "createdAt" with a 7-day expiration
-
-CoachifyVerification.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 7 });
 
 module.exports=mongoose.model("CoachifyVerificationSchema",CoachifyVerification);

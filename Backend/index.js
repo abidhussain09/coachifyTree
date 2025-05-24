@@ -30,6 +30,8 @@ const noticeRoutes = require("./routes/noticeRoutes");
 app.use('/api/v1',userRoute);
 app.use('/api/v1/tests', testRoutes); 
 app.use("/api/v1/notices", noticeRoutes);
+app.use('/api/v1/sheets', require('./routes/sheetRoutes'));
+
 
 app.listen(port,()=>{
     console.log(`Listening at port ${port}`);

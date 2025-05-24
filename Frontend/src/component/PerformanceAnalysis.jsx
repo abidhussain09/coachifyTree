@@ -1,186 +1,192 @@
 import React, { useState, useEffect } from "react";
-import { Line } from "react-chartjs-2";
 import { Bar } from "react-chartjs-2";
 import axios from "axios";
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
 } from "chart.js";
 
-axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-// Register required components for Chart.js
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
-
+// ✅ FIXED: Replaced "url" with "sheetUrl"
 const fetchGoogleSheetData = async (spreadsheetId, sheetName, apiKey) => {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Network error: ${response.statusText}`);
-        }
-        const data = await response.json();
-        const rows = data.values;
+  const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
+  const response = await fetch(sheetUrl); // <-- fixed here
+  if (!response.ok) throw new Error(`Network error: ${response.statusText}`);
+  const data = await response.json();
+  const rows = data.values;
 
-        if (!rows || rows.length === 0) throw new Error("No data found in the sheet.");
+  const dataRows = rows.length > 1 && isNaN(rows[0][1]) ? rows.slice(1) : rows;
 
-        // Process data: use first column as labels and second column as data points
-        const labels = rows.map((row) => row[0]); // First column for X-axis
-        const dataPoints1 = rows.map((row) => parseFloat(row[1])); // Second column for Y-axis
-        const dataPoints2 = rows.map((row) => parseFloat(row[2])); // Second column for Y-axis
-        const dataPoints3 = rows.map((row) => parseFloat(row[3])); // Second column for Y-axis
+  const labels = dataRows.map((row) => row[0]);
+  const dataPoints1 = dataRows.map((row) => parseFloat(row[1]) || 0);
+  const dataPoints2 = dataRows.map((row) => parseFloat(row[2]) || 0);
+  const dataPoints3 = dataRows.map((row) => parseFloat(row[3]) || 0);
 
-        return { labels, dataPoints1, dataPoints2, dataPoints3 };
-    } catch (error) {
-        console.error("Error fetching Google Sheet data:", error);
-        throw error;
-    }
+  return { labels, dataPoints1, dataPoints2, dataPoints3 };
 };
 
-export const PerformanceAnalysis = ({email}) => {
+export const PerformanceAnalysis = ({ email }) => {
+  const [chartData, setChartData] = useState(null);
+  const [error, setError] = useState(null);
+  const [className, setClassName] = useState("");
+  const [months, setMonths] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [spreadsheetId, setSpreadsheetId] = useState(null);
+  const [sheetName, setSheetName] = useState(null);
 
-    const [chartData, setChartData] = useState(null);
-    const [error, setError] = useState(null);
-    const [className,setClassName]=useState("");
+  const apiKey = import.meta.env.VITE_Google_api_key;
 
-    const [spreadsheetId,setSpreadSheetId]=useState(null);
-    const [sheetName,setSheetName]=useState(null);
-
-    // const spreadsheetId = "1T5on00YsX135CdVAhIJxzIp6gGa9GfeqAeFJ2ikmiYw"; // Replace with your ID
-    // const sheetName = "10"; // Replace with your sheet/tab name
-    const apiKey = import.meta.env.VITE_Google_api_key; // Replace with your Google API key
-    const fetchCoachifyId= async ()=>{
-        try{
-            const response = await axios.get('/getCoachifyId', {
-                params: { email }  // Sends email as a query parameter
-            });
-            console.log(response);
-            console.log(response.data.coachifyId);
-            const tempclassname=response.data.coachifyId.slice(1,3);
-            console.log(tempclassname);
-            setClassName(tempclassname);
-            fetchSheetDetails(tempclassname);
+  useEffect(() => {
+    const fetchClassName = async () => {
+      try {
+        const res = await axios.get("/getCoachifyId", { params: { email } });
+        if (res.data.coachifyId && res.data.coachifyId.length >= 3) {
+          const classCode = res.data.coachifyId.slice(1, 3);
+          setClassName(classCode);
+        } else {
+          throw new Error("Invalid coachifyId format");
         }
-        catch(error){
-            console.log(error);
-            console.log("Error in fetching coachifyId");
-        }
-    }
-
-    const fetchSheetDetails=async (className)=>{
-        try{
-            const response=await axios.get('/getSheetDetails',{
-                params:{className}
-            });
-            // console.log("sheet reponse ",response);
-            console.log(response.data.sheetDetails);
-            console.log(response.data.sheetDetails.sheetId);
-            console.log(response.data.sheetDetails.sheetName);
-            setSpreadSheetId(response.data.sheetDetails.sheetId);
-            setSheetName(response.data.sheetDetails.sheetName);
-        }
-        catch(error){
-            console.log(error);
-            console.log("Error in fetching fetching sheet details");
-        }
-    }
-
-    useEffect(() => {
-        
-        if (!spreadsheetId || !sheetName) return;
-        const fetchData = async () => {
-            try {
-                const { labels, dataPoints1, dataPoints2, dataPoints3 } = await fetchGoogleSheetData(spreadsheetId, sheetName, apiKey);
-
-                // Construct chart data
-                setChartData({
-                    labels,
-                    datasets: [
-                        {
-                            label: "Maths",
-                            data: dataPoints1,
-                            borderColor: "rgba(75, 192, 192, 1)",
-                            backgroundColor: "rgba(75, 192, 192, 1)",
-                            pointBackgroundColor: "rgba(75, 192, 192, 1)",
-                            pointBorderColor: "#fff",
-                            tension: 0.2, // Slight curve for a smooth line
-                            type: "bar",
-                        },
-                        {
-                            label: "Physics",
-                            data: dataPoints2,
-                            borderColor: "rgba(233, 45, 95, 1)",
-                            backgroundColor: "rgba(233, 45, 95, 1)",
-                            pointBackgroundColor: "rgba(233, 45, 95, 1)",
-                            pointBorderColor: "#fff",
-                            tension: 0.2,
-                            type: "bar",
-                        },
-                        {
-                            label: "Chemistry",
-                            data: dataPoints3,
-                            borderColor: "rgba(71, 68, 170, 1)",
-                            backgroundColor: "rgba(71, 68, 170, 1)",
-                            pointBackgroundColor: "rgba(71, 68, 170, 1)",
-                            pointBorderColor: "#fff",
-                            tension: 0.2,
-                            type: "bar",
-                        }
-                    ],
-                });
-            } catch (err) {
-                setError(err.message);
-            }
-        };
-        fetchData();
-    }, [spreadsheetId, sheetName, apiKey]);
-
-
-
-    useEffect(()=>{
-        fetchCoachifyId();
-    },[]);
-    // Chart configuration options
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: "top",
-            },
-            title: {
-                display: true,
-                text: "Subject Wise Marks",
-            },
-        },
-        scales: {
-            x: {
-                title: {
-                    display: true,
-                    text: "Student I'd",
-                },
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: "Marks Obtained",
-                },
-                beginAtZero: true,
-            },
-        },
+      } catch (err) {
+        console.error("Failed to fetch className:", err);
+        setError("Could not fetch class info");
+      }
     };
+    if (email) fetchClassName();
+  }, [email]);
 
+  useEffect(() => {
+    const fetchMonths = async () => {
+      if (!className) return;
+      try {
+        const res = await axios.get("/sheets/getMonths", { params: { className } });
+        setMonths(res.data.months || []);
+        if (res.data.months && res.data.months.length > 0) {
+          setSelectedMonth(res.data.months[0]);
+        } else {
+          setSelectedMonth("");
+        }
+      } catch (err) {
+        console.error("Error fetching months:", err);
+        setMonths([]);
+        setSelectedMonth("");
+        setError("No months available");
+      }
+    };
+    fetchMonths();
+  }, [className]);
 
-    return (
-        <div className='flex items-center justify-center h-screen w-[900px] sm:w-auto bg-white rounded-[20px]'>
-            {error && <p style={{ color: "red" }}>Error: {error}</p>}
-            {chartData ? <Bar data={chartData} options={options} /> : <p>Loading...</p>}
-        </div>
-    )
-}
+  useEffect(() => {
+    const fetchSheetDetails = async () => {
+      if (!className || !selectedMonth) return;
+
+      try {
+        const response = await axios.get("/sheets/getSheetByMonth", {
+          params: { className, month: selectedMonth },
+        });
+        const { sheetId, sheetName } = response.data.sheet;
+        setSpreadsheetId(sheetId);
+        setSheetName(sheetName);
+        setError(null);
+      } catch (err) {
+        console.error("Failed to fetch sheet:", err);
+        setError("Could not load sheet for selected month");
+        setSpreadsheetId(null);
+        setSheetName(null);
+      }
+    };
+    fetchSheetDetails();
+  }, [selectedMonth, className]);
+
+  useEffect(() => {
+    if (!spreadsheetId || !sheetName) return;
+
+    const fetchData = async () => {
+      try {
+        const { labels, dataPoints1, dataPoints2, dataPoints3 } = await fetchGoogleSheetData(
+          spreadsheetId,
+          sheetName,
+          apiKey
+        );
+        setChartData({
+          labels,
+          datasets: [
+            {
+              label: "Maths",
+              data: dataPoints1,
+              backgroundColor: "rgba(75, 192, 192, 0.6)",
+            },
+            {
+              label: "Physics",
+              data: dataPoints2,
+              backgroundColor: "rgba(233, 45, 95, 0.6)",
+            },
+            {
+              label: "Chemistry",
+              data: dataPoints3,
+              backgroundColor: "rgba(71, 68, 170, 0.6)",
+            },
+          ],
+        });
+        setError(null);
+      } catch (err) {
+        console.error("Chart data fetch failed:", err);
+        setError("Failed to load chart data");
+        setChartData(null);
+      }
+    };
+    fetchData();
+  }, [spreadsheetId, sheetName]);
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: { position: "top" },
+      title: { display: true, text: "Subject Wise Marks" },
+    },
+    scales: {
+      x: { title: { display: true, text: "Student ID" } },
+      y: { beginAtZero: true, title: { display: true, text: "Marks" } },
+    },
+  };
+
+  return (
+    <div className="flex flex-col gap-4 items-center justify-center h-auto w-[900px] sm:w-auto bg-black rounded-[20px] p-4">
+      <div className="flex items-center gap-2">
+        <label htmlFor="monthSelect" className="text-gray text-2xl font-semibold">
+          Select Month:
+        </label>
+        <select
+          id="monthSelect"
+          className=" text-black border text-2xl px-4 py-2 rounded"
+          value={selectedMonth}
+          onChange={(e) => setSelectedMonth(e.target.value)}
+        >
+          <option value="">-- Select --</option>
+          {months && months.length > 0 ? (
+            months.map((month) => (
+              <option key={month} value={month}>
+                {month}
+              </option>
+            ))
+          ) : (
+            <option disabled>No months available</option>
+          )}
+        </select>
+      </div>
+
+      {error && <p className="text-red-500">Error: {error}</p>}
+
+      {chartData ? (
+        <Bar data={chartData} options={options} />
+      ) : (
+        <p>Loading chart data...</p>
+      )}
+    </div>
+  );
+};

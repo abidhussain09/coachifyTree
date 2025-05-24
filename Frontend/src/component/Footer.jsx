@@ -46,7 +46,7 @@ export const Footer = () => {
                 </div>
             </div>
             <div className='itim text-xs sm:text-lg text-center basis-1/12 mb-2 text-wrap w-full sm:px-0 px-4'>
-            Copyright © 2025: Designed and Maintained by coachify coreteam
+            Copyright © 2025: Designed and Maintained by <Link to='/team' className='text-2xl text-blue-300'>coachify coreteam</Link>
             </div>
         </div>
     )

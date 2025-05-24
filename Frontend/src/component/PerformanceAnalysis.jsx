@@ -63,7 +63,7 @@ export const PerformanceAnalysis = ({email}) => {
             });
             console.log(response);
             console.log(response.data.coachifyId);
-            const tempclassname=response.data.coachifyId.slice(1,3);
+            const tempclassname=response.data.coachifyId.slice(1,4);
             console.log(tempclassname);
             setClassName(tempclassname);
             fetchSheetDetails(tempclassname);

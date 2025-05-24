@@ -57,8 +57,6 @@ export const SubjectWiseAnalysis = ({email}) => {
 
     const [spreadsheetId,setSpreadSheetId]=useState(null);
     const [sheetName,setSheetName]=useState(null);
-    // const spreadsheetId = "1T5on00YsX135CdVAhIJxzIp6gGa9GfeqAeFJ2ikmiYw"; // Replace with your ID
-    // const sheetName = "10"; // Replace with your sheet/tab name
     const apiKey = import.meta.env.VITE_Google_api_key; // Replace with your Google API key
 
     const fetchCoachifyId= async ()=>{
@@ -66,10 +64,9 @@ export const SubjectWiseAnalysis = ({email}) => {
             const response = await axios.get('/getCoachifyId', {
                 params: { email }  // Sends email as a query parameter
             });
-            console.log(response);
-            console.log(response.data.coachifyId);
+            
             const tempclassname=response.data.coachifyId.slice(1,4);
-            console.log(tempclassname);
+
             setClassName(tempclassname);
             fetchSheetDetails(tempclassname);
         }
@@ -84,10 +81,7 @@ export const SubjectWiseAnalysis = ({email}) => {
             const response=await axios.get('/getSheetDetails',{
                 params:{className}
             });
-            // console.log("sheet reponse ",response);
-            console.log(response.data.sheetDetails);
-            console.log(response.data.sheetDetails.sheetId);
-            console.log(response.data.sheetDetails.sheetName);
+            
             setSpreadSheetId(response.data.sheetDetails.sheetId);
             setSheetName(response.data.sheetDetails.sheetName);
         }

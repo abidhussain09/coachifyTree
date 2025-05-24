@@ -30,6 +30,7 @@ import ResetPassword from './Pages/ResetPassword'
 import PasswordResetRedirect from './component/PasswordResetRedirect'
 import { useEffect } from 'react'
 import { isTokenValid } from './utils/auth'
+import { Team } from './Pages/Team'
 
 function App() {
     useScrollToTop();
@@ -71,6 +72,7 @@ function App() {
         <Route path="academic/Neet" element={<ProtectedRoute children={<NeetPage/>}/>} />
         <Route path="/dashboard" element={<ProtectedRoute children={<Dashboard/>}/>} />
         <Route path="/verify-otp" element={<OTPVerification/>} />
+        <Route path="/team" element={<Team/>} />
         <Route path="*" element={<div>Not found Page</div>} />
       </Routes>
       </div>

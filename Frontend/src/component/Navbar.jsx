@@ -119,7 +119,7 @@ export const Navbar = () => {
                     </div>
                     <div className="pt-4 pb-4 border-t border-gray-700">
                         <div className="flex justify-center items-center px-5">
-                            {booleanValue && (
+                            {!booleanValue && (
                                 <NavLink
                                     to="/signup"
                                     onClick={() => setIsOpen(false)}
@@ -130,12 +130,12 @@ export const Navbar = () => {
                                 </NavLink>
                             )}
                             <NavLink
-                                to={booleanValue ? '/signin' : '/signout'}
+                                to={!booleanValue ? '/signin' : '/signout'}
                                 onClick={() => setIsOpen(false)}
                                 className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim"
                             >
                                 <img src={login} alt="Sign in/out" />
-                                {booleanValue ? 'sign in' : 'sign out'}
+                                {!booleanValue ? 'sign in' : 'sign out'}
                             </NavLink>
                         </div>
                     </div>

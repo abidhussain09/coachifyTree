@@ -29,8 +29,8 @@ export const Navbar = () => {
     }, []);
 
     const NavItem = ({ to, children }) => (
-        <NavLink 
-            to={to} 
+        <NavLink
+            to={to}
             className={({ isActive }) =>
                 `flex flex-col my-[18px] items-center content-center p-[7px] rounded-[12px] itim ${isActive ? 'active' : ''}`
             }
@@ -65,7 +65,7 @@ export const Navbar = () => {
                             <img src={signup} alt="Sign up" />
                             sign up
                         </NavLink>
-                    ):(
+                    ) : (
                         <NavLink
                             className={({ isActive }) =>
                                 `flex gap-1 items-center justify-center bg-[#63a73a] w-[140px] h-[43px] rounded-[12px] itim ${isActive ? 'active' : ''}`
@@ -118,15 +118,24 @@ export const Navbar = () => {
                         <NavItem to="/contact">CONTACT US</NavItem>
                     </div>
                     <div className="pt-4 pb-4 border-t border-gray-700">
-                        <div className="flex justify-center items-center px-5">
-                            {!booleanValue && (
+                        <div className="flex justify-center items-center px-5 flex-wrap gap-2">
+                            {!booleanValue ? (
                                 <NavLink
                                     to="/signup"
                                     onClick={() => setIsOpen(false)}
-                                    className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim mr-2"
+                                    className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim"
                                 >
                                     <img src={signup} alt="Sign up" />
                                     sign up
+                                </NavLink>
+                            ) : (
+                                <NavLink
+                                    to="/dashboard"
+                                    onClick={() => setIsOpen(false)}
+                                    className="flex gap-1 items-center justify-center bg-[#63a73a] w-[140px] h-[43px] rounded-[12px] itim"
+                                >
+                                    <img src={dashboardImg} height={20} width={20} alt="DashBoard" />
+                                    Dashboard
                                 </NavLink>
                             )}
                             <NavLink
@@ -141,6 +150,7 @@ export const Navbar = () => {
                     </div>
                 </div>
             )}
+
         </nav>
     );
 };

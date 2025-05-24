@@ -33,7 +33,7 @@ export const Signin = () => {
       const token = response.data.token;
       localStorage.setItem('Token', token);
       toast.success('Signed in successfully!');
-      dispatch(setValue(false));
+      dispatch(setValue(true));
       setTimeout(() => {
         navigate('/dashboard');
       }, 2000);

@@ -9,7 +9,7 @@ export const Signout = () => {
 
     const signout = () => {
         localStorage.removeItem('Token');
-        dispatch(setValue(true));
+        dispatch(setValue(false));
         toast.success("Signout Successful!", {
             position: "top-right",
             autoClose: 3000,

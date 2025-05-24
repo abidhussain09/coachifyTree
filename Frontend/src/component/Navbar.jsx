@@ -55,7 +55,7 @@ export const Navbar = () => {
                     </div>
                 </div>
                 <div className='hidden md:flex my-[18px] gap-[39px] mr-[38px]'>
-                    {booleanValue ? (
+                    {!booleanValue ? (
                         <NavLink
                             className={({ isActive }) =>
                                 `flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim ${isActive ? 'active' : ''}`
@@ -80,10 +80,10 @@ export const Navbar = () => {
                         className={({ isActive }) =>
                             `flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim ${isActive ? 'active' : ''}`
                         }
-                        to={booleanValue ? '/signin' : '/signout'}
+                        to={!booleanValue ? '/signin' : '/signout'}
                     >
                         <img src={login} alt="Sign in/out" />
-                        {booleanValue ? 'sign in' : 'sign out'}
+                        {!booleanValue ? 'sign in' : 'sign out'}
                     </NavLink>
                 </div>
                 <div className='md:hidden flex items-center mr-4'>

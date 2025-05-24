@@ -14,7 +14,7 @@ transporter.verify((error, success) => {
     if (error) {
         console.error("SMTP Connection Error:", error);
     } else {
-        console.log("SMTP is ready to send emails.");
+        //console.log("SMTP is ready to send emails.");
     }
 });
 

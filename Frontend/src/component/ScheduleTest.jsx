@@ -16,7 +16,7 @@ export const ScheduleTest = () => {
     async function SubmitHandler(event) {
         event.preventDefault();
         try{
-            console.log(testData);
+           // console.log(testData);
             const token=localStorage.getItem('Token');
             if(!token){
                 console.error("No token found, authentication required!");
@@ -27,7 +27,7 @@ export const ScheduleTest = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log("Test added successfully:", response.data);
+            //console.log("Test added successfully:", response.data);
             setTestData({
                 class:"",
                 subject:"",

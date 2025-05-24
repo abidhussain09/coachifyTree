@@ -14,7 +14,7 @@ export const UploadNotice = () => {
     async function SubmitHandler(event) {
         event.preventDefault();
         try{
-            console.log(noticeData);
+           // console.log(noticeData);
             const token=localStorage.getItem('Token');
             if(!token){
                 console.error("No token found, authentication required!");
@@ -25,7 +25,7 @@ export const UploadNotice = () => {
                     Authorization: `Bearer ${token}`,
                 },
             })
-            console.log("Notice added successfully:", response.data);
+          //  console.log("Notice added successfully:", response.data);
             setNoticeData({
                 title:"",
                 content:""

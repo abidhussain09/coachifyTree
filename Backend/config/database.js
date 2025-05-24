@@ -7,7 +7,7 @@ exports.connect=()=>{
         tls:true
     })
     .then(()=>{
-        console.log("DB connected sucessfully");
+        //console.log("DB connected sucessfully");
     })
     .catch((err)=>{
         //console.log();

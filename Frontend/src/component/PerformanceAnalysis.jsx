@@ -47,7 +47,7 @@ export const PerformanceAnalysis = ({ email }) => {
       try {
         const res = await axios.get("/getCoachifyId", { params: { email } });
         if (res.data.coachifyId && res.data.coachifyId.length >= 3) {
-          const classCode = res.data.coachifyId.slice(1, 3);
+          const classCode = res.data.coachifyId.slice(1, 4);
           setClassName(classCode);
         } else {
           throw new Error("Invalid coachifyId format");

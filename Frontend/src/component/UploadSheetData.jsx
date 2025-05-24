@@ -19,22 +19,13 @@ export const UploadSheetData = () => {
     async function submitHandler(event) {
         event.preventDefault();
         try {
-            console.log(sheetData);
+            //console.log(sheetData);
             const token = localStorage.getItem('Token');
             if (!token) {
                 console.error("No token found, authentication required!");
                 return;
             }
 
-            // // Check if sheet already exists
-            // const isDuplicate = existingSheets.some(
-            //     sheet => sheet.className === sheetData.className && sheet.sheetId === sheetData.sheetId
-            // );
-
-            // if (isDuplicate) {
-            //     toast.warning("Sheet with this Class and Name already exists!");
-            //     return;
-            // }
 
             const response = await axios.post('/addSheetDetails', sheetData, {
                 headers: {
@@ -42,7 +33,7 @@ export const UploadSheetData = () => {
                 },
             });
 
-            console.log("Sheet added successfully:", response.data);
+            //console.log("Sheet added successfully:", response.data);
             setSheetData({
                 className: "",
                 sheetId: "",

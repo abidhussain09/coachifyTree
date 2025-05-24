@@ -11,7 +11,7 @@ cron.schedule("* * * * *", async () => {
       createdAt: { $lt: sevenDaysAgo },
     });
 
-    console.log(`[CLEANUP] Deleted ${result.deletedCount} unverified entries older than 7 days`);
+    // console.log(`[CLEANUP] Deleted ${result.deletedCount} unverified entries older than 7 days`);
   } catch (error) {
     console.error("[CLEANUP ERROR]", error);
   }

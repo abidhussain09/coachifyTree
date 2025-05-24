@@ -66,10 +66,10 @@ export const SubjectWiseAnalysis = ({email}) => {
             const response = await axios.get('/getCoachifyId', {
                 params: { email }  // Sends email as a query parameter
             });
-            console.log(response);
-            console.log(response.data.coachifyId);
-            const tempclassname=response.data.coachifyId.slice(1,3);
-            console.log(tempclassname);
+            // console.log(response);
+            // console.log(response.data.coachifyId);
+            const tempclassname=response.data.coachifyId.slice(1,4);
+            //console.log(tempclassname);
             setClassName(tempclassname);
             fetchSheetDetails(tempclassname);
         }
@@ -85,9 +85,9 @@ export const SubjectWiseAnalysis = ({email}) => {
                 params:{className}
             });
             // console.log("sheet reponse ",response);
-            console.log(response.data.sheetDetails);
-            console.log(response.data.sheetDetails.sheetId);
-            console.log(response.data.sheetDetails.sheetName);
+            // console.log(response.data.sheetDetails);
+            // console.log(response.data.sheetDetails.sheetId);
+            // console.log(response.data.sheetDetails.sheetName);
             setSpreadSheetId(response.data.sheetDetails.sheetId);
             setSheetName(response.data.sheetDetails.sheetName);
         }

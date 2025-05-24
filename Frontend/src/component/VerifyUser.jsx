@@ -34,8 +34,7 @@ export const VerifyUser = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log('User verified successfully!', response.data);
-            // Update the local state to remove the verified user.
+            
             setUserList(prevList => prevList.filter(user => user.coachifyId !== coachifyId));
         } catch (error) {
             console.error("Error verifying user", error);

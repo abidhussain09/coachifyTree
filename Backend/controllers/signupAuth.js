@@ -16,7 +16,7 @@ exports.signup = async (req, res) => {
 
         // Generate OTP
         const otp = crypto.randomInt(100000, 999999).toString(); // 6-digit OTP
-        const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000); // Expires in 1 min
+        const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000); // Expires in 05 min
 
         if (existingUser) {
             // If user exists but not verified, update OTP
@@ -110,7 +110,7 @@ exports.resendOTP = async (req, res) => {
 
         const otp = generateOTP();
         user.otp = otp;
-        user.otpExpiresAt = Date.now() + 15 * 60 * 1000; // 15 minutes validity
+        user.otpExpiresAt = Date.now() + 5 * 60 * 1000; // 05 minutes validity
         await user.save();
 
         const emailContent = `<p>Your new OTP for email verification is: <strong>${otp}</strong></p>`;

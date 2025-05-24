@@ -204,21 +204,21 @@ export const SubjectWiseAnalysis = ({email}) => {
     };
 
     return (
-        <div className='flex flex-col items-center justify-center h-full gap-2 sm:w-auto w-[900px]'>
+        <div className='flex flex-col items-center  justify-center h-full gap-2 sm:w-auto w-[900px]'>
             <div className='flex sm:flex-row flex-col h-1/2 w-full gap-2'>
-                <div className='bg-slate-100 h-[300px] sm:h-full sm:w-1/2 rounded-[20px] flex justify-center items-center'>
+                <div className='bg-black h-[300px] sm:h-full sm:w-1/2 rounded-[20px] flex justify-center items-center'>
                     {error1 && <p style={{ color: "red" }}>Error: {error1}</p>}
                     {chartData1 ? <Line data={chartData1} options={options} /> : <p>Loading...</p>}
                 </div>
-                <div className='bg-slate-100 h-[300px] sm:h-full sm:w-1/2 rounded-[20px] flex justify-center items-center'>
+                <div className='bg-black h-[300px] sm:h-full sm:w-1/2 rounded-[20px] flex justify-center items-center'>
                     {chartData2 ? <Line data={chartData2} options={options} /> : <p>Loading...</p>}
                 </div>
             </div>
             <div className='flex sm:flex-row flex-col h-1/2 w-full gap-2'>
-                <div className='bg-slate-100 h-[300px] sm:h-full sm:w-1/2 rounded-[20px] flex justify-center items-center'>
+                <div className='bg-black h-[300px] sm:h-full sm:w-1/2 rounded-[20px] flex justify-center items-center'>
                     {chartData3 ? <Line data={chartData3} options={options} /> : <p>Loading...</p>}
                 </div>
-                <div className='bg-slate-100 h-[300px] sm:h-full sm:w-1/2 rounded-[20px] flex justify-center items-center'>
+                <div className='bg-black h-[300px] sm:h-full sm:w-1/2 rounded-[20px] flex justify-center items-center'>
                     {chartData4 ? <Line data={chartData4} options={options} /> : <p>Loading...</p>}
                 </div>
             </div>

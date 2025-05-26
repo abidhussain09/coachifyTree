@@ -19,7 +19,7 @@ export const AboutPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-10">
         {/* Left Column: Text */}
         <div className="flex items-center justify-center p-6 bg-black rounded-lg">
-          <p className="text-lg md:text-xl text-center">
+          <p className="text-lg md:text-2xl text-center">
             Welcome to Coachify Tree, where we believe that behind every champion,
             there is always a coach. Our platform is dedicated to empowering
             students on their journey to success, both academically and personally.
@@ -56,7 +56,7 @@ export const AboutPage = () => {
 
         {/* Right Column: Text */}
         <div className="flex items-center justify-center p-6 bg-black rounded-lg">
-          <p className="text-lg text-justify itim">
+          <p className="text-lg md:text-2xl text-justify itim">
             At Coachify Tree, our mission is clear: we strive to provide the best coaching and mentoring services to students worldwide. We believe that every student has the potential to achieve greatness, and our goal is to help them unlock that potential. Through personalized coaching, academic resources, and a supportive community, we aim to guide students towards their dreams.
             <br />
             <br />
@@ -73,38 +73,32 @@ export const AboutPage = () => {
       </div>
 
       {/* Specialized Branches Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-10">
+      <div className=" grid-cols-1 md:grid-cols-2 gap-6 w-full mt-10">
         {/* Left Column: Text */}
         <div className="flex flex-col justify-center p-6 bg-black  rounded-lg">
-          <p className="text-lg itim">
-            <span className="text-[#63A76A] text-2xl">Coachify Education:</span>
+          <p className="text-lg md:text-2xl itim">
+            <span className="text-[#63A76A] text-4xl">Coachify Education:</span>
             <br />
-            <span className="underline decoration-1 text-xl">Personalized support for academic excellence.</span>
+            <span className="underline decoration-1 text-2xl">Personalized support for academic excellence.</span>
             <br /><br />
             Coachify Education provides tailored learning experiences to help students excel academically. We offer personalized coaching, study plans, and interactive tools to match each student’s needs. We empower students to reach their full potential, regardless of their starting point.
             <br /><br />
-            <span className="text-[#63A76A] text-2xl">Coachify Library:</span>
+            <span className="text-[#63A76A] text-4xl">Coachify Library:</span>
             <br />
-            <span className="underline decoration-1 text-xl">Resources promoting lifelong learning and curiosity.</span>
+            <span className="underline decoration-1 text-2xl">Resources promoting lifelong learning and curiosity.</span>
             <br /><br />
             From books and articles to online courses, we provide tools for personal growth and intellectual development. The library supports both students and professionals in their lifelong learning journey.
             <br /><br />
-            <span className="text-[#63A76A] text-2xl">Coachify Health:</span>
+            <span className="text-[#63A76A] text-4xl">Coachify Health:</span>
             <br />
-            <span className="underline decoration-1 text-xl">Encouraging physical, mental, and emotional well-being.</span>
+            <span className="underline decoration-1 text-2xl">Encouraging physical, mental, and emotional well-being.</span>
             <br /><br />
             Coachify Health promotes holistic well-being, focusing on physical, mental, and emotional health. Our services help users develop resilience and stress-management skills. By prioritizing health, Coachify ensures that individuals thrive academically and personally.
           </p>
         </div>
 
         {/* Right Column: Image */}
-        <div className="overflow-hidden rounded-lg">
-          <img
-            src={photo3}
-            alt="Students engaging in a learning activity"
-            className="block w-full h-auto"
-          />
-        </div>
+        
       </div>
 
     </div>

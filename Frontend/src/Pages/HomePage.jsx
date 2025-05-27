@@ -71,7 +71,7 @@ export const HomePage = () => {
       // toast.success('Form submitted successfully!');
     }
   return (
-    <div className='mx-auto flex flex-col justify-center items-center'>
+    <div className='mx-auto flex flex-col justify-center items-center overflow-hidden'>
       <HeroSection scrollToDiv={scrollToDiv}/>
       <div id='targetDiv'className='sm:max-w-[1280px] sm:w-auto flex flex-col gap-4 justify-center items-center h-[760px] sm:m-[120px] m-8 w-[300px] border-[#545454] border-2 rounded-[20px]'  style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719379882/homeabout_s98vph.png)` }}>
         <h2  className='itim sm:text-[70px] text-[32px] text-[#9ee174] text-center text-wrap'>"Nudging Towards Excellence"</h2>

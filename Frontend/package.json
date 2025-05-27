@@ -20,6 +20,7 @@
     "firebase": "^10.12.3",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^2.2.0",
+    "lucide-react": "^0.511.0",
     "mongoose": "^8.5.0",
     "nodemon": "^3.1.4",
     "react": "^18.2.0",

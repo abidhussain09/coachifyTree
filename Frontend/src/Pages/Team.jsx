@@ -19,9 +19,9 @@ const teamMembers = [
     {
         name: "Mudassir Akram",
         image: "https://res.cloudinary.com/dh26dmbg3/image/upload/v1748071381/mark-basarab-y421kXlUOQk-unsplash_ztnogo.jpg",
-        linkedin: "https://linkedin.com/in/jane",
-        github: "https://github.com/janesmith",
-        email: "mailto:jane@example.com",
+        linkedin: "https://www.linkedin.com/in/md-mudassir-alam-7ab0852ab/",
+        github: "https://github.com/mdmudassiralam",
+        email: "mudassirakram69@gmail.com",
     },
 ];
 

@@ -9,17 +9,13 @@ const SheetSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  month: {                    // Changed from 'months' to 'month' to match queries
+  month: {                    
     type: String,
-    required: true,
+    required:true,
   },
   className: {
     type: String,
-    enum: ["10", "09", "08", "07", "06"],
     required: true,
-  },
-  testNumber: {
-    type: String,
   },
 });
 

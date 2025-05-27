@@ -4,31 +4,28 @@ const SheetSchema=require("../models/Sheet");
 exports.registerSheetDetails=async (req,res)=>{
     try{
         //get the data
-        const {sheetId,sheetName,className,testNumber}=req.body;
+        const {sheetId,sheetName,className, month}=req.body;
         //validate the data is available or not
-        if(!sheetId || !sheetName || !className){
+        if(!sheetId || !sheetName || !className || !month){
             return res.status(401).json({
                 success:false,
                 message:"All the fields are required"
             })
         }
         //check if there is sheet already for a class
-        const existingClass=await SheetSchema.findOne({className:className});
+        const existingClass=await SheetSchema.findOne({sheetName:sheetName});
         if(existingClass){
             return res.status(403).json({
                 success:false,
-                message:"Sheet of given class is already Present, You can edit it using edit options only"
+                message:"Sheet of given class is already Present, You can edit data on the sheet"
             });
         }
         const newSheetDetails= {
             sheetId:sheetId,
             sheetName:sheetName,
             className:className,
+            month:month
         };
-
-        if(testNumber){
-            newSheetDetails.testNumber=testNumber;
-        }
         const newSheet=new SheetSchema(newSheetDetails);
         await newSheet.save();
         return res.status(200).json({

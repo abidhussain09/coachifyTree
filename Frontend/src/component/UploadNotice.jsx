@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
 export const UploadNotice = () => {
@@ -30,6 +31,7 @@ export const UploadNotice = () => {
                 title:"",
                 content:""
             });
+            toast.success("Notice Added Sucessfully");
         }
         catch(error){
             console.error("Error adding notice:", error.response?.data || error.message);
@@ -68,6 +70,7 @@ export const UploadNotice = () => {
                 </fieldset>
                 <button type='submit' className='itim bg-[#63a73a] px-4 py-2 md:text-xl text-[20px] rounded-[10px] sm:w-1/4'>Upload Notice</button>
             </form>
+            <ToastContainer className="text-base" />
         </div>
     )
 }

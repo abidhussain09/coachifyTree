@@ -13,10 +13,10 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-// ✅ FIXED: Replaced "url" with "sheetUrl"
+//  FIXED: Replaced "url" with "sheetUrl"
 const fetchGoogleSheetData = async (spreadsheetId, sheetName, apiKey) => {
     const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
-    const response = await fetch(sheetUrl); // <-- fixed here
+    const response = await fetch(sheetUrl); 
     if (!response.ok) throw new Error(`Network error: ${response.statusText}`);
     const data = await response.json();
     const rows = data.values;
@@ -163,7 +163,7 @@ export const PerformanceAnalysis = ({ email }) => {
                 </label>
                 <select
                     id="monthSelect"
-                    className=" text-black border text-2xl px-4 py-2 rounded"
+                    className=" text-black border-2 border-solid border-black text-2xl px-4 py-2 rounded"
                     value={selectedMonth}
                     onChange={(e) => setSelectedMonth(e.target.value)}
                 >

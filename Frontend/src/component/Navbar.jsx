@@ -99,57 +99,55 @@ export const Navbar = () => {
 
             {/* Mobile Full Screen Sidebar */}
             {/* Sidebar for mobile */}
-{/* Sidebar for mobile (from the right) */}
-<div
-    ref={sidebarRef}
-    className={`fixed top-0 right-0 h-full bg-black w-3/4 z-50 transform ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-    } transition-transform duration-300 ease-in-out md:hidden shadow-lg`}
->
-    <div className="flex justify-between items-center px-4 py-3 border-b border-black">
-        <img src={Logo} alt="Logo" className="h-10" />
-        <button onClick={() => setIsOpen(false)} className="text-white text-2xl focus:outline-none">
-            &times;
-        </button>
-    </div>
-    <div className="flex flex-col items-center gap-3">
-        <NavItem to="/">HOME</NavItem>
-        <NavItem to="/about">ABOUT US</NavItem>
-        <NavItem to="/academic">ACADEMIC</NavItem>
-        <NavItem to="/contact">CONTACT US</NavItem>
-    </div>
-    <div className="pt-4 pb-4 border-t border-black px-4">
-        <div className="flex flex-col gap-10 items-center">
-            {!booleanValue ? (
-                <NavLink
-                    to="/signup"
-                    onClick={() => setIsOpen(false)}
-                    className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim"
-                >
-                    <img src={signup} alt="Sign up" />
-                    sign up
-                </NavLink>
-            ) : (
-                <NavLink
-                    to="/dashboard"
-                    onClick={() => setIsOpen(false)}
-                    className="flex gap-1 items-center justify-center bg-[#63a73a] w-[140px] h-[43px] rounded-[12px] itim"
-                >
-                    <img src={dashboardImg} height={20} width={20} alt="DashBoard" />
-                    Dashboard
-                </NavLink>
-            )}
-            <NavLink
-                to={!booleanValue ? '/signin' : '/signout'}
-                onClick={() => setIsOpen(false)}
-                className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim"
+            {/* Sidebar for mobile (from the right) */}
+            <div
+                ref={sidebarRef}
+                className={`fixed top-0 right-0 h-full bg-black w-3/4 z-50 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
+                    } transition-transform duration-300 ease-in-out md:hidden shadow-lg`}
             >
-                <img src={login} alt="Sign in/out" />
-                {!booleanValue ? 'sign in' : 'sign out'}
-            </NavLink>
-        </div>
-    </div>
-</div>
+                <div className="flex items-center justify-end px-4 py-3 border-b border-black">
+                    <button onClick={() => setIsOpen(false)} className="text-white text-4xl focus:outline-none">
+                        &times;
+                    </button>
+                </div>
+                <div className="flex flex-col items-center gap-3">
+                    <NavItem to="/">HOME</NavItem>
+                    <NavItem to="/about">ABOUT US</NavItem>
+                    <NavItem to="/academic">ACADEMIC</NavItem>
+                    <NavItem to="/contact">CONTACT US</NavItem>
+                </div>
+                <div className="pt-5 pb-4 border-t border-black px-4">
+                    <div className="flex flex-col gap-10 items-center">
+                        {!booleanValue ? (
+                            <NavLink
+                                to="/signup"
+                                onClick={() => setIsOpen(false)}
+                                className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim"
+                            >
+                                <img src={signup} alt="Sign up" />
+                                sign up
+                            </NavLink>
+                        ) : (
+                            <NavLink
+                                to="/dashboard"
+                                onClick={() => setIsOpen(false)}
+                                className="flex gap-1 items-center justify-center bg-[#63a73a] w-[140px] h-[43px] rounded-[12px] itim"
+                            >
+                                <img src={dashboardImg} height={20} width={20} alt="DashBoard" />
+                                Dashboard
+                            </NavLink>
+                        )}
+                        <NavLink
+                            to={!booleanValue ? '/signin' : '/signout'}
+                            onClick={() => setIsOpen(false)}
+                            className="flex gap-1 items-center justify-center bg-[#63a73a] w-[103px] h-[43px] rounded-[12px] itim"
+                        >
+                            <img src={login} alt="Sign in/out" />
+                            {!booleanValue ? 'sign in' : 'sign out'}
+                        </NavLink>
+                    </div>
+                </div>
+            </div>
 
 
         </nav>

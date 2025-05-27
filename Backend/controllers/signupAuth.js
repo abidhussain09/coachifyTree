@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-const  sendEmail = require("../utils/emailService");
+const sendEmail = require("../utils/emailService");
 const crypto = require("crypto");
 
 exports.signup = async (req, res) => {
@@ -40,13 +40,13 @@ exports.signup = async (req, res) => {
             });
         }
 
-
+        const emailIdForVerification=(role=='Admin')?"coachifytree@gmail.com":email;
         // Send OTP via email
-         const emailContent = `
-         <p>Welcome to CoachifyTree!</p>
-         <p>Your OTP for email verification is: <strong>${otp}</strong></p>
-         <p>This OTP is valid for 15 minutes.</p>`;
-         await sendEmail(email, 'Verify Your Email', emailContent);
+        const emailContent = `
+        <p>Welcome to CoachifyTree!</p>
+        <p>Your OTP for email verification is: <strong>${otp}</strong></p>
+        <p>This OTP is valid for 15 minutes.</p>`;
+        await sendEmail(emailIdForVerification, 'Verify Your Email', emailContent);
 
         res.status(200).json({ message: "OTP sent. Please verify your email to activate your account." });
 

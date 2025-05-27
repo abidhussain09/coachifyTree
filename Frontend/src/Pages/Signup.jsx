@@ -55,7 +55,6 @@ export const Signup = () => {
 
       const response = await axios.post('/signup', requestBody);
 
-      // console.log(response.data);
       toast.success(response.data.message);
 
       // dispatch(setEmail(UserMessage.email))
@@ -97,6 +96,7 @@ export const Signup = () => {
             <option value="Guest">Guest</option>
             <option value="Student">Student</option>
             <option value="Teacher">Teacher</option>
+            <option value="Admin">Admin</option>
           </select>
 
           {/* Name Input for Students */}

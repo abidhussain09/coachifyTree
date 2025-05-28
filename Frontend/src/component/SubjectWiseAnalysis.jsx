@@ -14,25 +14,32 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
+// Function to fetch and transform Google Sheets data
 const fetchGoogleSheetData = async (spreadsheetId, sheetName, apiKey) => {
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Network error: ${response.statusText}`);
-    
+
     const data = await response.json();
     const rows = data.values;
 
-    if (!rows || rows.length === 0) throw new Error("No data found in the sheet.");
+    if (!rows || rows.length < 2) throw new Error("Insufficient data in sheet.");
 
-    const dataRows = rows.length > 1 && isNaN(rows[0][1]) ? rows.slice(1) : rows;
+    const headers = rows[0]; // First row: Subject labels
+    const dataRows = rows.slice(1); // Remaining rows: student data
 
-    const labels = dataRows.map((row) => row[0]);
-    const dataPoints1 = dataRows.map((row) => parseFloat(row[1]) || 0);
-    const dataPoints2 = dataRows.map((row) => parseFloat(row[2]) || 0);
-    const dataPoints3 = dataRows.map((row) => parseFloat(row[3]) || 0);
-    const dataPoints4 = dataRows.map((row) => parseFloat(row[4]) || 0);
+    const labels = dataRows.map(row => row[0] || `Student ${dataRows.indexOf(row) + 1}`);
 
-    return { labels, dataPoints1, dataPoints2, dataPoints3, dataPoints4 };
+    const datasets = headers.slice(1).map((subject, colIndex) => {
+        const subjectData = dataRows.map(row => parseFloat(row[colIndex + 1]) || 0);
+        return {
+            label: subject,
+            data: subjectData,
+            labels
+        };
+    });
+
+    return { labels, datasets };
 };
 
 export const SubjectWiseAnalysis = ({ email }) => {
@@ -41,14 +48,12 @@ export const SubjectWiseAnalysis = ({ email }) => {
     const [selectedMonth, setSelectedMonth] = useState("");
     const [spreadsheetId, setSpreadsheetId] = useState(null);
     const [sheetName, setSheetName] = useState(null);
-    const [chartData1, setChartData1] = useState(null);
-    const [chartData2, setChartData2] = useState(null);
-    const [chartData3, setChartData3] = useState(null);
-    const [chartData4, setChartData4] = useState(null);
+    const [subjectCharts, setSubjectCharts] = useState([]);
     const [error, setError] = useState(null);
 
     const apiKey = import.meta.env.VITE_Google_api_key;
 
+    // Step 1: Get user class
     useEffect(() => {
         const fetchClassName = async () => {
             try {
@@ -63,6 +68,7 @@ export const SubjectWiseAnalysis = ({ email }) => {
         if (email) fetchClassName();
     }, [email]);
 
+    // Step 2: Get available months
     useEffect(() => {
         const fetchMonths = async () => {
             if (!className) return;
@@ -78,6 +84,7 @@ export const SubjectWiseAnalysis = ({ email }) => {
         fetchMonths();
     }, [className]);
 
+    // Step 3: Get spreadsheet ID and sheet name for selected month
     useEffect(() => {
         const fetchSheetDetails = async () => {
             if (!className || !selectedMonth) return;
@@ -95,53 +102,38 @@ export const SubjectWiseAnalysis = ({ email }) => {
         fetchSheetDetails();
     }, [selectedMonth, className]);
 
+    // Step 4: Fetch Google Sheets data and create chart data for each subject
     useEffect(() => {
         const fetchChartData = async () => {
             if (!spreadsheetId || !sheetName) return;
             try {
-                const { labels, dataPoints1, dataPoints2, dataPoints3, dataPoints4 } =
-                    await fetchGoogleSheetData(spreadsheetId, sheetName, apiKey);
+                const { labels, datasets } = await fetchGoogleSheetData(spreadsheetId, sheetName, apiKey);
 
-                setChartData1({
-                    labels,
-                    datasets: [{
-                        label: "Maths",
-                        data: dataPoints1,
-                        borderColor: "rgba(75, 192, 192, 1)",
-                        backgroundColor: "rgba(75, 192, 192, 0.2)",
-                        tension: 0.3,
-                    }],
-                });
-                setChartData2({
-                    labels,
-                    datasets: [{
-                        label: "Physics",
-                        data: dataPoints2,
-                        borderColor: "rgba(233, 45, 95, 1)",
-                        backgroundColor: "rgba(233, 45, 95, 0.2)",
-                        tension: 0.3,
-                    }],
-                });
-                setChartData3({
-                    labels,
-                    datasets: [{
-                        label: "Chemistry",
-                        data: dataPoints3,
-                        borderColor: "rgba(71, 68, 170, 1)",
-                        backgroundColor: "rgba(71, 68, 170, 0.2)",
-                        tension: 0.3,
-                    }],
-                });
-                setChartData4({
-                    labels,
-                    datasets: [{
-                        label: "Overall",
-                        data: dataPoints4,
-                        borderColor: "rgba(26, 34, 35, 1)",
-                        backgroundColor: "rgba(26, 34, 35, 0.2)",
-                        tension: 0.3,
-                    }],
-                });
+                const colors = [
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(233, 45, 95, 1)",
+                    "rgba(71, 68, 170, 1)",
+                    "rgba(26, 34, 35, 1)",
+                    "rgba(255, 165, 0, 1)",
+                    "rgba(100, 255, 100, 1)",
+                ];
+                const bgColors = colors.map(c => c.replace("1)", "0.2)"));
+
+                const charts = datasets.map((ds, index) => ({
+                    label: ds.label,
+                    data: {
+                        labels,
+                        datasets: [{
+                            label: ds.label,
+                            data: ds.data,
+                            borderColor: colors[index % colors.length],
+                            backgroundColor: bgColors[index % bgColors.length],
+                            tension: 0.3,
+                        }],
+                    },
+                }));
+
+                setSubjectCharts(charts);
             } catch (err) {
                 console.error("Chart data fetch failed:", err);
                 setError("Failed to load chart data");
@@ -164,7 +156,7 @@ export const SubjectWiseAnalysis = ({ email }) => {
 
     return (
         <div className="flex flex-col gap-4 items-center justify-center h-auto w-[900px] sm:w-auto bg-white rounded-[20px] p-4">
-            <div className="flex items-center  gap-4">
+            <div className="flex items-center gap-4">
                 <label htmlFor="monthSelect" className="text-2xl font-semibold">
                     Select Month:
                 </label>
@@ -176,9 +168,7 @@ export const SubjectWiseAnalysis = ({ email }) => {
                 >
                     <option value="">-- Select --</option>
                     {months.map((month) => (
-                        <option key={month} value={month}>
-                            {month}
-                        </option>
+                        <option key={month} value={month}>{month}</option>
                     ))}
                 </select>
             </div>
@@ -186,18 +176,14 @@ export const SubjectWiseAnalysis = ({ email }) => {
             {error && <p className="text-red-500">Error: {error}</p>}
 
             <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 w-full">
-                <div className="bg-white rounded-[20px] p-4">
-                    {chartData1 ? <Line data={chartData1} options={options} /> : <p>Loading Maths...</p>}
-                </div>
-                <div className="bg-white rounded-[20px] p-4">
-                    {chartData2 ? <Line data={chartData2} options={options} /> : <p>Loading Physics...</p>}
-                </div>
-                <div className="bg-white rounded-[20px] p-4">
-                    {chartData3 ? <Line data={chartData3} options={options} /> : <p>Loading Chemistry...</p>}
-                </div>
-                <div className="bg-white rounded-[20px] p-4">
-                    {chartData4 ? <Line data={chartData4} options={options} /> : <p>Loading Overall...</p>}
-                </div>
+                {subjectCharts.length === 0 && !error && (
+                    <p className="text-lg text-gray-500 text-center col-span-2">Loading charts...</p>
+                )}
+                {subjectCharts.map((chart, idx) => (
+                    <div key={idx} className="bg-white rounded-[20px] p-4">
+                        <Line data={chart.data} options={{ ...options, plugins: { ...options.plugins, title: { display: true, text: chart.label } } }} />
+                    </div>
+                ))}
             </div>
         </div>
     );

@@ -13,22 +13,42 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-//  FIXED: Replaced "url" with "sheetUrl"
+// 🎨 Utility to assign distinct colors to subjects
+const getColorForIndex = (index) => {
+    const colors = [
+        "rgba(75, 192, 192, 1)",
+        "rgba(233, 45, 95, 1)",
+        "rgba(71, 68, 170, 1)",
+        "rgba(255, 159, 64, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+    ];
+    return colors[index % colors.length];
+};
+
+// ✅ Fetch Google Sheet data with dynamic headers and datasets
 const fetchGoogleSheetData = async (spreadsheetId, sheetName, apiKey) => {
     const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
-    const response = await fetch(sheetUrl); 
+    const response = await fetch(sheetUrl);
     if (!response.ok) throw new Error(`Network error: ${response.statusText}`);
     const data = await response.json();
     const rows = data.values;
 
-    const dataRows = rows.length > 1 && isNaN(rows[0][1]) ? rows.slice(1) : rows;
+    if (!rows || rows.length < 2) throw new Error("Not enough data");
 
-    const labels = dataRows.map((row) => row[0]);
-    const dataPoints1 = dataRows.map((row) => parseFloat(row[1]) || 0);
-    const dataPoints2 = dataRows.map((row) => parseFloat(row[2]) || 0);
-    const dataPoints3 = dataRows.map((row) => parseFloat(row[3]) || 0);
+    const headers = rows[0]; // First row: subject names (["Student ID", "Maths", "Physics", "Chemistry"])
+    const dataRows = rows.slice(1); // Remaining rows: student scores
 
-    return { labels, dataPoints1, dataPoints2, dataPoints3 };
+    const labels = dataRows.map(row => row[0]); // Student IDs
+
+    const datasets = headers.slice(1).map((subject, colIndex) => ({
+        label: subject,
+        data: dataRows.map(row => parseFloat(row[colIndex + 1]) || 0),
+        backgroundColor: getColorForIndex(colIndex),
+    }));
+
+    return { labels, datasets };
 };
 
 export const PerformanceAnalysis = ({ email }) => {
@@ -84,7 +104,6 @@ export const PerformanceAnalysis = ({ email }) => {
     useEffect(() => {
         const fetchSheetDetails = async () => {
             if (!className || !selectedMonth) return;
-
             try {
                 const response = await axios.get("/sheets/getSheetByMonth", {
                     params: { className, month: selectedMonth },
@@ -108,31 +127,12 @@ export const PerformanceAnalysis = ({ email }) => {
 
         const fetchData = async () => {
             try {
-                const { labels, dataPoints1, dataPoints2, dataPoints3 } = await fetchGoogleSheetData(
+                const { labels, datasets } = await fetchGoogleSheetData(
                     spreadsheetId,
                     sheetName,
                     apiKey
                 );
-                setChartData({
-                    labels,
-                    datasets: [
-                        {
-                            label: "Maths",
-                            data: dataPoints1,
-                            backgroundColor: "rgba(75, 192, 192, 1)",
-                        },
-                        {
-                            label: "Physics",
-                            data: dataPoints2,
-                            backgroundColor: "rgba(233, 45, 95, 1)",
-                        },
-                        {
-                            label: "Chemistry",
-                            data: dataPoints3,
-                            backgroundColor: "rgba(71, 68, 170, 1)",
-                        },
-                    ],
-                });
+                setChartData({ labels, datasets });
                 setError(null);
             } catch (err) {
                 console.error("Chart data fetch failed:", err);
@@ -163,7 +163,7 @@ export const PerformanceAnalysis = ({ email }) => {
                 </label>
                 <select
                     id="monthSelect"
-                    className=" text-black border-2 border-solid border-black text-2xl px-4 py-2 rounded"
+                    className="text-black border-2 border-solid border-black text-2xl px-4 py-2 rounded"
                     value={selectedMonth}
                     onChange={(e) => setSelectedMonth(e.target.value)}
                 >

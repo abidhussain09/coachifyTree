@@ -32,3 +32,18 @@ exports.getNotices = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+
+exports.deleteNotice=async (req,res)=>{
+  try {
+    const {_id}=req.body;
+    const notice=await Notice.findByIdAndDelete(_id);
+    if(!notice){
+      return res.status(404).json({ message: "Notice not found" });
+      }
+      res.json({ message: "Notice deleted successfully" });
+  }
+  catch(error){
+    console.error("Error deleting notice:", error);
+  }
+}

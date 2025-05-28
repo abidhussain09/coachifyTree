@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { postNotice, getNotices } = require("../controllers/noticeController");
+const { postNotice, getNotices, deleteNotice } = require("../controllers/noticeController");
 const { authenticateToken, authorizeRoles } = require('../middlewares/authMiddleware');
 
 router.post(
@@ -11,5 +11,6 @@ router.post(
 );
 
 router.get("/", getNotices);
-
+router.post("/deleteNotice",authenticateToken,
+    authorizeRoles("Teacher", "Admin"),deleteNotice);
 module.exports = router;

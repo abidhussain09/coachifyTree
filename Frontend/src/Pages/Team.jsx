@@ -4,21 +4,21 @@ import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 const teamMembers = [
     {
         name: "Md Abid Hussain",
-        image: "https://res.cloudinary.com/dh26dmbg3/image/upload/v1748071381/mark-basarab-y421kXlUOQk-unsplash_ztnogo.jpg",
+        image: "https://res.cloudinary.com/dh26dmbg3/image/upload/v1748760015/WhatsApp_Image_2025-06-01_at_12.09.27_23fb2dd1_zjliex.jpg",
         linkedin: "https://www.linkedin.com/in/md-abid-hussain-a49b69270/",
         github: "https://github.com/abidhussain09",
         email: "mailto:abidhussain09.w@gmail.com",
     },
     {
         name: "Roshan Perwez",
-        image: "https://res.cloudinary.com/dh26dmbg3/image/upload/v1748071381/mark-basarab-y421kXlUOQk-unsplash_ztnogo.jpg",
+        image: "https://res.cloudinary.com/dh26dmbg3/image/upload/v1748759703/WhatsApp_Image_2025-05-28_at_19.37.30_9b65c8cc_ftm6uc.jpg",
         linkedin: "https://www.linkedin.com/in/roshan-perwez/",
         github: "https://github.com/perwezroshan",
         email: "mailto:perwezroshan07@gmail.com",
     },
     {
         name: "Mudassir Akram",
-        image: "https://res.cloudinary.com/dh26dmbg3/image/upload/v1748071381/mark-basarab-y421kXlUOQk-unsplash_ztnogo.jpg",
+        image: "https://res.cloudinary.com/dh26dmbg3/image/upload/v1748759703/WhatsApp_Image_2025-05-28_at_23.07.18_de38cb85_bz8aew.jpg",
         linkedin: "https://www.linkedin.com/in/md-mudassir-alam-7ab0852ab/",
         github: "https://github.com/mdmudassiralam",
         email: "mudassirakram69@gmail.com",

@@ -48,7 +48,7 @@ exports.createVerificationRequest = async (req, res) => {
         if (existingId) {
             return res.status(403).json({
                 success: false,
-                message: "Someone already registered with this coachifyId, If that is you, Please wait until you get verified or contact Admin.",
+                message: "Someone already registered with this coachifyId, If it was not you contact Admin.",
             });
         }
 

@@ -8,8 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
-axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
-
+axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; 
 const ResetPassword = () => {
     const { token } = useParams();
     const [newPassword, setNewPassword] = useState('');
@@ -27,7 +26,7 @@ const ResetPassword = () => {
     };
 
     const goBack = () => {
-        navigate('/'); // Adjust if needed
+        navigate('/'); 
     };
 
     const handleSubmit = async (event) => {
@@ -57,10 +56,10 @@ const ResetPassword = () => {
                 <div className="text-2xl sm:text-4xl text-white itim ">Welcome to Coachify</div>
                 <div className=" text-white text-sm itim">nudging towards excellence...</div>
                 <div className="text-xl sm:text-3xl text-white itim ">Reset Password</div>
-                {/* Form */}
+                
 
                 <form onSubmit={handleSubmit} className="flex flex-col w-full max-w-md gap-4">
-                    {/* New Password */}
+                    
                     <div className="flex-col flex gap-2">
                         <div className="text-white itim">Enter New Password</div>
                         <div className='flex w-full gap-2'>
@@ -82,7 +81,7 @@ const ResetPassword = () => {
                         </div>
                     </div>
 
-                    {/* Confirm Password */}
+                    
                     <div className="flex-col flex gap-2">
                         <div className="text-white itim">Confirm Password</div>
                         <div className='flex w-full gap-2'>
@@ -103,7 +102,7 @@ const ResetPassword = () => {
                         </div>
                     </div>
 
-                    {/* Submit Button */}
+                    
                     <button
                         type="submit"
                         className="bg-[#63a73a] text-[20px] sm:text-[25px] p-4 w-full rounded text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300"

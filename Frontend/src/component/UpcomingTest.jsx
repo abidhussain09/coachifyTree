@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
+axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; 
 
 export const UpcomingTest = () => {
   const [testData, setTestData] = useState([]);
@@ -26,7 +26,7 @@ export const UpcomingTest = () => {
 
   return (
     <div className='flex flex-col items-center justify-center h-auto gap-4 p-4 w-full'>
-      {/* Header Row */}
+      
       <div className='flex basis-1/12 w-full gap-2'>
         <div className='rounded-xl sm:rounded-[20px] bg-[#63a73a] basis-2/12 text-base sm:text-2xl flex justify-center items-center p-2'>
           <div>Test Date</div>
@@ -45,7 +45,7 @@ export const UpcomingTest = () => {
         </div>
       </div>
 
-      {/* Data Rows */}
+      
       <div className='flex basis-11/12 w-full gap-2 flex-col'>
         {testData.map((test, index) => (
           <div

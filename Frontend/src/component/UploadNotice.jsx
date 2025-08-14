@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
+axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; 
 
 export const UploadNotice = () => {
     const [noticeData, setNoticeData] = useState({
@@ -46,7 +46,7 @@ export const UploadNotice = () => {
 
     return (
         <div className='flex flex-col items-center h-auto w-full max-w-[1020px] gap-6 p-6 bg-black/40 border-2 border-[#545454] rounded-[20px] shadow-lg'>
-            {/* Header */}
+            
             <div className='text-3xl sm:text-5xl font-bold text-[#9ee174] itim'>
                 Upload Notice
             </div>
@@ -54,12 +54,12 @@ export const UploadNotice = () => {
                 Share important announcements with your students. Provide a title and detailed content for the notice.
             </div>
 
-            {/* Form */}
+            
             <form
                 className='flex flex-col gap-6 w-full sm:w-2/3'
                 onSubmit={SubmitHandler}
             >
-                {/* Title */}
+                
                 <fieldset className='flex flex-col gap-2'>
                     <label htmlFor='TitleField' className='itim text-base sm:text-lg text-gray-200'>
                         Notice Title
@@ -76,7 +76,6 @@ export const UploadNotice = () => {
                     />
                 </fieldset>
 
-                {/* Content */}
                 <fieldset className='flex flex-col gap-2'>
                     <label htmlFor='contentField' className='itim text-base sm:text-lg text-gray-200'>
                         Notice Content
@@ -93,7 +92,7 @@ export const UploadNotice = () => {
                     />
                 </fieldset>
 
-                {/* Submit */}
+                
                 <button
                     type='submit'
                     className='itim bg-[#63a73a] hover:bg-[#4d8f2f] transition duration-200 px-6 py-3 text-lg sm:text-xl rounded-[12px] text-white shadow-md'

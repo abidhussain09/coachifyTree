@@ -16,10 +16,8 @@ export const Footer = () => {
                 backgroundPosition: "top",
             }}
         >
-            {/* Main Content */}
             <div className="flex flex-col sm:flex-row w-full max-w-6xl gap-8 px-6 sm:px-0">
                 
-                {/* Logo & Location */}
                 <div className="flex flex-col items-center text-center sm:text-left sm:items-start flex-1 gap-3">
                     <img src={logo} alt="logo" className="h-20 sm:h-28" />
                     <div className="flex items-center gap-2">
@@ -28,7 +26,6 @@ export const Footer = () => {
                     </div>
                 </div>
 
-                {/* Links */}
                 <div className="flex flex-col items-center sm:items-center flex-1 gap-3">
                     <h1 className="text-2xl sm:text-3xl text-white">LINKS</h1>
                     {[
@@ -47,7 +44,6 @@ export const Footer = () => {
                     ))}
                 </div>
 
-                {/* Support */}
                 <div className="flex flex-col items-center sm:items-start flex-1 gap-4">
                     <h1 className="text-2xl sm:text-3xl text-white">SUPPORT</h1>
                     
@@ -73,7 +69,6 @@ export const Footer = () => {
                 </div>
             </div>
 
-            {/* Bottom Note */}
             <div className="text-center text-white text-xs sm:text-sm px-4 py-3 w-full bg-black/40">
                 Copyright © 2025: Designed and Maintained by{" "}
                 <Link to='/team' className="text-blue-300 font-bold hover:underline">

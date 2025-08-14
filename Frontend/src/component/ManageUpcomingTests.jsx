@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Trash2 } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 
-axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
+axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; 
 
 export const ManageUpcomingTest = () => {
     const [testData, setTestData] = useState([]);
@@ -70,7 +70,6 @@ export const ManageUpcomingTest = () => {
                 </div>
             </div>
 
-            {/* Data Rows */}
             <div className='flex basis-11/12 w-full gap-2 flex-col'>
                 {testData.map((test, index) => (
                     <div

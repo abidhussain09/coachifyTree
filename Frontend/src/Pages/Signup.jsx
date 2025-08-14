@@ -13,11 +13,11 @@ export const Signup = () => {
   const [verification, SetVerification] = useState(false);
   const [lastName,setLastName]=useState("");
   const [UserMessage, setUserMessage] = useState({
-    role: 'Guest', // Default role is set to Guest
+    role: 'Student', 
     email: '',
     password: '',
     confirmPassword: '',
-    name: '', // Field for name, only used for Students
+    name: '', 
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowCondfirmPassword] = useState(false);
@@ -57,7 +57,6 @@ export const Signup = () => {
 
       toast.success(response.data.message);
 
-      // dispatch(setEmail(UserMessage.email))
       localStorage.setItem("pendingEmail", UserMessage.email);
       setTimeout(() => {
         navigate('/verify-otp');
@@ -70,7 +69,7 @@ export const Signup = () => {
 
     setPasswordError('');
     setUserMessage({
-      role: 'Guest', // Reset to default role
+      role: 'Student',
       email: '',
       password: '',
       confirmPassword: '',
@@ -85,7 +84,6 @@ export const Signup = () => {
         <div className=" text-white itim mb-4 text-start w-full px-7 text-md sm:text-xl ">nudging towards excellence...</div>
 
         <form onSubmit={handleSubmit} className="flex flex-col  w-11/12 gap-4">
-          {/* Role Dropdown */}
           <select
             name="role"
             value={UserMessage.role}
@@ -93,13 +91,12 @@ export const Signup = () => {
             className="bg-neutral-800 text-[20px] p-2 w-full h-[53px] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           >
-            <option value="Guest">Guest</option>
+            {/* <option value="Guest">Guest</option> */}
             <option value="Student">Student</option>
             <option value="Teacher">Teacher</option>
             <option value="Admin">Admin</option>
           </select>
 
-          {/* Name Input for Students */}
           <div className='flex gap-4 w-full sm:flex-row flex-col'>
 
             <div className='flex flex-col gap-2 w-full'>
@@ -131,7 +128,6 @@ export const Signup = () => {
           </div>
 
 
-          {/* Email Input */}
           <div className='flex flex-col gap-2'>
 
             <div className='text-white itim'>Email Address</div>
@@ -147,7 +143,6 @@ export const Signup = () => {
             />
           </div>
 
-          {/* Password Input */}
           <div className="flex-col flex gap-2">
             <div className='text-white itim '> Password</div>
             <div className='flex w-full gap-2'>
@@ -170,7 +165,6 @@ export const Signup = () => {
             </div>
           </div>
 
-          {/* Confirm Password Input */}
           <div className="flex-col flex gap-2 ">
             <div className='text-white itim '>Confirm Password</div>
             <div className='flex w-full gap-2'>
@@ -194,10 +188,8 @@ export const Signup = () => {
             </div>
           </div>
 
-          {/* Password Error */}
           {passwordError && <div className="text-red-500 text-md">{passwordError}</div>}
 
-          {/* Submit Button */}
           <button
             type='submit'
             className="bg-[#63a73a] text-[25px] p-4 w-full rounded-lg text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300"
@@ -206,9 +198,7 @@ export const Signup = () => {
           </button>
         </form>
 
-        {/* Toast Notifications */}
         <ToastContainer />
-        {/* Verification Message */}
         {
           verification &&
           <div className="itim text-xl text-green-500 text-center ">Verification e-mail sent, please verify</div>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Logo from "../assets/LOGO(XL).png";
 import signup from "../assets/signup.png";
 import dashboardImg from "../assets/Dashboard.png";
@@ -97,9 +97,7 @@ export const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Full Screen Sidebar */}
             {/* Sidebar for mobile */}
-            {/* Sidebar for mobile (from the right) */}
             <div
                 ref={sidebarRef}
                 className={`fixed top-0 right-0 h-full bg-black w-3/4 z-50 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'

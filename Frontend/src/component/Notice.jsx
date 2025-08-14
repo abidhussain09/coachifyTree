@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { Trash2, MoreVertical } from 'lucide-react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 axios.defaults.baseURL = import.meta.env.VITE_Backend_Url;
 
 export const Notice = () => {
   const [notices, setNotices] = useState([]);
-  const [openMenuId, setOpenMenuId] = useState(null);
-  const menuRef = useRef(null);
-  const [role, setRole] = useState(null); // Store user role
+  const [role, setRole] = useState(null); 
 
   async function getNotices() {
     try {
@@ -20,17 +17,14 @@ export const Notice = () => {
     }
   }
 
-
-
-  // On mount: fetch notices and extract user role
   useEffect(() => {
     getNotices();
 
     const token = localStorage.getItem("Token");
     if (token) {
       try {
-        const payload = JSON.parse(atob(token.split(".")[1])); // Decode JWT payload
-        setRole(payload.role); // Expecting token to include a 'role' field
+        const payload = JSON.parse(atob(token.split(".")[1])); 
+        setRole(payload.role); 
       } catch (err) {
         console.error("Error decoding token:", err);
       }

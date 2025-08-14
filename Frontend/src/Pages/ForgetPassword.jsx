@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
-axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; // Backend URL
+axios.defaults.baseURL = import.meta.env.VITE_Backend_Url; 
 
 const ForgetPassword = () => {
     const [email, setEmail] = useState('');
@@ -15,7 +15,7 @@ const ForgetPassword = () => {
     const navigate = useNavigate();
 
     const goBack = () => {
-        navigate('/'); // Adjust if needed
+        navigate('/'); 
     };
 
     const handleSubmit = async (event) => {
@@ -39,9 +39,9 @@ const ForgetPassword = () => {
                     <FaUnlockAlt className='text-center w-full'/>
                 </div>
                 <div className="text-xl text-white josefin w-full text-center">Trouble logging in?</div>
-                {/* Form */}
+                
                 <form onSubmit={handleSubmit} className="flex flex-col w-full max-w-md gap-8">
-                    {/* Email Input */}
+                    
                     <div className="flex flex-col gap-2">
                         <div className="text-white itim">Enter Your Email</div>
                         <input
@@ -54,7 +54,7 @@ const ForgetPassword = () => {
                         />
                     </div>
 
-                    {/* Submit Button */}
+                    
                     <button
                         type="submit"
                         className="bg-[#63a73a] text-[20px] sm:text-[25px] p-5 w-full rounded text-aliceblue itim font-roboto hover:bg-green-600 transition duration-300"

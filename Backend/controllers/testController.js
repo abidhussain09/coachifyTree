@@ -2,7 +2,7 @@ const TestSchedule = require('../models/TestSchedule');
 
 exports.addTest = async (req, res) => {
     try {
-        const { subject, syllabus, testDate, class: className } = req.body; // ✅ Get 'class'
+        const { subject, syllabus, testDate, class: className } = req.body; 
 
         if (!subject || !syllabus || !testDate || !className) {
             return res.status(400).json({ message: "All fields (subject, syllabus, testDate, class) are required" });
@@ -49,16 +49,23 @@ exports.deleteOldTests = async (req, res) => {
     }
 };
 
-exports.deleteTest = async (req,res)=>{
-    try{
-        const {_id}=req.body;
-        const test=TestSchedule.findByIdAndDelete(_id);
-        if(!test){
-            return res.status(404).json({ message: "Test not found and Not deleted" });
+exports.deleteTest = async (req, res) => {
+    try {
+        const { _id } = req.body;
+
+        if (!_id) {
+            return res.status(400).json({ message: "Test ID is required" });
         }
+
+        const test = await TestSchedule.findByIdAndDelete(_id);
+
+        if (!test) {
+            return res.status(404).json({ message: "Test not found and not deleted" });
+        }
+
         return res.json({ message: "Test deleted successfully" });
-    }
-    catch(err){
+    } catch (err) {
         console.error("Error deleting Test:", err);
+        return res.status(500).json({ message: "Internal Server Error" });
     }
-}
+};

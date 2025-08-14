@@ -18,17 +18,14 @@ exports.resetPassword = async (req, res) => {
             return res.status(400).json({ message: 'Invalid or expired password reset token.' });
         }
 
-        // Find the user associated with the token
         const user = await User.findById(resetToken.userId);
         if (!user) {
             return res.status(404).json({ message: 'User not found.' });
         }
 
-        // Hash the new password and update the user's password
         user.password = await bcrypt.hash(newPassword, 10);
         await user.save();
 
-        // Delete the token from the database
         await PasswordResetToken.deleteOne({ _id: resetToken._id });
 
         res.status(200).json({ message: 'Password has been successfully reset.' });

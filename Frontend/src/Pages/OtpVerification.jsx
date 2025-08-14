@@ -6,11 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const OTPVerification = () => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState(localStorage.getItem('pendingEmail')); // Retrieve email from localStorage
+    const [email, setEmail] = useState(localStorage.getItem('pendingEmail')); 
     const [otp, setOtp] = useState('');
     const [loading, setLoading] = useState(false);
 
-    // Check verification status when the component loads
     useEffect(() => {
         const checkVerificationStatus = async () => {
             if (!email) {
@@ -39,8 +38,7 @@ export const OTPVerification = () => {
         try {
             const response = await axios.post('/verify-otp', { email, otp });
             toast.success(response.data.message);
-
-            // Clear email from localStorage after successful verification
+n
             localStorage.removeItem('pendingEmail');
 
             // Redirect to dashboard or login page

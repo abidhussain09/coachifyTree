@@ -25,8 +25,8 @@ const fetchGoogleSheetData = async (spreadsheetId, sheetName, apiKey) => {
 
     if (!rows || rows.length < 2) throw new Error("Insufficient data in sheet.");
 
-    const headers = rows[0]; // First row: Subject labels
-    const dataRows = rows.slice(1); // Remaining rows: student data
+    const headers = rows[0]; 
+    const dataRows = rows.slice(1); 
 
     const labels = dataRows.map(row => row[0] || `Student ${dataRows.indexOf(row) + 1}`);
 
@@ -53,7 +53,7 @@ export const SubjectWiseAnalysis = ({ email }) => {
 
     const apiKey = import.meta.env.VITE_Google_api_key;
 
-    // Step 1: Get user class
+   
     useEffect(() => {
         const fetchClassName = async () => {
             try {
@@ -68,7 +68,7 @@ export const SubjectWiseAnalysis = ({ email }) => {
         if (email) fetchClassName();
     }, [email]);
 
-    // Step 2: Get available months
+    
     useEffect(() => {
         const fetchMonths = async () => {
             if (!className) return;
@@ -84,7 +84,7 @@ export const SubjectWiseAnalysis = ({ email }) => {
         fetchMonths();
     }, [className]);
 
-    // Step 3: Get spreadsheet ID and sheet name for selected month
+    
     useEffect(() => {
         const fetchSheetDetails = async () => {
             if (!className || !selectedMonth) return;
@@ -102,7 +102,7 @@ export const SubjectWiseAnalysis = ({ email }) => {
         fetchSheetDetails();
     }, [selectedMonth, className]);
 
-    // Step 4: Fetch Google Sheets data and create chart data for each subject
+    
     useEffect(() => {
         const fetchChartData = async () => {
             if (!spreadsheetId || !sheetName) return;

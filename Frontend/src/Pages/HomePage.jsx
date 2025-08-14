@@ -69,8 +69,7 @@ export const HomePage = () => {
     <div className='mx-auto flex flex-col justify-center items-center overflow-hidden'>
       <HeroSection scrollToDiv={scrollToDiv} />
 
-      {/* About Section */}
-      <div id='targetDiv'
+      <div 
         className='sm:max-w-[1280px] sm:w-auto flex flex-col gap-4 justify-center items-center h-[760px] sm:m-[120px] m-8 w-[300px] border-[#545454] border-2 rounded-[20px]'
         style={{ backgroundImage: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719379882/homeabout_s98vph.png)` }}>
         <h2 className='itim sm:text-[70px] text-[32px] text-[#9ee174] text-center text-wrap'>"Nudging Towards Excellence"</h2>
@@ -78,14 +77,12 @@ export const HomePage = () => {
         <p className='sm:text-[36px] text-[18px] text-center itim px-[124px] sm:w-auto w-[500px]'>We believe in continuous effort , small actions taken to motivate students, providing them with regular feedback, encouragement, and support to keep them on the path to success.</p>
         <p className='sm:text-[36px] text-[18px] text-center itim px-[124px] sm:w-auto w-[500px]'>Our aim is not limited to academic achievements of students but also includes the development of critical thinking, creativity, resilience, and social responsibility</p>
       </div>
-
-      {/* 🚀 Features Section */}
-      <div className='sm:max-w-[1280px] w-full px-6 sm:px-16 my-12 flex flex-col gap-12'>
+      <div id='targetDiv' className='mb-16'></div>
+      <div  className='sm:max-w-[1280px] w-full px-6 sm:px-16 flex flex-col gap-12'>
         <h2 className='itim sm:text-[55px] text-[28px] text-center text-[#63a76a]'>
           Key Features of CoachifyTree
         </h2>
         <div className='grid sm:grid-cols-3 grid-cols-1 gap-8'>
-          {/* Feature Card */}
           <div className='border-2 border-[#545454] rounded-[20px] p-6 flex flex-col items-center text-center shadow-lg bg-black/40'>
             <div className='w-full h-[200px] rounded-md mb-4 flex items-center justify-center'>
               <img src="https://res.cloudinary.com/dh26dmbg3/image/upload/v1719379882/homeabout_s98vph.png" alt="" />
@@ -141,7 +138,6 @@ export const HomePage = () => {
         </div>
       </div>
 
-      {/* Existing Sections (unchanged) */}
       <div className='flex flex-wrap sm:gap-5 sm:flex-row flex-col gap-12 sm:my-[120px] my-[50px] mx-auto'>
         <div style={{ background: `url(https://res.cloudinary.com/dh26dmbg3/image/upload/v1719381445/connectwithus_oibnzn.png)` }} className='w-[628px] h-[614px] sm:flex hidden flex-col itim p-6'>
           <div className='flex text-[64px] gap-4 mt-[345px]'><p className='text-[#63a73a]'>CONNECT</p><p>WITH US</p></div>

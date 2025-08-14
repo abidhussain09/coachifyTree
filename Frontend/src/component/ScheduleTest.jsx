@@ -40,10 +40,10 @@ export const ScheduleTest = () => {
                 testDate: "",
             });
 
-            toast.success("✅ Test Added Successfully!");
+            toast.success(" Test Added Successfully!");
         } catch (error) {
             console.error("Error adding test:", error.response?.data || error.message);
-            toast.error("❌ Failed to add test");
+            toast.error(" Failed to add test");
         }
     }
 

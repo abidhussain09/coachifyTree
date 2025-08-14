@@ -24,7 +24,7 @@ export const Dashboard = () => {
     const [userRole, setUserRole] = useState('');
 
     const StudentOptions = ["Notice", "Upcoming Tests", "Performance Analysis", "Subject-wise Analysis"];
-    const TeacherOptions = ["Manage Notice", "Upcoming Tests","Manage Upcoming Tests", "Schedule Test", "Upload Notice"];
+    const TeacherOptions = ["Manage Notice","Manage Upcoming Tests", "Schedule Test", "Upload Notice"];
     const AdminOptions = ["Notice", "Upcoming Tests", "Verify User", "Upload sheet Data"];
 
     const fetchDashboardData = async () => {
@@ -62,14 +62,12 @@ export const Dashboard = () => {
     return (
         <div className='w-screen mt-5 flex flex-col items-center gap-5 px-3 sm:px-5'>
 
-            {/* Top Card - Welcome Message Always visible in dashboard*/}
             <div className='itim flex items-center lg:items-start w-full max-w-[1280px] sm:h-[220px] p-2 md:p-5 bg-[#d9d9d9] bg-opacity-10 border border-[#ffffff84] rounded-[20px] sm:gap-5'>
-                {/* Profile Image */}
+                
                 <div className='md:h-[150px] md:w-[150px] md:mt-5 h-[70px] w-[70px]  rounded-full bg-slate-600 bg-opacity-50 overflow-hidden'>
                     <img className='w-full h-full object-cover' src="https://res.cloudinary.com/dh26dmbg3/image/upload/v1735969470/panda_hf9tep.png" alt="profile" />
                 </div>
 
-                {/* Text Section */}
                 <div className='flex md:ml-5 md:mt-5 flex-col p-3 sm:p-4 justify-center items-center sm:items-center lg:items-start text-left'>
                     <div className='md:text-5xl text-[24px] itim text-white'>
                         Welcome back, {name} 👋
@@ -80,10 +78,8 @@ export const Dashboard = () => {
                 </div>
             </div>
 
-            {/* dashboard body  */}
             <div className='flex gap-3 flex-col sm:flex-row w-full max-w-[1280px]'>
 
-                {/* left side dashboard  */}
                 <div className='hidden sm:flex flex-col gap-8 itim bg-[#d9d9d9] bg-opacity-10 h-[800px] w-1/4 rounded-[20px] border-[1px] border-[#ffffff84]'>
                     <div className='flex items-center flex-col pt-10'>
                         <p className='text-4xl'>DASHBOARD</p>
@@ -92,7 +88,6 @@ export const Dashboard = () => {
                     <SideBar options={getOptions()} onSelect={setSelectedOption} selected={selectedOption} />
                 </div>
 
-                {/* select bar for mobile screen  */}
                 <div className="sm:hidden flex justify-center mb-2">
                     <select
                         value={selectedOption}
@@ -105,7 +100,6 @@ export const Dashboard = () => {
                     </select>
                 </div>
 
-                {/* right side dashboard  */}
                 <div className='itim text-4xl h-auto w-full sm:w-3/4 bg-[#d9d9d9] bg-opacity-10 rounded-[20px] border border-[#ffffff84] p-5 overflow-y-auto overflow-x-auto'>
 
                     {selectedOption === "Upcoming Tests" && <UpcomingTest />}

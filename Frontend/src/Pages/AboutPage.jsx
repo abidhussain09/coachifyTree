@@ -8,16 +8,14 @@ export const AboutPage = () => {
   return (
     <div className="flex flex-col items-center max-w-[1280px] mx-auto px-4 text-white itim">
       
-      {/* About Us Section */}
       <div className="w-full mt-10">
         <h1 className="text-3xl md:text-4xl font-semibold text-[#d8973c] underline decoration-white decoration-1 underline-offset-8">
           About us
         </h1>
       </div>
 
-      {/* About Us Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-10">
-        {/* Left Column: Text */}
+        
         <div className="flex items-center justify-center p-6 bg-black rounded-lg">
           <p className="text-lg md:text-2xl text-center">
             Welcome to Coachify Tree, where we believe that behind every champion,
@@ -26,7 +24,6 @@ export const AboutPage = () => {
           </p>
         </div>
 
-        {/* Right Column: Image */}
         <div className="overflow-hidden rounded-lg">
           <img
             src={photo1}
@@ -36,16 +33,14 @@ export const AboutPage = () => {
         </div>
       </div>
 
-      {/* Our Mission Section */}
       <div className="w-full text-center mt-24 ">
       <h1 className="text-3xl md:text-4xl font-semibold text-[#d8973c] underline decoration-white decoration-1 underline-offset-8 itim ">
             Mission Statement
           </h1>
       </div>
 
-      {/* Our Mission Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-16">
-        {/* Left Column: Image */}
+        
         <div className="overflow-hidden rounded-lg">
           <img
             src={photo2}
@@ -54,7 +49,6 @@ export const AboutPage = () => {
           />
         </div>
 
-        {/* Right Column: Text */}
         <div className="flex items-center justify-center p-6 bg-black rounded-lg">
           <p className="text-lg md:text-2xl text-justify itim">
             At Coachify Tree, our mission is clear: we strive to provide the best coaching and mentoring services to students worldwide. We believe that every student has the potential to achieve greatness, and our goal is to help them unlock that potential. Through personalized coaching, academic resources, and a supportive community, we aim to guide students towards their dreams.
@@ -65,16 +59,13 @@ export const AboutPage = () => {
         </div>
       </div>
 
-      {/* Specialized Branches Section */}
       <div className="w-full mt-24">
         <h1 className="text-3xl md:text-4xl font-semibold text-[#d8973c] underline decoration-white decoration-1 underline-offset-8 itim">
           Coachify Tree offers specialized branches:
         </h1>
       </div>
 
-      {/* Specialized Branches Content */}
       <div className=" grid-cols-1 md:grid-cols-2 gap-6 w-full mt-10">
-        {/* Left Column: Text */}
         <div className="flex flex-col justify-center p-6 bg-black  rounded-lg">
           <p className="text-lg md:text-2xl itim">
             <span className="text-[#63A76A] text-4xl">Coachify Education:</span>
@@ -96,8 +87,6 @@ export const AboutPage = () => {
             Coachify Health promotes holistic well-being, focusing on physical, mental, and emotional health. Our services help users develop resilience and stress-management skills. By prioritizing health, Coachify ensures that individuals thrive academically and personally.
           </p>
         </div>
-
-        {/* Right Column: Image */}
         
       </div>
 

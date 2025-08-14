@@ -1,9 +1,7 @@
 const SheetSchema=require("../models/Sheet");
 
-//register a new sheetData
 exports.registerSheetDetails=async (req,res)=>{
     try{
-        //get the data
         const {sheetId,sheetName,className, month}=req.body;
         //validate the data is available or not
         if(!sheetId || !sheetName || !className || !month){
@@ -12,7 +10,6 @@ exports.registerSheetDetails=async (req,res)=>{
                 message:"All the fields are required"
             })
         }
-        //check if there is sheet already for a class
         const existingClass=await SheetSchema.findOne({sheetName:sheetName});
         if(existingClass){
             return res.status(403).json({
@@ -42,7 +39,6 @@ exports.registerSheetDetails=async (req,res)=>{
     }
 };
 
-//update the sheetData
 exports.updateSheetDetails=async (req,res)=>{
     try{
         //get data

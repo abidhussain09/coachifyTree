@@ -11,12 +11,10 @@ router.post(
     addTest
 );
 
-// All users (including students) can view tests
 router.get('/', getTests);
 
-// Automatic deletion of old tests (could be an admin-only action)
 router.delete('/delete-old', authenticateToken, authorizeRoles('admin'), deleteOldTests);
 router.post("/deleteTestSchedule",authenticateToken,
-    authorizeRoles("Teacher", "Admin"),deleteTest);
+    deleteTest);
 
 module.exports = router;

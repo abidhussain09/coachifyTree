@@ -12,7 +12,7 @@ export const UploadSheetData = () => {
     month: ""
   });
 
-  const [errorMessge, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   function changeHandler(event) {
     const { name, value } = event.target;
@@ -22,14 +22,13 @@ export const UploadSheetData = () => {
   async function submitHandler(event) {
     event.preventDefault();
     try {
-      console.log(sheetData);
       const token = localStorage.getItem('Token');
       if (!token) {
         console.error("No token found, authentication required!");
         return;
       }
 
-      const response = await axios.post('/addSheetDetails', sheetData, {
+      await axios.post('/addSheetDetails', sheetData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,91 +41,92 @@ export const UploadSheetData = () => {
         month: ""
       });
       setErrorMessage("");
-      toast.success("Sheet Details Added Sucessfully");
+      toast.success("Sheet Details Added Successfully");
     } catch (error) {
-      // console.log(error.response?.data?.message);
       setErrorMessage(error.response?.data?.message || "Something went wrong");
-      toast.error(error.response?.data?.message || "Something went wrong")
-      console.error("Error adding sheet:", error.response?.data || error.message);
+      toast.error(error.response?.data?.message || "Something went wrong");
     }
-
   }
 
+  const InputField = ({ label, name, value, placeholder, subLabel }) => (
+    <div className="mb-4 p-2 md:p-4">
+      <label htmlFor={name} className="block text-white text-lg md:text-2xl mb-2">
+        {label}
+        {subLabel && <p className="text-sm text-slate-400">{subLabel}</p>}
+      </label>
+      <input
+        type="text"
+        id={name}
+        name={name}
+        placeholder={placeholder}
+        className="w-full p-3 rounded-lg bg-[rgba(217,217,217,0.15)] border border-neutral-600 focus:border-[#63a73a] focus:ring-2 focus:ring-[#63a73a] outline-none text-white text-lg md:text-xl placeholder-gray-400"
+        value={value}
+        onChange={changeHandler}
+        required
+        autoComplete="off"
+      />
+    </div>
+  );
+
   return (
-    <div className="flex flex-col p-4 md:p-8 h-auto">
-      <form onSubmit={submitHandler} className="w-full" autoComplete="off">
-        <div className="flex flex-col md:flex-row gap-4">
-          {/* Left Section */}
-          <div className="flex flex-col w-full md:w-1/2">
-            <div className="mb-4 p-2 md:p-4">
-              <label htmlFor="className" className="block text-white text-xl md:text-3xl mb-2">Class/Batch</label>
-              <input
-                type="text"
-                id="className"
+    <div className="flex justify-center items-center p-4 md:p-8">
+      <div className="w-full max-w-5xl bg-neutral-800 rounded-2xl shadow-lg border border-neutral-700 pb-4">
+        <h2 className="text-center text-2xl md:text-4xl text-white font-semibold py-6 border-b border-neutral-700">
+          Upload Sheet Details
+        </h2>
+
+        <form onSubmit={submitHandler} className="w-full" autoComplete="off">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Left Section */}
+            <div className="flex flex-col w-full md:w-1/2">
+              <InputField
+                label="Class/Batch"
                 name="className"
-                className="w-full p-2 rounded-lg bg-[rgba(217,217,217,0.28)] text-white text-xl md:text-3xl"
                 value={sheetData.className}
-                onChange={changeHandler}
-                required
-                autoComplete="off"
+                placeholder="Eg: Class 9 A"
               />
-            </div>
-            <div className="mb-4 p-2 md:p-4">
-              <label htmlFor="sheetId" className="block text-white text-xl md:text-3xl mb-2">Sheet Id</label>
-              <input
-                type="text"
-                id="sheetId"
+              <InputField
+                label="Sheet Id"
                 name="sheetId"
-                className="w-full p-2 rounded-lg bg-[rgba(217,217,217,0.28)] text-white text-xl md:text-3xl"
                 value={sheetData.sheetId}
-                onChange={changeHandler}
-                required
-                autoComplete="off"
+                placeholder="Enter Google Sheet ID"
               />
             </div>
-          </div>
 
-          {/* Right Section */}
-          <div className="flex flex-col w-full md:w-1/2">
-            <div className="mb-4 p-2 md:p-4">
-              <label htmlFor="sheetName" className="block text-white text-xl md:text-3xl mb-2">Sheet Name</label>
-              <input
-                type="text"
-                id="sheetName"
+            {/* Right Section */}
+            <div className="flex flex-col w-full md:w-1/2">
+              <InputField
+                label="Sheet Name"
                 name="sheetName"
-                className="w-full p-2 rounded-lg bg-[rgba(217,217,217,0.28)] text-white text-xl md:text-3xl"
                 value={sheetData.sheetName}
-                onChange={changeHandler}
-                required
-                autoComplete="off"
+                placeholder="Eg: Physics Test Sheet"
               />
-            </div>
-            <div className="mb-4 p-2 md:p-4">
-              <label htmlFor="month" className="block text-white text-xl md:text-3xl mb-2">
-                Test Name <p className="text-base">(Prelims, Mains, Advance)</p>
-              </label>
-              <input
-                type="text"
-                id="month"
+              <InputField
+                label="Test Name"
                 name="month"
-                className="w-full p-2 rounded-lg bg-[rgba(217,217,217,0.28)] text-white text-xl md:text-3xl"
+                subLabel="(Prelims, Mains, Advance)"
                 value={sheetData.month}
-                onChange={changeHandler}
-                required
-                autoComplete="off"
+                placeholder="Eg: Prelims - Jan"
               />
             </div>
           </div>
-        </div>
 
-        <div className="text-center mt-4">
-          <button type="submit" className="bg-green-600 text-white text-xl md:text-3xl py-2 px-4 rounded-lg">
-            Upload Sheet Details
-          </button>
-        </div>
-      </form>
-      <ToastContainer className="text-base" />
-      {errorMessge && <p className="text-red-600 text-xl mt-4">{errorMessge}</p>}
+          <div className="text-center mt-6">
+            <button
+              type="submit"
+              className="bg-[#63a73a] hover:bg-[#4f8c2f] transition-colors text-white text-lg md:text-xl py-2 px-6 rounded-lg shadow-md"
+            >
+              Upload Sheet
+            </button>
+          </div>
+        </form>
+
+        {errorMessage && (
+          <p className="text-red-500 text-lg text-center mt-4">{errorMessage}</p>
+        )}
+
+        <ToastContainer className="text-base" />
+      </div>
     </div>
   );
 };

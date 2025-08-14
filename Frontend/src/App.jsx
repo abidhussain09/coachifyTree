@@ -47,7 +47,7 @@ function App() {
     },[dispatch]);
   return (
       <div className='w-screen min-h-screen bg-cover bg-center bg-no-repeat'>
-        <div className='bg-black flex justify-center sticky top-0 w-screen'>
+        <div className='bg-black flex justify-center sticky top-0 w-screen z-50 shadow-md'>
           <Navbar/>
         </div>
         <div className=''>

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { addTest, getTests, deleteOldTests } = require('../controllers/testController');
+const { addTest, getTests, deleteOldTests, deleteTest } = require('../controllers/testController');
 const { authenticateToken, authorizeRoles } = require('../middlewares/authMiddleware');
 
 // Only teachers and admins can add tests
@@ -16,5 +16,7 @@ router.get('/', getTests);
 
 // Automatic deletion of old tests (could be an admin-only action)
 router.delete('/delete-old', authenticateToken, authorizeRoles('admin'), deleteOldTests);
+router.post("/deleteTestSchedule",authenticateToken,
+    authorizeRoles("Teacher", "Admin"),deleteTest);
 
 module.exports = router;

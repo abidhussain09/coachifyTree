@@ -12,6 +12,7 @@ import { VerifyUser } from '../component/VerifyUser';
 import { UploadSheetData } from '../component/UploadSheetData';
 import { VerificationRequest } from '../component/verificationRequest';
 import { ManageNotice } from '../component/ManageNotice';
+import { ManageUpcomingTest } from '../component/ManageUpcomingTests';
 
 axios.defaults.baseURL = import.meta.env.VITE_Backend_Url;
 
@@ -23,7 +24,7 @@ export const Dashboard = () => {
     const [userRole, setUserRole] = useState('');
 
     const StudentOptions = ["Notice", "Upcoming Tests", "Performance Analysis", "Subject-wise Analysis"];
-    const TeacherOptions = ["Manage Notice", "Upcoming Tests", "Schedule Test", "Upload Notice"];
+    const TeacherOptions = ["Manage Notice", "Upcoming Tests","Manage Upcoming Tests", "Schedule Test", "Upload Notice"];
     const AdminOptions = ["Notice", "Upcoming Tests", "Verify User", "Upload sheet Data"];
 
     const fetchDashboardData = async () => {
@@ -118,6 +119,7 @@ export const Dashboard = () => {
                     {isVerified && selectedOption === "Schedule Test" && <ScheduleTest />}
                     {isVerified && selectedOption === "Upload Notice" && <UploadNotice />}
                     {isVerified && selectedOption === "Manage Notice" && <ManageNotice/>}
+                    {isVerified && selectedOption === "Manage Upcoming Tests" && <ManageUpcomingTest/>}
 
                     {!isVerified && selectedOption !== "Upcoming Tests" && selectedOption !== "Notice" &&
                         <VerificationRequest email={Data.email} name={name} />

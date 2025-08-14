@@ -51,7 +51,7 @@ export const UploadSheetData = () => {
   return (
     <div className="flex justify-center items-center p-4 md:p-8">
       <div className="w-full max-w-4xl bg-neutral-800 rounded-2xl shadow-lg border border-neutral-700 p-6 md:p-10">
-        <h2 className="text-center text-3xl md:text-4xl text-white font-bold mb-8" style={{ fontFamily: 'Itim, cursive' }}>
+        <h2 className="text-center text-3xl md:text-4xl text-white font-bold mb-8" >
           Upload Sheet Details
         </h2>
 
@@ -59,7 +59,7 @@ export const UploadSheetData = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Class/Batch */}
             <div>
-              <label htmlFor="className" className="block text-white text-lg md:text-xl mb-2 font-medium" style={{ fontFamily: 'Itim, cursive' }}>
+              <label htmlFor="className" className="block text-white text-lg md:text-xl mb-2 font-medium" >
                 Class/Batch
               </label>
               <input
@@ -75,7 +75,7 @@ export const UploadSheetData = () => {
 
             {/* Sheet ID */}
             <div>
-              <label htmlFor="sheetId" className="block text-white text-lg md:text-xl mb-2 font-medium" style={{ fontFamily: 'Itim, cursive' }}>
+              <label htmlFor="sheetId" className="block text-white text-lg md:text-xl mb-2 font-medium" >
                 Sheet Id
               </label>
               <input
@@ -91,7 +91,7 @@ export const UploadSheetData = () => {
 
             {/* Sheet Name */}
             <div>
-              <label htmlFor="sheetName" className="block text-white text-lg md:text-xl mb-2 font-medium" style={{ fontFamily: 'Itim, cursive' }}>
+              <label htmlFor="sheetName" className="block text-white text-lg md:text-xl mb-2 font-medium" >
                 Sheet Name
               </label>
               <input
@@ -107,10 +107,10 @@ export const UploadSheetData = () => {
 
             {/* Test Name */}
             <div>
-              <label htmlFor="month" className="block text-white text-lg md:text-xl mb-1 font-medium" style={{ fontFamily: 'Itim, cursive' }}>
+              <label htmlFor="month" className="block text-white text-lg md:text-xl mb-1 font-medium" >
                 Test Name
               </label>
-              <p className="text-sm text-gray-400 mb-2" style={{ fontFamily: 'Itim, cursive' }}>
+              <p className="text-sm text-gray-400 mb-2" >
                 (Prelims, Mains, Advance)
               </p>
               <input
@@ -136,7 +136,7 @@ export const UploadSheetData = () => {
           </div>
         </form>
 
-        {errorMessge && <p className="text-red-500 text-center mt-6 text-lg" style={{ fontFamily: 'Itim, cursive' }}>{errorMessge}</p>}
+        {errorMessge && <p className="text-red-500 text-center mt-6 text-lg" ></p>}
 
         <ToastContainer className="text-base" />
       </div>

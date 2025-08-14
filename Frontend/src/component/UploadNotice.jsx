@@ -37,10 +37,10 @@ export const UploadNotice = () => {
                 content: ""
             });
 
-            toast.success("✅ Notice Uploaded Successfully!");
+            toast.success("Notice Uploaded Successfully!");
         } catch (error) {
             console.error("Error adding notice:", error.response?.data || error.message);
-            toast.error("❌ Failed to upload notice");
+            toast.error("Failed to upload notice");
         }
     }
 

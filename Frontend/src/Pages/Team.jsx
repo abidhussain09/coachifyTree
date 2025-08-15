@@ -21,7 +21,7 @@ const teamMembers = [
         image: "https://res.cloudinary.com/dh26dmbg3/image/upload/v1748759703/WhatsApp_Image_2025-05-28_at_23.07.18_de38cb85_bz8aew.jpg",
         linkedin: "https://www.linkedin.com/in/md-mudassir-alam-7ab0852ab/",
         github: "https://github.com/mdmudassiralam",
-        email: "mudassirakram69@gmail.com",
+        email: "mailto:mudassirakram69@gmail.com",
     },
 ];
 

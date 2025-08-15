@@ -85,21 +85,21 @@ exports.updateSheetDetails=async (req,res)=>{
 
 exports.deleteSheetDetails=async(req,res)=>{
     try{
-        const {className}=req.body;
-        if(!className){
+        const {_id}=req.body;
+        if(!_id){
             return res.status(403).json({
                 success:false,
                 message:"All fields are required",
             });
         }
-        const user=await SheetSchema.findOne({className:className});
+        const user=await SheetSchema.findOne({_id:_id});
         if(!user){
             return res.status(403).json({
                 success:false,
                 message:"Sheet Details already does not exists",
             });
         }
-        await SheetSchema.findOneAndDelete({className:className});
+        await SheetSchema.findOneAndDelete({_id:_id});
         return res.status(200).json({
             success:true,
             message:"Sheet Details deleted",
@@ -138,3 +138,16 @@ exports.getSheetDetails=async (req,res)=>{
         });
     }
 };
+
+exports.getAllSheetDetails=async(req,res)=>{
+    try{
+        const details=await SheetSchema.find().sort({createdAt:-1});
+        return res.status(200).json({
+            message:"Fetched sucessfully",
+            details
+        })
+    }
+    catch(error){
+        res.status(500).json({ error: error.message, message:"Error in fetching from backend" });
+    }
+}

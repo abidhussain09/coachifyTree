@@ -13,6 +13,7 @@ import { UploadSheetData } from '../component/UploadSheetData';
 import { VerificationRequest } from '../component/verificationRequest';
 import { ManageNotice } from '../component/ManageNotice';
 import { ManageUpcomingTest } from '../component/ManageUpcomingTests';
+import { ManageSheetDetails } from '../component/ManageSheetDetails';
 
 axios.defaults.baseURL = import.meta.env.VITE_Backend_Url;
 
@@ -25,7 +26,7 @@ export const Dashboard = () => {
 
     const StudentOptions = ["Notice", "Upcoming Tests", "Performance Analysis", "Subject-wise Analysis"];
     const TeacherOptions = ["Manage Notice","Manage Upcoming Tests", "Schedule Test", "Upload Notice"];
-    const AdminOptions = ["Notice", "Upcoming Tests", "Verify User", "Upload sheet Data"];
+    const AdminOptions = ["Notice", "Upcoming Tests", "Verify User","Manage Sheet Details", "Upload sheet Data"];
 
     const fetchDashboardData = async () => {
         try {
@@ -107,6 +108,7 @@ export const Dashboard = () => {
 
                     {userRole === "Admin" && selectedOption === "Verify User" && <VerifyUser />}
                     {userRole === "Admin" && selectedOption === "Upload sheet Data" && <UploadSheetData />}
+                    {userRole === "Admin" && selectedOption === "Manage Sheet Details" && <ManageSheetDetails/>}
 
                     {isVerified && selectedOption === "Performance Analysis" && <PerformanceAnalysis email={Data.email} />}
                     {isVerified && selectedOption === "Subject-wise Analysis" && <SubjectWiseAnalysis email={Data.email} />}

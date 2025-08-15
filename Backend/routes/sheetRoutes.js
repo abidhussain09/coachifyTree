@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Sheet = require('../models/Sheet');
+const { getAllSheetDetails, deleteSheetDetails } = require('../controllers/SheetController');
+const { authenticateToken, authorizeRoles } = require('../middlewares/authMiddleware');
 
 // Get all months for a class
 router.get('/getMonths', async (req, res) => {
@@ -13,7 +15,6 @@ router.get('/getMonths', async (req, res) => {
   }
 });
 
-// Get sheet details for a selected class and month
 router.get('/getSheetByMonth', async (req, res) => {
   const { className, month } = req.query;
   try {
@@ -24,5 +25,8 @@ router.get('/getSheetByMonth', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch sheet' });
   }
 });
+
+router.get('/getAllSheetDetails',authenticateToken,authorizeRoles("Admin"),getAllSheetDetails);
+router.post('/deleteSheetDetail',authenticateToken,authorizeRoles('Admin'),deleteSheetDetails);
 
 module.exports = router;

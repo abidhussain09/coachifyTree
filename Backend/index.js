@@ -25,12 +25,13 @@ app.get('/health',(req,res)=>{
 const userRoute=require('./routes/userRoute');
 const testRoutes = require('./routes/testRoutes');
 const noticeRoutes = require("./routes/noticeRoutes");
+const sheetRoutes=require("./routes/sheetRoutes")
 
 //mount
 app.use('/api/v1',userRoute);
 app.use('/api/v1/tests', testRoutes); 
 app.use("/api/v1/notices", noticeRoutes);
-app.use('/api/v1/sheets', require('./routes/sheetRoutes'));
+app.use('/api/v1/sheets', sheetRoutes);
 
 
 app.listen(port,()=>{

@@ -15,7 +15,6 @@ export const ManageUpcomingTest = () => {
             const sortedTests = response.data.sort(
                 (a, b) => new Date(a.testDate) - new Date(b.testDate)
             );
-            console.log(sortedTests);
             setTestData(sortedTests);
         } catch (error) {
             console.log("Error in fetching the upcoming test data:", error);
@@ -38,6 +37,7 @@ export const ManageUpcomingTest = () => {
             getScheduledTests();
         }
         catch(error){
+            toast.error("Error while deleting Test");
             console.log("Error while deleting Test",error)
         }
     }

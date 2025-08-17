@@ -85,7 +85,7 @@ export const HomePage = () => {
         <div className='grid sm:grid-cols-3 grid-cols-1 gap-8'>
           <div className='border-2 border-[#545454] rounded-[20px] p-6 flex flex-col items-center text-center shadow-lg bg-black/40'>
             <div className='w-full h-[200px] rounded-md mb-4 flex items-center justify-center'>
-              <img src="https://res.cloudinary.com/dh26dmbg3/image/upload/v1719379882/homeabout_s98vph.png" alt="" />
+              <img src="https://res.cloudinary.com/dh26dmbg3/image/upload/v1755445414/Screenshot_2025-08-17_211136_kbdajz.png" alt="" />
             </div>
             <h3 className='text-[22px] text-[#9ee174] font-semibold mb-2'>Role-based Dashboards</h3>
             <p className='text-[16px] text-gray-200'>Personalized dashboards for Students, Teachers, Admins with distinct functionalities.</p>

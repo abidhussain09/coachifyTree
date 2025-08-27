@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "chart.js": "^4.4.8",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
@@ -10,7 +9,6 @@
     "node-cron": "^4.0.6",
     "nodemailer": "^6.9.16",
     "nodemon": "^3.1.9",
-    "react-chartjs-2": "^5.3.0",
     "uuid": "^11.0.3"
   },
   "name": "backend",

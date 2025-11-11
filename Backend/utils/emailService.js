@@ -1,41 +1,26 @@
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 require('dotenv').config();
 
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-        user: process.env.EMAIL_USER, // Your Gmail address
-        pass: process.env.EMAIL_PASS, // App password (NOT your actual Gmail password)
-    },
-});
-
-// Verify SMTP connection (debugging)
-transporter.verify((error, success) => {
-    if (error) {
-        console.error("SMTP Connection Error:", error);
-    } else {
-        //console.log("SMTP is ready to send emails.");
-    }
-});
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const sendEmail = async (to, subject, html) => {
     try {
-        // console.log("here inside sendEmail");
-        const mailOptions = {
-            from: `"CoachifyTree" <${process.env.EMAIL_USER}>`, // Sender's address
-            to, // Recipient's email
-            subject, // Email subject
-            html, // HTML content
+        const msg = {
+            from: `"CoachifyTree" <coachifytree@gmail.com>`, 
+            to,
+            subject,
+            html,
         };
 
         // Send the email
-        const info = await transporter.sendMail(mailOptions);
-        // console.log("✅ Email sent successfully: %s", info.messageId);
+        await sgMail.send(msg);
+
+        // console.log("✅ Email sent successfully via SendGrid");
         return true;
+
     } catch (error) {
-        console.error("❌ Error sending email:", error.response || error);
+        // Log the detailed error from SendGrid
+        console.error("❌ Error sending email:", error.response?.body || error.message);
         throw new Error("Could not send email. Please try again later.");
     }
 };
